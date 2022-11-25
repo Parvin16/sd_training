@@ -37,6 +37,7 @@ How does a **software communicate with hardware**:
 1. **Compiler** will compile the instruction into **assembly language** (.exe).
 1. **Assembler** will then convert **assembly language** into **gate level language** (low-level language.machine language) which is in binary format (operands), and it is the language understood by a computer.
 
+
 ### Lab Result
 
 ![day0 lab vsd tarainig ](https://user-images.githubusercontent.com/118954022/203966813-d18863aa-a04d-4f57-953e-b846ccb79b94.jpg)
