@@ -2,7 +2,7 @@
 
 ## Table of content
 
-*  [Day 0](https://github.com/Parvin16/sd-training/blob/main/Day0.md#day-0)
+*  [Day 0](https://github.com/Parvin16/sd_training#day-0)
 
 
 ## Day 0
