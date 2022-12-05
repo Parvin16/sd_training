@@ -30,13 +30,15 @@
 
 **Software communication with Hardware**
 
-**Synthesis process** will help to convert software's instructions which is written in high level language to gate level language/machine language which is normally in binary format.
+<img width="547" alt="process flow" src="https://user-images.githubusercontent.com/118954022/205565519-1869689f-7d35-4ccf-bdd7-a38275e7a8f7.png">
 
+**Synthesis process** - a process of converting RTL (synthesizable Verilog code) into a technology specific Gate level netlist which includes nets, sequential cells, combinational cells and their connectivity. It is a process of combining pre-existing elements to form something new. It is the conversion of an idea into an implementation.
 
-**Synthesis process flow**:
-1. **Specification/instructions** written in RTL (**high-level language** such as C, C++ or Java) as inputs.
-1. **Compiler** will compile the instruction into **assembly language** (.exe).
-1. **Assembler** will then convert **assembly language** into **gate level language** (low-level language.machine language) which is in binary format (operands), and it is the language understood by a computer.
+**Process flow**:
+**Application Software** -> **System Software** -> **Hardware**
+**Specification/instructions** - written in RTL (high-level language) such as C, C++ or Java as inputs.
+**Compiler** - compile of the instruction into assembly language (.exe).
+**Assembler** - convert of the assembly language into gate level language (low-level language or machine language) which is in binary format, and it is the language understood by a computer.
 
 
 ### Lab Result
@@ -46,3 +48,4 @@ Starting a Lab (Intel Unix)
 
 
 ## Day 1
+
