@@ -52,3 +52,22 @@ Starting a Lab (Intel Unix)
 
 ## Day 1
 
+### Open-source Simulator iverilog
+
+![TestBench](https://user-images.githubusercontent.com/118954022/205607323-ed0d9f04-64bf-44ef-815b-015f60d2d878.jpg)
+
+**Simulator** - Tool used to simulating design. RTL design checked for adherence to the spec by simulating the design. eg: iverilog.
+**Design** - The actual Verilog code / set of Verilog codes. It has intended functionality to meet the requirements. 
+**TestBench** - A setup to check the functionality of the design wether it is obeying or not by applying stimulus(test_vesctors).
+ Note: Simualtor is looking for change in the input values. No change in input, no change to the output. 
+ 
+ **Iverilog Simultion Flow**:
+ 
+ ![iverilog flow](https://user-images.githubusercontent.com/118954022/205609796-a0640932-c666-427b-bd1d-580b11ca72be.jpg)
+
+ **VCD file** - Value Change Dump format file, output file of iverilog. 
+ **gtkwave** - A tool to view the output in a waveform format.
+
+------------------------------------------------------------------------------------------------
+
+ ### Labs
