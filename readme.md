@@ -42,6 +42,7 @@
 **Compiler** - compile of the instruction into assembly language (.exe).
 **Assembler** - convert of the assembly language into gate level language (low-level language or machine language) which is in binary format, and it is the language understood by a computer.
 
+--------------------------------------------------------------------------------------------------
 
 ### Lab Result
 Starting a Lab (Intel Unix) 
