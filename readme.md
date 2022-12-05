@@ -1,4 +1,4 @@
-# This is my first repo
+# This is my repo
 
 ## Table of content
 
