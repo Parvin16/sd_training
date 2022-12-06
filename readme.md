@@ -9,7 +9,7 @@
 ## Day 0
 ### Theory Basic
 
-![ic package](https://user-images.githubusercontent.com/118954022/205561763-5f0e8dbd-a4d5-4834-b794-a5267fdecd2f.jpg)
+![chip](https://user-images.githubusercontent.com/118954022/205806514-3bc166e8-7d8f-4fa7-bfb1-9f8445d3a3b6.jpg)
 
 * **IC Package** - the material that contains a semiconductor device. The package is a case that surrounds the circuit material to protect it from corrosion or physical damage and allow mounting of the electrical contacts connecting it to the printed circuit board (PCB).
 
