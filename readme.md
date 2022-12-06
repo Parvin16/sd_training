@@ -5,6 +5,9 @@
 *  [Day 0](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-0) - System/Tool Setup Check. GitHub ID creation
 *  [Day 1](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-1) - Introduction to Verilog RTL design and Synthesis
 *  [Day 2]( ) - Timing libs(QTMs/ETMs), hierarchical vs flat synthesis and efficient flop coding styles
+*  [Day3]( ) -
+*  [Day4]( ) -
+*  [Day5]( ) -
 
 ## Day 0
 ### Theory Basic
@@ -52,7 +55,7 @@ Starting a Lab (Intel Unix)
 
 ## Day 1
 
-### Open-source Simulator iverilog
+### Open-source Simulator Iverilog and Synthesis
 
 ![TestBench](https://user-images.githubusercontent.com/118954022/205607323-ed0d9f04-64bf-44ef-815b-015f60d2d878.jpg)
 
@@ -144,3 +147,17 @@ The collection forms the **.lib** .
 ![lab2 4](https://user-images.githubusercontent.com/118954022/206004715-712c7bc1-4c55-4305-9b5a-5807029dc18d.jpg)
 
 * 
+
+
+## Day 2
+
+### Timing libs(QTMs/ETMs) 
+
+### Hierarchical vs Flat Synthesis
+
+### Various Flop Coding Styles
+
+
+------------------------------------------------------------------------------------------------
+
+### Labs
