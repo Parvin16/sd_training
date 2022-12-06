@@ -84,15 +84,22 @@ Synthesis
 **Synthesis** - The RTL to gate level translation where the design is converted into gates and the connections are made between gates which given out as a file called netlist.
 **.lib** - Collection of logical modules includes basic logic gates. Different flavors of same gate. 
 
-Combinational delay in logic path determines the max speed of operation of digital logic circuit. 
+Combinational delay in logic path determines the max speed of operation of digital logic circuit. We need cells to work fast enough for required performance.
+Faster the charging , lesser the cell delay. Propagation delay is the time for the input to be fill up the output.
+
 ![sysnthesis 2](https://user-images.githubusercontent.com/118954022/205865780-da755d6c-7a6b-4fbf-b6c3-6cdc002bbca5.jpg)
 
+We need cells to work fast enough for required performance.Faster the charging/discharging of capacitance, lesser the cell delay. Propagation delay is the time for the input to be fill up the output. Faster cells do not comes free, they comes with area and power consumption.  
+Why do we need slow cells? - to meet holds. To ensure that there are no HOLD issues at DFF_B, we need cells that work slowly.
+The collection forms the **.lib** .
+**Transistors** - charge/discharge the capacitance fast and sourcing more current. **Wider transistors** - low delay (more area and power). **Narrow transistors** - More delay (less area and power). 
+**Constarints** - the guidance offered to syntheziser with the correct set of cells. 
 
 ------------------------------------------------------------------------------------------------
 
  ### Labs
 
-**LAB 1** - iverilog and gtkwave 
+**LAB 1** - iverilog and gtkwave. 
 
 * Create VLSI directory, git clone the path and done setup labs with files. 
 
@@ -114,6 +121,26 @@ Combinational delay in logic path determines the max speed of operation of digit
 
 ![lab 1 4](https://user-images.githubusercontent.com/118954022/205848755-c72633d7-88fa-445c-9930-fa40a40ef965.jpg)
 
-**LAB 2** - yosys and logic sysnthesis
+**LAB 2** - Yosys and Sky130 PDKs.
+
+* Invoke Yosys ( >> yosys). 
+
+![lab2 0](https://user-images.githubusercontent.com/118954022/205979710-cdaa0cf5-8ce7-4890-aaf4-cca1711d0ce7.jpg)
+
+* Read the library file from my_lib
+
+![lab2 1](https://user-images.githubusercontent.com/118954022/205999208-3e4e837f-739c-4982-984b-cdc178eca0d9.jpg)
+
+* Read design (>> read_verilog)
+
+![lab2 2](https://user-images.githubusercontent.com/118954022/205999677-e1492a86-2d9a-4ed7-b1c0-01e05c5c7d8b.jpg)
+
+* To link the module that we are going to do synthesis. (>> synth -top)
+
+![lab2 3](https://user-images.githubusercontent.com/118954022/206001758-68506909-4ba2-4c1b-9f78-0e0c982bf9bb.jpg)
+
+* Command to generate the netlist (converts the rtl file into gate and specify what gate will be link to).(>> abc -liberty)
+
+![lab2 4](https://user-images.githubusercontent.com/118954022/206004715-712c7bc1-4c55-4305-9b5a-5807029dc18d.jpg)
 
 * 
