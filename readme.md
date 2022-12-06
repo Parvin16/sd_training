@@ -4,7 +4,7 @@
 
 *  [Day 0](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-0) - System/Tool Setup Check. GitHub ID creation
 *  [Day 1](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-1) - Introduction to Verilog RTL design and Synthesis
-*  [Day 2]( ) - Timing libs(QTMs/ETMs), hierarchical vs flat synthesis and efficient flop coding styles
+*  [Day 2](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-2) - Timing libs(QTMs/ETMs), hierarchical vs flat synthesis and efficient flop coding styles
 *  [Day3]( ) -
 *  [Day4]( ) -
 *  [Day5]( ) -
