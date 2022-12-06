@@ -68,6 +68,15 @@ Starting a Lab (Intel Unix)
  **VCD file** - Value Change Dump format file, output file of iverilog. 
  **gtkwave** - A tool to view the output in a waveform format.
 
+![yosys 1](https://user-images.githubusercontent.com/118954022/205850578-acdc3325-bfdc-46f4-bb25-2dde63261765.jpg)
+
+**Synthesizer** - tool used to convert RTL to netlist. Eg: Yosys.
+**Netlist** - a file of representative of the design in  the form of standard cells in the .lib .
+
+Verify the Synthesis :
+![yosys 2](https://user-images.githubusercontent.com/118954022/205851298-873238e5-541f-4ece-b8e8-90e0b46b333b.jpg)
+
+
 
 ------------------------------------------------------------------------------------------------
 
