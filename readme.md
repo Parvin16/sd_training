@@ -76,6 +76,15 @@ Starting a Lab (Intel Unix)
 Verify the Synthesis :
 ![yosys 2](https://user-images.githubusercontent.com/118954022/205851298-873238e5-541f-4ece-b8e8-90e0b46b333b.jpg)
 
+Synthesis 
+![synthesis 1](https://user-images.githubusercontent.com/118954022/205862428-d27fdb4b-5a18-425c-9500-c17456091855.jpg)
+
+**RTL Design** - Behavioral representation of the required specification. 
+**Synthesis** - The RTL to gate level translation where the design is converted into gates and the connections are made between gates which given out as a file called netlist.
+**.lib** - Collection of logical modules includes basic logic gates. Different flavors of same gate. 
+
+Combinational delay in logic path determines the max speed of operation of digital logic circuit. 
+![sysnthesis 2](https://user-images.githubusercontent.com/118954022/205865780-da755d6c-7a6b-4fbf-b6c3-6cdc002bbca5.jpg)
 
 
 ------------------------------------------------------------------------------------------------
