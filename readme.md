@@ -68,6 +68,7 @@ Starting a Lab (Intel Unix)
  **VCD file** - Value Change Dump format file, output file of iverilog. 
  **gtkwave** - A tool to view the output in a waveform format.
 
+
 ------------------------------------------------------------------------------------------------
 
  ### Labs
@@ -82,4 +83,18 @@ Starting a Lab (Intel Unix)
 
 ![lab1 1](https://user-images.githubusercontent.com/118954022/205815692-9ce497f0-b66b-44ee-a23b-1055dff84b72.jpg)
 
-*
+* Load iverilog, command >>  iverilog good_mux.v tb_good_mux.v , (design name = good_mux.v) , then ls , execute a.out file ( >> ./a.out), dumpfile tb_good_mux.vcd opened for output.
+
+![lab1 2](https://user-images.githubusercontent.com/118954022/205838648-a7236d46-52e5-4c08-9808-92278baa8f6e.jpg)
+
+* Load .vcd file in simulator ( >> gtkwave (wave file) ), then observe the waveform pattern. 
+
+![lab1 3](https://user-images.githubusercontent.com/118954022/205840901-707693be-8568-4412-ac3e-196312daa819.jpg)
+
+* Look into file >> gvim tb_good_mux.v -o good-mux.v , Unit Under Test (UUT), //Initialize Inputs - this showing the stimulus generators , #300 - refers to running time 300ns and we can change run time here. Below that is the toggle settings, where always #75 sel = -sel; it means that every 75ns it changes its value.  
+
+![lab 1 4](https://user-images.githubusercontent.com/118954022/205848755-c72633d7-88fa-445c-9930-fa40a40ef965.jpg)
+
+**LAB 2** - yosys and logic sysnthesis
+
+* 
