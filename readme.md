@@ -71,3 +71,15 @@ Starting a Lab (Intel Unix)
 ------------------------------------------------------------------------------------------------
 
  ### Labs
+
+**LAB 1** - iverilog and gtkwave 
+
+* Create VLSI directory, git clone the path and done setup labs with files. 
+
+![lab1](https://user-images.githubusercontent.com/118954022/205810801-6083626c-1b34-405f-afd3-14b729c85e6e.jpg)
+
+* Check git cloning and ts files. Verilog_files contains all the details and it comes along with tb files (testbench).
+
+![lab1 1](https://user-images.githubusercontent.com/118954022/205815692-9ce497f0-b66b-44ee-a23b-1055dff84b72.jpg)
+
+*
