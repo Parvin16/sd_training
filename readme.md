@@ -77,6 +77,7 @@ Verify the Synthesis :
 ![yosys 2](https://user-images.githubusercontent.com/118954022/205851298-873238e5-541f-4ece-b8e8-90e0b46b333b.jpg)
 
 Synthesis 
+
 ![synthesis 1](https://user-images.githubusercontent.com/118954022/205862428-d27fdb4b-5a18-425c-9500-c17456091855.jpg)
 
 **RTL Design** - Behavioral representation of the required specification. 
