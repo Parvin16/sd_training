@@ -167,15 +167,17 @@ The collection forms the **.lib** .
 
 ## Day 2
 
-### Timing libs(QTMs/ETMs) 
+### Theory
 
+<img width="674" alt="note1" src="https://user-images.githubusercontent.com/118954022/206155567-9d4f61ec-0eed-45c3-a5fc-b50fa09fdb27.png">
 
+<img width="649" alt="note2" src="https://user-images.githubusercontent.com/118954022/206155681-a270c9f8-9571-4850-a8dd-4338873bde1b.png">
 
-### Hierarchical vs Flat Synthesis
+<img width="643" alt="note3" src="https://user-images.githubusercontent.com/118954022/206155789-307dc603-27e2-48bb-8bfd-f39654b9b37c.png">
 
+<img width="707" alt="note4" src="https://user-images.githubusercontent.com/118954022/206155866-5ad2df82-eb79-47c4-8e12-26f588c7e482.png">
 
-
-### Various Flop Coding Styles
+<img width="650" alt="note5" src="https://user-images.githubusercontent.com/118954022/206155913-f58eb53a-30c7-4e3d-809b-af49f8309733.png">
 
 
 ------------------------------------------------------------------------------------------------
