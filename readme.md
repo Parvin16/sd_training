@@ -8,6 +8,8 @@
 *  [Day3]( ) -
 *  [Day4]( ) -
 *  [Day5]( ) -
+*  [Day6]( ) -
+
 
 ## Day 0
 ### Theory Basic
@@ -144,14 +146,21 @@ The collection forms the **.lib** .
 
 ![lab2 3](https://user-images.githubusercontent.com/118954022/206001758-68506909-4ba2-4c1b-9f78-0e0c982bf9bb.jpg)
 
-* Command to generate the netlist (converts the rtl file into gate and specify what gate will be link to).(>> abc -liberty)
+* Command to generate the netlist (converts the rtl file into gate and specify what gate will be link to).(>> abc -liberty). Focus on the last part of internal, input and output signals. 
 
-![lab2 4](https://user-images.githubusercontent.com/118954022/206086625-fd3d7121-2400-4aa0-9e58-b819820eb8d5.jpg)
+![lab2 4](https://user-images.githubusercontent.com/118954022/206087861-59fdd3f5-3cd8-4615-b33e-705bac78e4e5.jpg)
 
-* Write the netlist ( >> write verilog).
+* To see the graphical version of the logic it realised ( >> show).
 
+![lab2 5](https://user-images.githubusercontent.com/118954022/206088587-e929ebca-15e8-4a63-917d-acb368b46e14.jpg)
 
-*
+* Write the netlist ( >> write_verilog).
+
+![lab2 6](https://user-images.githubusercontent.com/118954022/206093571-86733aa0-b415-495a-ac11-8dcbd40a01de.jpg)
+
+* Convert to view in simplified netlist version ( >> write_verilog -noattr ).
+
+![lab2 7](https://user-images.githubusercontent.com/118954022/206094427-b76866ad-10c8-424e-9cd4-469b93e5def2.jpg)
 
 
 ## Day 2
