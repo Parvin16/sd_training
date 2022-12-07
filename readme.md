@@ -54,6 +54,7 @@ Starting a Lab (Intel Unix)
 
 ![day0 lab vsd tarainig ](https://user-images.githubusercontent.com/118954022/203966813-d18863aa-a04d-4f57-953e-b846ccb79b94.jpg)
 
+--------------------------------------------------------------------------------------------------
 
 ## Day 1
 
@@ -106,7 +107,7 @@ The collection forms the **.lib** .
 
  ### LABS
 
-**LAB 1** - iverilog and gtkwave. 
+**LAB 1 - iverilog and gtkwave**
 
 * Create VLSI directory, git clone the path and done setup labs with files. 
 
@@ -128,7 +129,7 @@ The collection forms the **.lib** .
 
 ![lab 1 4](https://user-images.githubusercontent.com/118954022/205848755-c72633d7-88fa-445c-9930-fa40a40ef965.jpg)
 
-**LAB 2** - Yosys and Sky130 PDKs.
+**LAB 2 - Yosys and Sky130 PDKs**
 
 * Invoke Yosys ( >> yosys). 
 
@@ -162,6 +163,7 @@ The collection forms the **.lib** .
 
 ![lab2 7](https://user-images.githubusercontent.com/118954022/206094427-b76866ad-10c8-424e-9cd4-469b93e5def2.jpg)
 
+--------------------------------------------------------------------------------------------------
 
 ## Day 2
 
@@ -180,10 +182,10 @@ The collection forms the **.lib** .
 
 ### Labs
 
-**LAB 1** - Intro to timing.libs
+**LAB 1 - Intro to timing.libs**
 
 
-**LAB 2** - Hierarchical vs Flat Synthesis
+**LAB 2 - Hierarchical vs Flat Synthesis**
 
 
-**LAB 3** - Flop Synthesis Simulations 
+**LAB 3 - Flop Synthesis Simulations**
