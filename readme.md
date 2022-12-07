@@ -104,7 +104,7 @@ The collection forms the **.lib** .
 
 ------------------------------------------------------------------------------------------------
 
- ### Labs
+ ### LABS
 
 **LAB 1** - iverilog and gtkwave. 
 
@@ -179,3 +179,11 @@ The collection forms the **.lib** .
 ------------------------------------------------------------------------------------------------
 
 ### Labs
+
+**LAB 1** - Intro to timing.libs
+
+
+**LAB 2** - Hierarchical vs Flat Synthesis
+
+
+**LAB 3** - Flop Synthesis Simulations 
