@@ -3,12 +3,12 @@
 ## Table of content
 
 *  [Day 0](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-0) - System/Tool Setup Check. GitHub ID creation
-*  [Day 1](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-1) - Introduction to Verilog RTL design and Synthesis
-*  [Day 2](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-2) - Timing libs(QTMs/ETMs), hierarchical vs flat synthesis and efficient flop coding styles
-*  [Day3]( ) -
-*  [Day4]( ) -
-*  [Day5]( ) -
-*  [Day6]( ) -
+*  [Day 1](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-1) - Introduction to Verilog RTL Design and Synthesis
+*  [Day 2](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-2) - Timing libs(QTMs/ETMs), Hierarchical vs Flat Synthesis and Efficient Flop Coding Styles
+*  [Day3]( ) - Combinational and Sequential Optimizations
+*  [Day4]( ) - GLS, Blocking vs Non-blocking and Synthesis-Simulation mismatch
+*  [Day5]( ) - DFT
+*  [Day6]( ) - Introduction to Logic Synthesis
 
 
 ## Day 0
@@ -167,7 +167,11 @@ The collection forms the **.lib** .
 
 ### Timing libs(QTMs/ETMs) 
 
+
+
 ### Hierarchical vs Flat Synthesis
+
+
 
 ### Various Flop Coding Styles
 
