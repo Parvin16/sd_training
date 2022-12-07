@@ -132,9 +132,8 @@ The collection forms the **.lib** .
 
 ![lab2 0](https://user-images.githubusercontent.com/118954022/205979710-cdaa0cf5-8ce7-4890-aaf4-cca1711d0ce7.jpg)
 
-* Read the library file from my_lib
+* Read the library file from my_lib ( >> read_liberty)
 
-![lab2 1](https://user-images.githubusercontent.com/118954022/205999208-3e4e837f-739c-4982-984b-cdc178eca0d9.jpg)
 
 * Read design (>> read_verilog)
 
@@ -146,7 +145,6 @@ The collection forms the **.lib** .
 
 * Command to generate the netlist (converts the rtl file into gate and specify what gate will be link to).(>> abc -liberty)
 
-![lab2 4](https://user-images.githubusercontent.com/118954022/206004715-712c7bc1-4c55-4305-9b5a-5807029dc18d.jpg)
 
 * 
 
