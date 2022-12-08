@@ -187,6 +187,7 @@ The collection forms the **.lib** .
 **LAB 1 - Intro to timing.libs**
 
 
+
 **LAB 2 - Hierarchical vs Flat Synthesis**
 
 
