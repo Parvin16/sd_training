@@ -193,8 +193,8 @@ In library name _tt_ - this mean it is typical process of library. Other two dif
 
 (number of inputs)'square = possible conditions. A = 1 = high ; A! = 0 = low. 
 
-
 **LAB 2 - Hierarchical vs Flat Synthesis**
 
+open file >> gvim multiple_modules.v , 
 
 **LAB 3 - Flop Synthesis Simulations**
