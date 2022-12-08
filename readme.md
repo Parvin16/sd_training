@@ -186,6 +186,9 @@ The collection forms the **.lib** .
 
 **LAB 1 - Intro to timing.libs**
 
+in gvim ../my../lib/sky/...lib , if saw lot of highlighted in red , just press in tht gvim tab , ':syn off' .
+Library name is sky130_fd_sc_hd__tt_025C_1v80.lib .
+In library name _tt_ - this mean it is typical library. Other two diff libraries are slow and fast. _025C_ this refers to temperature.
 
 
 **LAB 2 - Hierarchical vs Flat Synthesis**
