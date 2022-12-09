@@ -169,7 +169,7 @@ The collection forms the **.lib** .
 
 ### Theory
 
-<img width="674" alt="note1" src="https://user-images.githubusercontent.com/118954022/206155567-9d4f61ec-0eed-45c3-a5fc-b50fa09fdb27.png">
+![note1](https://user-images.githubusercontent.com/118954022/206676452-7fa846b3-ccb6-4a97-81f9-21f07f01fc6e.jpg)
 
 <img width="649" alt="note2" src="https://user-images.githubusercontent.com/118954022/206155681-a270c9f8-9571-4850-a8dd-4338873bde1b.png">
 
@@ -179,6 +179,9 @@ The collection forms the **.lib** .
 
 <img width="650" alt="note5" src="https://user-images.githubusercontent.com/118954022/206155913-f58eb53a-30c7-4e3d-809b-af49f8309733.png">
 
+(A.B) bar = A bar + B bar ; CMOS NAND got stacked NMOS ; 
+NOR + INV = OR , this will stack PMOS and it is bad ; basic CMOS inverter.
+Difference between hier and flat design. 
 
 ------------------------------------------------------------------------------------------------
 
@@ -199,7 +202,7 @@ Open file >> gvim multiple_modules.v , Multiple modules have some sub modules in
 
 ![lab 2 0](https://user-images.githubusercontent.com/118954022/206657428-7249931c-6a0e-40bf-9025-a1b9be7d96e0.jpg)
 
-For sysnthesis part, open yosys ,read liberty file, read verilog , synth -top multiple_modules.v , then can see details at point 3.25.
+For sysnthesis part, open yosys ,read_liberty file, read_verilog , synth -top multiple_modules.v , then can see details at point 3.25.
 
 ![lab 2 1](https://user-images.githubusercontent.com/118954022/206659004-d573a8eb-5dcc-40a6-aa25-7f7aee747671.jpg)
 
@@ -207,6 +210,17 @@ Then >> abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib ;  >> show 
 
 ![lab 2 3](https://user-images.githubusercontent.com/118954022/206662082-ce4dbd88-dd23-4313-93d3-01aeb5032587.jpg)
 
+Then >> write_verilog -noattr multiple_modules_hier.v ; >> !gvim multiple_modules_hier.v 
 
+![lab 2 4](https://user-images.githubusercontent.com/118954022/206675312-e16b96c6-4906-4fbe-a4c4-3279706eda6b.jpg)
+
+Next, to verify out flat netlist, >> flatten ; >> write_verilog -noattr multiple_modules_flat.v ; >> !gvim multiple_modules_flat.v , it shows as a single netlist where hierarchy all are flatten. To see the flat design module >> show 
+
+![lab 2 5](https://user-images.githubusercontent.com/118954022/206679063-0667de52-98f9-4098-9229-59fc9ab5e97f.jpg)
+
+![lab 2 6](https://user-images.githubusercontent.com/118954022/206680700-52f4a089-e346-4381-8a9b-a5728a495252.jpg)
+
+To do sub module synthesis , just repeat the steps and at this point , do this >> synth -top sub_module1 ; >> abc -liberty ; >> show ; we will see only the gates in sub module 1. Module level synthesis will be doing when we have multiple instances of same module, so just do module and replicate it. Good to do in massive design using design and conquer method. 
 
 **LAB 3 - Flop Synthesis Simulations**
+
