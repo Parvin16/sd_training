@@ -195,6 +195,18 @@ In library name _tt_ - this mean it is typical process of library. Other two dif
 
 **LAB 2 - Hierarchical vs Flat Synthesis**
 
-open file >> gvim multiple_modules.v , 
+Open file >> gvim multiple_modules.v , Multiple modules have some sub modules in it that are connected to inputs and outputs. 
+
+![lab 2 0](https://user-images.githubusercontent.com/118954022/206657428-7249931c-6a0e-40bf-9025-a1b9be7d96e0.jpg)
+
+For sysnthesis part, open yosys ,read liberty file, read verilog , synth -top multiple_modules.v , then can see details at point 3.25.
+
+![lab 2 1](https://user-images.githubusercontent.com/118954022/206659004-d573a8eb-5dcc-40a6-aa25-7f7aee747671.jpg)
+
+Then >> abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib ;  >> show ; >> show multiple_modules ,it will show the hierarchy model.
+
+![lab 2 3](https://user-images.githubusercontent.com/118954022/206662082-ce4dbd88-dd23-4313-93d3-01aeb5032587.jpg)
+
+
 
 **LAB 3 - Flop Synthesis Simulations**
