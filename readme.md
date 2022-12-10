@@ -182,6 +182,7 @@ The collection forms the **.lib** .
 (A.B) bar = A bar + B bar ; CMOS NAND got stacked NMOS ; 
 NOR + INV = OR , this will stack PMOS and it is bad ; basic CMOS inverter.
 Difference between hier and flat design. 
+Glitch.
 
 ------------------------------------------------------------------------------------------------
 
@@ -223,4 +224,7 @@ Next, to verify out flat netlist, >> flatten ; >> write_verilog -noattr multiple
 To do sub module synthesis , just repeat the steps and at this point , do this >> synth -top sub_module1 ; >> abc -liberty ; >> show ; we will see only the gates in sub module 1. Module level synthesis will be doing when we have multiple instances of same module, so just do module and replicate it. Good to do in massive design using design and conquer method. 
 
 **LAB 3 - Flop Synthesis Simulations**
+
+Files used for this lab in verilog_files are  dff_asyncres_syncres.v and counter_opt.v
+
 
