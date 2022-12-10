@@ -182,7 +182,13 @@ The collection forms the **.lib** .
 (A.B) bar = A bar + B bar ; CMOS NAND got stacked NMOS ; 
 NOR + INV = OR , this will stack PMOS and it is bad ; basic CMOS inverter.
 Difference between hier and flat design. 
-Glitch.
+Glitch. More combinational circuit used, more glitches happens. This is why we used **FLOPS** in between combinational circuits. Flops which has clock in it, will make the output more stable and settle down the glitches. 
+Flop. ( types, reset, set, synchronous and asynchronous) 
+
+Flop with asy&syn-reset , syn-reset and asyn-reset.
+
+![note6](https://user-images.githubusercontent.com/118954022/206848949-7b799eaa-a4cb-457a-8a37-700df77a3d38.jpg)
+
 
 ------------------------------------------------------------------------------------------------
 
@@ -227,4 +233,10 @@ To do sub module synthesis , just repeat the steps and at this point , do this >
 
 Files used for this lab in verilog_files are  dff_asyncres_syncres.v and counter_opt.v
 
+Open dff_asyncres_syncres.v ; Lets see acychronous-reset. Asynchronous is irespective of clock where it cn happens at anytime, not based on posedge or negedge.  always @ posedge clk - this signifies a flop. q is output. **Posedge** - is the clk change from 0 to 1 , **Negedge** - is the clk change from 1 to 0. 
 
+![lab 3 0](https://user-images.githubusercontent.com/118954022/206844524-4f2023fd-52b7-4ffb-9a0f-d5dcf548c8a2.jpg)
+
+We going to use the dff files that is highlighted in the snapshot below. 
+
+![lab 3 1](https://user-images.githubusercontent.com/118954022/206851064-08e0199c-bce7-44f2-a8f6-31c55698beba.jpg)
