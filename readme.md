@@ -181,9 +181,11 @@ Setup Time is the time the input data signals are stable (either high or low) be
 
 <img width="650" alt="note5" src="https://user-images.githubusercontent.com/118954022/206155913-f58eb53a-30c7-4e3d-809b-af49f8309733.png">
 
+**Hierarchical netlist**: Since pins of submodules are accessible, it's easier to track paths for functional debugging and timing analysis. Pins can be forced or probed in post-synthesis simulations. When have more then 1 module for the entire design. **Flattened netlist**: Synthesis tool can optimize the circuit better. That provides better speed, area, and power. Conversely, debugging capabilities are limited. Hierarchical designs can be recursively "flattened" by creating a new copy (with a new name) of each definition each time it is used. If the design is highly folded, expanding it like this will result in a much larger netlist database, but preserves the hierarchy dependencies. 
+
 (A.B) bar = A bar + B bar ; CMOS NAND got stacked NMOS ; 
 NOR + INV = OR , this will stack PMOS and it is bad ; basic CMOS inverter.
-Difference between hier and flat design. 
+
 Glitch. More combinational circuit used, more glitches happens. This is why we used **FLOPS** in between combinational circuits. Flops which has clock in it, will make the output more stable and settle down the glitches. 
 Flop. ( types, reset, set, synchronous and asynchronous) 
 
