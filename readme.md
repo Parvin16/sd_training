@@ -296,6 +296,8 @@ DeMorgan's and Absorption law are two importants law.
 
 <img width="606" alt="note7" src="https://user-images.githubusercontent.com/118954022/206914384-5b35c832-cb61-49d0-9554-c419da0fc875.png">
 
+The algorithms use a field of Computational Mathematics called Graph theory. Going through that, it will give you a different perspective on circuits.
+
 
 
 ------------------------------------------------------------------------------------------------
