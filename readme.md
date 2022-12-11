@@ -163,6 +163,7 @@ The collection forms the **.lib** .
 
 ![lab2 7](https://user-images.githubusercontent.com/118954022/206094427-b76866ad-10c8-424e-9cd4-469b93e5def2.jpg)
 
+
 --------------------------------------------------------------------------------------------------
 
 ## Day 2
@@ -183,16 +184,23 @@ Setup Time is the time the input data signals are stable (either high or low) be
 
 **Hierarchical netlist**: Since pins of submodules are accessible, it's easier to track paths for functional debugging and timing analysis. Pins can be forced or probed in post-synthesis simulations. When have more then 1 module for the entire design. **Flattened netlist**: Synthesis tool can optimize the circuit better. That provides better speed, area, and power. Conversely, debugging capabilities are limited. Hierarchical designs can be recursively "flattened" by creating a new copy (with a new name) of each definition each time it is used. If the design is highly folded, expanding it like this will result in a much larger netlist database, but preserves the hierarchy dependencies. 
 
-(A.B) bar = A bar + B bar ; CMOS NAND got stacked NMOS ; 
-NOR + INV = OR , this will stack PMOS and it is bad ; basic CMOS inverter.
+![cmos1](https://user-images.githubusercontent.com/118954022/206891318-f193bd3b-a22e-4796-8a6e-6c8482b75f5b.png)
 
-Glitch. More combinational circuit used, more glitches happens. This is why we used **FLOPS** in between combinational circuits. Flops which has clock in it, will make the output more stable and settle down the glitches. 
-Flop. ( types, reset, set, synchronous and asynchronous) 
+**CMOS Inverter**. When the low input voltage is given to the CMOS inverter, then the PMOS transistor is switched ON whereas the NMOS transistor will switch OFF by allowing the flow of electrons throughout the gate terminal & generating high logic output voltage.
+
+(A.B) bar = A bar + B bar ; CMOS NAND got stacked NMOS ; NOR + INV = OR, this will stack PMOS and it is bad.
+
+![glitch note1 (Reserch Gate)](https://user-images.githubusercontent.com/118954022/206891176-992e63fc-ad67-4baa-bb82-3f366e3b7375.jpg)
+
+**Glitch**. 20 cm of wire will also delay a signal by 1 nanosecond. A + = TRUE. However consider what happens when the signal A goes from 1 to 0. This spurious 0 is called a Glitch. More combinational circuit used, more glitches happens. This is why we used flops in between combinational circuits. Flops which has clock in it, will make the output more stable and settle down the glitches. 
+
+![flop1 ](https://user-images.githubusercontent.com/118954022/206891440-a4a9978c-b273-4f10-b4dd-e23f17a0fc13.jpg)
+
+**Flip-flop** - the circuits that maintain a certain state unless and until directed by the input for changing that state. There are 4 types of flops, but we are going to focus on D Flip-flop. The D flip-flop can be used to introduce delay to the data path. The SET input 'S' set the device or produce the output 1, and the RESET input 'R' reset the device or produce the output 0. The SET and RESET inputs are labeled as S and R, respectively. An asynchronous reset activates as soon as the reset signal is asserted. A synchronous reset activates on the active clock edge when the reset signal is asserted. 
 
 Flop with asy&syn-reset , syn-reset and asyn-reset.
 
 ![note6](https://user-images.githubusercontent.com/118954022/206848949-7b799eaa-a4cb-457a-8a37-700df77a3d38.jpg)
-
 
 ------------------------------------------------------------------------------------------------
 
@@ -255,12 +263,49 @@ Next is synthesis the 3 circuits using yosys. Open yosys, read and sync -top  df
 
 Then do same read_verilog for the rest 2 dff files. Observe the set pin, reset pin and the dflop. We got what we wanted based on the code. 
 
-Next is sysnthesis and RTL code optimisation. We going to use 2 files: mult_2.v and mult_8.v . 
+Next is sysnthesis and RTL code optimisation. We going to use 2 files: mult_2.v and mult_8.v . a[2:0] this means it has 3 bit inputs/outputs. 
+
+![lab 3 4](https://user-images.githubusercontent.com/118954022/206890249-4a530268-791f-4d93-ad61-8e334bfe9844.jpg)
+
+mult_2.v explanation in truth table form. Can compare the result by seeing the design module using yosys , read mult file, abc and show. Do same for mult_8.v file. 
+
+![lab 3 5](https://user-images.githubusercontent.com/118954022/206890427-2fb01147-b179-4dc1-8b1f-4245ab5d7388.jpg)
+
+Extra note: bin 101 if it is times with 4, add 2 zeros at behind (10100) ; if times with 8, add 3 zeros at behind (101000). Can make sure by convert into dec. 
 
 
+--------------------------------------------------------------------------------------------------
+
+## Day 3
+
+### Intro to Optimizations 
+
+------------------------------------------------------------------------------------------------
+
+### Labs
+
+**LAB 1 - Combinational Logic Optimizations**
 
 
+**LAB 2 - Sequential Logic Optimizations** 
 
 
+**LAB 3 - Sequential Logic Optimizations for unused outputs** 
 
 
+--------------------------------------------------------------------------------------------------
+
+## Day 4
+
+### Theory
+
+------------------------------------------------------------------------------------------------
+
+### Labs
+
+**LAB 1 - **
+
+
+--------------------------------------------------------------------------------------------------
+
+## Day 5
