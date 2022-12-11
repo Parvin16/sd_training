@@ -284,6 +284,8 @@ Extra note: bin 101 if it is times with 4, add 2 zeros at behind (10100) ; if ti
 
 <img width="647" alt="note2" src="https://user-images.githubusercontent.com/118954022/206914122-723eef1f-d29d-47b5-85a4-6e5b7f7ba6c1.png">
 
+![note12](https://user-images.githubusercontent.com/118954022/206921332-a728ee92-c5a7-4370-a161-04b0aab1ea61.jpg)
+
 ![note 8](https://user-images.githubusercontent.com/118954022/206916632-1ac45ab5-6ae1-43dc-bba2-0b4750e5e64b.jpg)
 
 <img width="473" alt="note 3" src="https://user-images.githubusercontent.com/118954022/206914159-d5c28f63-4e56-4754-92b9-30d410401661.png">
@@ -308,13 +310,17 @@ DeMorgan's and Absorption law are two importants law.
 
 The algorithms use a field of Computational Mathematics called Graph theory. Going through that, it will give you a different perspective on circuits.
 
-
+**State Optimization** - Optimization of used state (redundant). As the number of states increases, it becomes difficult to distinguish between possible states. The initial design attempt may include more states than are required by a finite-state machine. Some of the states are redundant, which increases the complexity of the finite-state machine unnecessarily. There are many processes such as state minimization, cloning (physical aware) and retiming. 
 
 ------------------------------------------------------------------------------------------------
 
 ### Labs
 
 **LAB 1 - Combinational Logic Optimizations**
+
+The files going to use are :
+![lab1 0](https://user-images.githubusercontent.com/118954022/206922571-9aa57347-eb7c-4c27-81ce-25332f67350f.jpg)
+
 
 
 **LAB 2 - Sequential Logic Optimizations** 
