@@ -356,14 +356,13 @@ Then in yosys ( read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.li
 
 
 
-**LAB 3 - Sequential Logic Optimizations for unused outputs** 
-
-
 --------------------------------------------------------------------------------------------------
 
 ## Day 4
 
 ### Theory
+
+**LAB 3 - Sequential Logic Optimizations for unused outputs** 
 
 ------------------------------------------------------------------------------------------------
 
