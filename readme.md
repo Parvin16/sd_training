@@ -352,6 +352,9 @@ Simulate tb in verilog_files tab ( >> iverilog dff_const1.v tb_dff_const1.v ; >>
 
 Then in yosys ( read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib ; read_verilog dff_const1.v ; synth -top dff_const1 ; dfflibmap -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib ; abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib ; show)
 
+![lab2 4](https://user-images.githubusercontent.com/118954022/206947780-f773d22e-897f-42ad-a806-24051a3535c9.jpg)
+
+
 
 **LAB 3 - Sequential Logic Optimizations for unused outputs** 
 
