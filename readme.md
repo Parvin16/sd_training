@@ -312,6 +312,10 @@ The algorithms use a field of Computational Mathematics called Graph theory. Goi
 
 **State Optimization** - Optimization of used state (redundant). As the number of states increases, it becomes difficult to distinguish between possible states. The initial design attempt may include more states than are required by a finite-state machine. Some of the states are redundant, which increases the complexity of the finite-state machine unnecessarily. There are many processes such as state minimization, cloning (physical aware) and retiming. 
 
+Retiming :
+![note8](https://user-images.githubusercontent.com/118954022/207113880-7c0a7069-11b1-4316-8521-e0b5ca673089.jpg)
+
+
 ------------------------------------------------------------------------------------------------
 
 ### Labs
@@ -356,12 +360,15 @@ Then in yosys ( read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.li
 
 ![lab2 5](https://user-images.githubusercontent.com/118954022/206985792-efe4edce-7703-4364-abaa-a2352786dee4.jpg)
 
-Looking on dff_const3.v , there are 2 flops. 
+Looking on dff_const3.v , there are 2 flops. Some delay exists at Q1, so the Q will obtain '0' instead of '1'. Having 1 set 1 reset, no optimization (no constant output), so both flops need to be present.
 ![lab2 6](https://user-images.githubusercontent.com/118954022/207112593-061c67c7-dc26-4b43-8db8-814a58dd2133.jpg)
 
+![lab2 7](https://user-images.githubusercontent.com/118954022/207116046-14673c9b-535e-4c65-a064-b44e1f16e6e2.jpg)
 
 
 **LAB 3 - Sequential Logic Optimizations for unused outputs** 
+
+
 
 --------------------------------------------------------------------------------------------------
 
