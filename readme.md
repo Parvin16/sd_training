@@ -360,13 +360,27 @@ Then in yosys ( read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.li
 
 ![lab2 5](https://user-images.githubusercontent.com/118954022/206985792-efe4edce-7703-4364-abaa-a2352786dee4.jpg)
 
-Looking on dff_const3.v , there are 2 flops. Some delay exists at Q1, so the Q will obtain '0' instead of '1'. Having 1 set 1 reset, no optimization (no constant output), so both flops need to be present.
+Looking on dff_const3.v , there are 2 flops, first flop is reset flop and flop is set flop. Some delay exists at Q1, so the Q will obtain '0' instead of '1'. Having 1 set 1 reset, no optimization (no constant output), so both flops need to be present. 
+![lab2 8](https://user-images.githubusercontent.com/118954022/207231744-7622ffa8-b7eb-41b2-aa22-e97bb54ead7b.jpg)
+
 ![lab2 6](https://user-images.githubusercontent.com/118954022/207112593-061c67c7-dc26-4b43-8db8-814a58dd2133.jpg)
 
 ![lab2 7](https://user-images.githubusercontent.com/118954022/207116046-14673c9b-535e-4c65-a064-b44e1f16e6e2.jpg)
 
-
 **LAB 3 - Sequential Logic Optimizations for unused outputs** 
+
+File using is counter_opt.v ,it has a clk , reset and output q. There is a signal internal to it which is 3 bit register signal (count). The code is a upcounter, its rolls back 0-7 (upto 7 because 3 bit count) again and again until reset is thr.
+![lab3 0](https://user-images.githubusercontent.com/118954022/207232952-6bd5ba9e-35ca-4376-a66b-4e036e414a46.jpg)
+
+The 2 case is just example for more understanding. 
+![lab3 1](https://user-images.githubusercontent.com/118954022/207234062-9eeb00c3-1fde-4c49-b855-5c2db799c9ba.jpg)
+
+Then sysnthesis in yosys ( read_liberty -lib ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib ; read_verilog counter_opt.v ; synth -top counter_opt ; dfflibmap -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib ; abc -liberty ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib ; show)
+![lab3 2](https://user-images.githubusercontent.com/118954022/207235155-71caf754-3b00-42d5-b0ff-39522810f28b.jpg)
+
+We are  seeing only one flop. Suppose 3 bit counter should have 3 flops, but it is toggle where it invert the q output for next input, and the rest 2 bits were unused. 
+
+r
 
 
 
@@ -374,14 +388,29 @@ Looking on dff_const3.v , there are 2 flops. Some delay exists at Q1, so the Q w
 
 ## Day 4
 
-### Theory
+### GLS Concepts and Flow using iverilog
+
+
+
+### Synthesis-Simulation Mismatch
+
+
+
+### Blocking and Non Blocking Statements in Verilog
+
+
+
+### Caveats with Blocking Statements
+
 
 ------------------------------------------------------------------------------------------------
 
 ### Labs
 
-**LAB 1 - **
+**LAB 1 - GLS & Synthesis-Simulation Mismatch**
 
+
+**LAB 2 - Synthesis-Simulation Mismatch for Blocking Statement**
 
 --------------------------------------------------------------------------------------------------
 
