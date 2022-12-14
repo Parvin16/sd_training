@@ -401,12 +401,21 @@ Interpret the logic , and it make sense now. (use de morgan law). We can see all
 
 ### GLS Concepts and Flow using iverilog
 
+**GLS** - Gate-Level Simulation. Running the testbench with netlist as Design Under Test. Netlist is same as the RTL code (same tb will align with the design). 
+
+Why GLS : To verify the logical correctness of design after synthesis. Ensuring the timing of the design is met by run with delay annotation.
+
+GLS using iverilog :
+![note1 0](https://user-images.githubusercontent.com/118954022/207538972-448a1b16-d605-4864-9fb1-daa9a6699fff.jpg)
+
 <img width="628" alt="onenote1" src="https://user-images.githubusercontent.com/118954022/207377212-c11b4373-f6b8-432c-91f5-370e04d5b671.png">
 
-<img width="685" alt="onenote9" src="https://user-images.githubusercontent.com/118954022/207378260-62efc6db-b99e-41d8-ad40-844e0f007922.png">
-
-
 ### Synthesis-Simulation Mismatch
+
+Synthesis-Simulation Mismatch happens due to missing sensitivity list, blocking vs non-blocking assignments and non standard verilog coding.
+
+Simulator works based on activity ( output change based on inputs). Coding should be correct and accurate. Synthesis usually will create a mux and acts as flop.
+![note1 1](https://user-images.githubusercontent.com/118954022/207545430-e93612bc-d9b8-4585-9293-982ac5324f47.jpg)
 
 <img width="548" alt="onenote5" src="https://user-images.githubusercontent.com/118954022/207377691-a31e1c92-bf8b-449e-a67a-d6196f9867fe.png">
 
@@ -414,8 +423,12 @@ Interpret the logic , and it make sense now. (use de morgan law). We can see all
 
 <img width="566" alt="onenote8" src="https://user-images.githubusercontent.com/118954022/207378215-6a33c401-2c0a-4d90-982c-501bb9e7b021.png">
 
+<img width="685" alt="onenote9" src="https://user-images.githubusercontent.com/118954022/207378260-62efc6db-b99e-41d8-ad40-844e0f007922.png">
 
 ### Blocking and Non Blocking Statements in Verilog
+
+**Blocking Statement** - inside always block, making assignments using '='. It executes the statement in the order it is written ( first statement evaluvated before second statement, like a C program). 
+**Non-Blocking Statement** - is a parallel evaluation (order doesnt matter) using '<='. Executes all the RHS when always block is entered and assigns to LHS. 
 
 <img width="644" alt="onenote2" src="https://user-images.githubusercontent.com/118954022/207377260-87f674eb-eeb7-4281-a9d9-ce0ca2854db9.png">
 
@@ -423,9 +436,22 @@ Interpret the logic , and it make sense now. (use de morgan law). We can see all
 
 <img width="662" alt="onenote4" src="https://user-images.githubusercontent.com/118954022/207377652-b0d72af1-2541-44b2-846e-4894abab6512.png">
 
+<img width="650" alt="onenote7" src="https://user-images.githubusercontent.com/118954022/207378028-313641b3-db79-47ce-87b8-6d804b5d5a55.png">
+
 ### Caveats with Blocking Statements
 
-<img width="650" alt="onenote7" src="https://user-images.githubusercontent.com/118954022/207378028-313641b3-db79-47ce-87b8-6d804b5d5a55.png">
+**Caveat** - a warning to consider. 
+
+Whenever want to write sequential circuit, go with non-blocking statement.
+
+The issue:
+![note1 2](https://user-images.githubusercontent.com/118954022/207557926-85b5c930-a80c-4b91-a719-222e2ff75f23.jpg)
+
+Another example :
+![note1 3](https://user-images.githubusercontent.com/118954022/207560559-4cc4feee-b666-4884-a27a-f7cc08fea8c5.jpg)
+
+It is very important to check the behaviour of the circuit obtained and then match them with the expected outputs (the aim). 
+
 
 ------------------------------------------------------------------------------------------------
 
@@ -492,3 +518,5 @@ Need to be very carefull when using blocking statement in verilogs. Avoid mistak
 --------------------------------------------------------------------------------------------------
 
 ## Day 5
+
+### Theory
