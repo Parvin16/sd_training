@@ -1,4 +1,4 @@
-# This is my repo
+# MY REPO
 
 ## Table of content
 
@@ -11,7 +11,7 @@
 *  [Day6]( ) : **Introduction to Logic Synthesis**
 
 
-## Day 0
+# Day 0
 ### Theory Basic
 
 ![chip](https://user-images.githubusercontent.com/118954022/205806514-3bc166e8-7d8f-4fa7-bfb1-9f8445d3a3b6.jpg)
@@ -56,7 +56,7 @@ Starting a Lab (Intel Unix)
 
 --------------------------------------------------------------------------------------------------
 
-## Day 1
+# Day 1
 
 ### Open-source Simulator Iverilog and Synthesis
 
@@ -166,7 +166,7 @@ The collection forms the **.lib** .
 
 --------------------------------------------------------------------------------------------------
 
-## Day 2
+# Day 2
 
 ### Theory
 
@@ -276,7 +276,7 @@ Extra note: bin 101 if it is times with 4, add 2 zeros at behind (10100) ; if ti
 
 --------------------------------------------------------------------------------------------------
 
-## Day 3
+# Day 3
 
 ### Intro to Optimizations 
 
@@ -397,7 +397,7 @@ Interpret the logic , and it make sense now. (use de morgan law). We can see all
 
 --------------------------------------------------------------------------------------------------
 
-## Day 4
+# Day 4
 
 ### GLS Concepts and Flow using iverilog
 
@@ -517,6 +517,14 @@ Need to be very carefull when using blocking statement in verilogs. Avoid mistak
 
 --------------------------------------------------------------------------------------------------
 
-## Day 5
+# Day 5
 
 ### Theory
+
+
+--------------------------------------------------------------------------------------------------
+
+# Day 6
+
+### Theory
+
