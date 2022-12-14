@@ -1,6 +1,6 @@
 # #MY_REPO
 
-## Table of content
+## Table Of Content
 
 *  [Day 0](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-0) : **System/Tool Setup Check. GitHub ID creation**
 *  [Day 1](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-1) - **Introduction to Verilog RTL Design and Synthesis**
@@ -11,7 +11,7 @@
 *  [Day6]( ) : **Introduction to Logic Synthesis**
 
 
-# Day 0
+# #Day_0
 ### Theory Basic
 
 ![chip](https://user-images.githubusercontent.com/118954022/205806514-3bc166e8-7d8f-4fa7-bfb1-9f8445d3a3b6.jpg)
@@ -56,7 +56,7 @@ Starting a Lab (Intel Unix)
 
 --------------------------------------------------------------------------------------------------
 
-# Day 1
+# #Day_1
 
 ### Open-source Simulator Iverilog and Synthesis
 
@@ -166,7 +166,7 @@ The collection forms the **.lib** .
 
 --------------------------------------------------------------------------------------------------
 
-# Day 2
+# #Day_2
 
 ### Theory
 
@@ -276,7 +276,7 @@ Extra note: bin 101 if it is times with 4, add 2 zeros at behind (10100) ; if ti
 
 --------------------------------------------------------------------------------------------------
 
-# Day 3
+# #Day_3
 
 ### Intro to Optimizations 
 
@@ -397,7 +397,7 @@ Interpret the logic , and it make sense now. (use de morgan law). We can see all
 
 --------------------------------------------------------------------------------------------------
 
-# Day 4
+# #Day_4
 
 ### GLS Concepts and Flow using iverilog
 
@@ -517,14 +517,14 @@ Need to be very carefull when using blocking statement in verilogs. Avoid mistak
 
 --------------------------------------------------------------------------------------------------
 
-# Day 5
+# #Day_5
 
 ### Theory
 
 
 --------------------------------------------------------------------------------------------------
 
-# Day 6
+# #Day_6
 
 ### Theory
 
