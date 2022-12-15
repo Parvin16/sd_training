@@ -611,8 +611,29 @@ Scan Chain Technique :
 * Compiling the dft
 * Identifying the number of Scan chains
 
-**Scan chains** are the elements in scan-based designs that are used to _shift-in and shift-out test data_.
+**Scan chains** are the elements in scan-based designs that are used to _shift-in and shift-out test data_. A scan chain is formed by a number of flops connected back to back in a chain with the output of one flop connected to another. The **input  of first flop** is connected to the **input pin of the chip** ( know as **scan-in** ) from where scan data is fed. The **output of the last flop** is connected to the **output pin of the chip** ( known as **scan-out** ) which is used to take the shifted data out. 
 
+There are 3 types of scan flip-flops configurations :
+* Multiplexed
+* Clocked
+* Issd
+
+Purpose of Scan flops : 
+* To test stuck-at faults in manufactured devices.
+* To test the paths in the manufactured devices for delay, eg: to test whether each path is working at functional frequency or not. 
+
+**Functionality of Scan Chain**
+
+The goal is to make each node in the circuit controllable and observable. Simple steps to do basic scan-in and scan-out : 
+
+1. **Assert scan_enable** (make it high) so as to enable (SI->Q) path for each flop.
+2. Keep shifting in the scan data until the intended values at intended nodes are reached.
+3. **De-assert scan_enable** (for one pulse of clock in case of stuck-at testing and two or more cycles in case of transition testing) to enable D->Q path so that the combinational cloud output can be captured at the next clock edge.
+4. Again **assert scan_enable** and shift out the data through scan_out.
+
+Meta state = ?
+
+FAQ
 
 
 --------------------------------------------------------------------------------------------------
