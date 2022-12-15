@@ -527,24 +527,81 @@ Need to be very carefull when using blocking statement in verilogs. Avoid mistak
 
 ### DFT ( DESIGN FOR TESTABILITY )
 
-**TESTABILITY** - it means a characteristic of an item's design which allows the status (operable, inoperable or degraded) of that item to be confidently and quickly determined. In VLSI term, it means " if a design is _well-Controllable_ and _well-Observable_ it is said to easily testable ".
+**TESTABILITY** - it means a characteristic of an item's design which allows the status (operable, inoperable or degraded) of that item to be confidently and quickly determined. In VLSI term, it means " if a design is _well-Controllable_ and _well-Observable_ it is said to easily testable ". It is possible when a known input is applied to a unit in a known state, and a known response can be evaluated.
+
+![web2](https://user-images.githubusercontent.com/118954022/207802976-b2f2fc23-8e65-4ad3-ae71-50ea207a9be0.jpg)
+source: www.electronics-tutorial.net
 
 **DFT** - a technique which facilitates a design to become testable after production. Adding an extra design for an existing design to make sure it can be tested after being fabricated. A few samples of Designs included for making the whole chip testable. 
+Intel term - **DFx**. 
 
 Example : 
 * Macros, we including **MBist Logic**
 * Flops, we will use **Scan Chains**
 * Combinational Circuit, we will **Generate Test Patterns**
 
-**Why DFT ??** - 
+**Why DFT ??** - it makes the testing easy at the post-production process. It is also done due to economical and market needs. 
+
+We have mainly 3 levels of testing after a chip being fabricated :
+* **Chip-level**, when chips are manufactured.
+* **Board-level**, when chips are integratedon the boards/package.
+* **System-level**, when several boards are assembled together like laptops. 
+
+Pros :
+* Reduces tester complexity and tester time.
+* Faster development cycle and better quality of results.
+* Reduces the chances of going into loss due to faulty devices. 
+* Easier diagnostics and improved product quality.
+
+Cons :
+* DFT adds complication to the design flow.
+* DFT increase power, area,timing and package pins.
+* Design time increases.
+
+**DFT** lies in the basic ASIC design flow, where it is included at the beginning of design flow during ' Synthesis '. It is a step of the Design Process in which testing features are added to the hardware. An appropriate strategy being factored into early iterations of an ASICs architecture rather than making significant changes later. A DFT engineer might also conduct further analysis during the RTL design phase to help identify elements that might prove particularly helpful or detrimental, though the main bulk of DFT is typically inserted into a design later in the process.
+
+![web1 0](https://user-images.githubusercontent.com/118954022/207801100-11e71234-c820-48ed-844a-3b94778dd42d.jpg)
+source: Quora
 
 ### BASIC TERMINOLOGIES
 
+**Controllability** - from DFT point of view, we intend if both '0' and '1' are able to _propagate_  to each and every node within the target patterns. A point is said to be controllable if both '0' and '1' can be propogated through scan patterns. 
 
+**Observability** - the ability to _measure_ the state of a logic signal. When we say that a node is observable, we mean that the value at the node can be shifted out through scan patterns and can be observed through scan out ports. Example like adding a flip flop to a node line between register to other extra circuitry. 
+
+**Fault** - is a physical damage or defect compared to the good system, which may not cause system failure.
+
+**Error** - it is caused by a fault because of which system went to erroneous state.
+
+**Failure** - when the system is not providing the expected service. 
+
+[  A **fault** causes an **error** which leads to the system **failure**.  ]
+
+**Fault Coverage** - % of the total number of logical faults that can be tested using a given test set T.
+
+![web3](https://user-images.githubusercontent.com/118954022/207812851-67a0c362-c507-40d8-b7a2-c3eb9b22c84d.jpg)
+
+**Defect Level** - refers to the fraction of shipped parts that are defective /or/ the proportion of the faulty chip in which fault isn't detected and has been classified as good. 
 
 ### DFT TECHNIQUES
 
+There are mainly 2 techniques :
 
+1. **Ad-hoc Technique**
+
+* Avoid combinational feedback.
+* All flip flops must be initializable.
+* Partition on a large circuit into small blocks.
+* Provide test control for the signals which are not controllable.
+* While designing test logic we have to consider the ATE requirements. 
+
+2. **Structured Technique** 
+
+* Scan : in the design all the flip flops are converted to **scan flip flop**.
+* Boundary Scan.
+* Built-in self-test :
+  - MBist
+  - LBist
 
 ### INTRO TO SCAN-CHAINS
 
