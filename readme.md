@@ -605,11 +605,13 @@ There are mainly 2 techniques :
 
 ### INTRO TO SCAN-CHAINS
 
-Scan-Chain Technique :
+Scan Chain Technique :
 * Specifying the Scan constraint 
-*
-*
-*
+* Specifying Scan ports and Scan enables
+* Compiling the dft
+* Identifying the number of Scan chains
+
+**Scan chains** are the elements in scan-based designs that are used to _shift-in and shift-out test data_.
 
 
 
