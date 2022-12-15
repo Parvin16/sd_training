@@ -631,9 +631,47 @@ The goal is to make each node in the circuit controllable and observable. Simple
 3. **De-assert scan_enable** (for one pulse of clock in case of stuck-at testing and two or more cycles in case of transition testing) to enable D->Q path so that the combinational cloud output can be captured at the next clock edge.
 4. Again **assert scan_enable** and shift out the data through scan_out.
 
-Meta state = ?
+<img width="701" alt="note1" src="https://user-images.githubusercontent.com/118954022/207884751-e775cf1f-5af7-408c-b28e-a116ec25da4f.png">
 
-FAQ
+How long one single scan-chain can be ??
+
+By chain length, it means number of flip-flops in a single scan chain.Larger the chain length, more the number of cycles required to **shift the data in and out**. However, considering the number of flops remains same, smaller chain length means more number of input/output ports is needed as scan_in and scan_out ports.
+
+**Number of ports required = 2 x Num of scan chain**
+
+**Number of cycles required to run a pattern = Length of largest scan chain in design**
+
+**Num of patters to check = ( 2 ) ^ ( Num of flip-flops )**
+
+**ATE ( Automatic Test Equipment )** - also known as ATPG(Automatic Test Pattern Generator). It is used due to we cannot check or test a large number of flip-flops manually. Lets say, there is 100 flip-flops, so 2^100 patterns need to be check, it will take months to complete check all of it. 
+
+Basic **ATE Functionality** :
+* Scan-In Phase
+* Parallel Measure
+* Parallel Capture
+* First Scan-Out Phase 
+* Scan-Out Phase 
+
+Overview of a **DFT Compiler** :
+
+![note2](https://user-images.githubusercontent.com/118954022/207894356-c046d522-0172-49a9-ae33-6315fdb43ea1.jpg)
+
+How do we put the details to use or test them ??
+
+That's where the proprietary tool **synopsys-DFT Compiler** comes into play. 
+
+![note3](https://user-images.githubusercontent.com/118954022/207895576-8794e386-7ebc-4651-b19e-ee0347c9d263.jpg)
+
+Some sample commands are (can find at synopsys documentation) :
+* set_scan_configuration
+* preview_scan
+* insert_scan
+* set_scan_path
+* set_scan_signal .. and more.
+
+How long can a scan chain be ??
+
+
 
 
 --------------------------------------------------------------------------------------------------
