@@ -534,9 +534,9 @@ Need to be very carefull when using blocking statement in verilogs. Avoid mistak
 Example : 
 * Macros, we including **MBist Logic**
 * Flops, we will use **Scan Chains**
-* Combinational Circuit, we will *Generate Test Patterns*
+* Combinational Circuit, we will **Generate Test Patterns**
 
-** Why DFT ??** - 
+**Why DFT ??** - 
 
 ### BASIC TERMINOLOGIES
 
