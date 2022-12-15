@@ -527,7 +527,16 @@ Need to be very carefull when using blocking statement in verilogs. Avoid mistak
 
 ### DFT ( DESIGN FOR TESTABILITY )
 
-**TESTABILITY** - it means a characteristic of an item's design which allows the status (operable, inoperable or degraded) of that item to be confidently and quickly determined. In VLSI term, it means " if a design is _well-Controllable_ and ~well-Observable~ it is said to easily testable ".
+**TESTABILITY** - it means a characteristic of an item's design which allows the status (operable, inoperable or degraded) of that item to be confidently and quickly determined. In VLSI term, it means " if a design is _well-Controllable_ and _well-Observable_ it is said to easily testable ".
+
+**DFT** - a technique which facilitates a design to become testable after production. Adding an extra design for an existing design to make sure it can be tested after being fabricated. A few samples of Designs included for making the whole chip testable. 
+
+Example : 
+* Macros, we including **MBist Logic**
+* Flops, we will use **Scan Chains**
+* Combinational Circuit, we will *Generate Test Patterns*
+
+** Why DFT ??** - 
 
 ### BASIC TERMINOLOGIES
 
