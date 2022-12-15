@@ -17,7 +17,7 @@
 
 
 # #Day_0
-### Theory Basic
+### BASICS
 
 ![chip](https://user-images.githubusercontent.com/118954022/205806514-3bc166e8-7d8f-4fa7-bfb1-9f8445d3a3b6.jpg)
 
@@ -54,7 +54,7 @@
 
 --------------------------------------------------------------------------------------------------
 
-### Lab Result
+### LAB Result
 Starting a Lab (Intel Unix) 
 
 ![day0 lab vsd tarainig ](https://user-images.githubusercontent.com/118954022/203966813-d18863aa-a04d-4f57-953e-b846ccb79b94.jpg)
@@ -173,7 +173,7 @@ The collection forms the **.lib** .
 
 # #Day_2
 
-### Theory
+### THEORY
 
 ![note1](https://user-images.githubusercontent.com/118954022/206676452-7fa846b3-ccb6-4a97-81f9-21f07f01fc6e.jpg)
 
@@ -209,7 +209,7 @@ Flop with asy&syn-reset , syn-reset and asyn-reset.
 
 ------------------------------------------------------------------------------------------------
 
-### Labs
+### LABS
 
 **LAB 1 - Intro to timing.libs**
 
@@ -404,7 +404,7 @@ Interpret the logic , and it make sense now. (use de morgan law). We can see all
 
 # #Day_4
 
-### GLS Concepts and Flow using iverilog
+### GLS Concepts and Flow Using Iverilog
 
 **GLS** - Gate-Level Simulation. Running the testbench with netlist as Design Under Test. Netlist is same as the RTL code (same tb will align with the design). 
 
@@ -461,7 +461,7 @@ It is very important to check the behaviour of the circuit obtained and then mat
 
 ------------------------------------------------------------------------------------------------
 
-### Labs
+### LABS
 
 **LAB 1 - GLS & Synthesis-Simulation Mismatch**
 
@@ -525,7 +525,20 @@ Need to be very carefull when using blocking statement in verilogs. Avoid mistak
 
 # #Day_5
 
-### Theory
+### DFT ( DESIGN FOR TESTABILITY )
+
+
+
+### BASIC TERMINOLOGIES
+
+
+
+### DFT TECHNIQUES
+
+
+
+### INTRO TO SCAN-CHAINS
+
 
 
 --------------------------------------------------------------------------------------------------
