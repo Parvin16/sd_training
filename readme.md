@@ -12,8 +12,8 @@
    * [Lab](https://github.com/Parvin16/sd_training#labs-2)
 + [Day_4](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-4) : **GLS, Blocking vs Non-blocking and Synthesis-Simulation mismatch**
    * [Lab](https://github.com/Parvin16/sd_training#labs-3)
-+  [Day_5]( ) - **DFT**
-+  [Day_6]( ) : **Introduction to Logic Synthesis**
++  [Day_5](https://github.com/Parvin16/sd_training#day_5) - **DFT**
++  [Day_6](https://github.com/Parvin16/sd_training#day_6) : **Introduction to Logic Synthesis**
 
 
 # #Day_0
@@ -527,7 +527,7 @@ Need to be very carefull when using blocking statement in verilogs. Avoid mistak
 
 ### DFT ( DESIGN FOR TESTABILITY )
 
-**TESTABILITY** - it means a characteristic of an item's design which allows the status (operable, inoperable or degraded) of that item to be confidently and quickly determined. In VLSI term, it means " if a design is [well-Controllable] and [well-Observable] it is said to easily testable ".
+**TESTABILITY** - it means a characteristic of an item's design which allows the status (operable, inoperable or degraded) of that item to be confidently and quickly determined. In VLSI term, it means " if a design is {well-Controllable} and -well-Observable- it is said to easily testable ".
 
 ### BASIC TERMINOLOGIES
 
