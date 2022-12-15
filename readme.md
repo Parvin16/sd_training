@@ -605,6 +605,12 @@ There are mainly 2 techniques :
 
 ### INTRO TO SCAN-CHAINS
 
+Scan-Chain Technique :
+* Specifying the Scan constraint 
+*
+*
+*
+
 
 
 --------------------------------------------------------------------------------------------------
