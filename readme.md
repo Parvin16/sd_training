@@ -527,7 +527,7 @@ Need to be very carefull when using blocking statement in verilogs. Avoid mistak
 
 ### DFT ( DESIGN FOR TESTABILITY )
 
-**TESTABILITY** - it means a characteristic of an item's design which allows the status (operable, inoperable or degraded) of that item to be confidently and quickly determined. In VLSI term, it means " if a design is _well-Controllable_ and _well-Observable_ it is said to easily testable ". It is possible when a known input is applied to a unit in a known state, and a known response can be evaluated.
+**TESTABILITY** - it means a characteristic of an item's design which allows the status (operable, inoperable or degraded) of that item to be confidently and quickly determined. In VLSI term, it means " if a design is _well-Controllable_ and _well-Observable_ it is said to easily testable ". It is possible when a known input is applied to a unit in a known state, and a known response can be evaluated. Testability analysis involves circuit topological analysis without test vectors and search algorithm, it has linear complexity. Through testability analysis, estimation of fault coverage, number of untestable faults and test vector length is also possible.
 
 ![web2](https://user-images.githubusercontent.com/118954022/207802976-b2f2fc23-8e65-4ad3-ae71-50ea207a9be0.jpg)
 source: www.electronics-tutorial.net
@@ -552,6 +552,8 @@ Pros :
 * Faster development cycle and better quality of results.
 * Reduces the chances of going into loss due to faulty devices. 
 * Easier diagnostics and improved product quality.
+* Realize concurrent engineering and support hierarchical test.
+* Improve fault coverage.
 
 Cons :
 * DFT adds complication to the design flow.
@@ -569,9 +571,11 @@ source: Quora
 
 **Observability** - the ability to _measure_ the state of a logic signal. When we say that a node is observable, we mean that the value at the node can be shifted out through scan patterns and can be observed through scan out ports. Example like adding a flip flop to a node line between register to other extra circuitry. 
 
-**Fault** - is a physical damage or defect compared to the good system, which may not cause system failure.
+**Defect** - in an electronic system is the unintended difference between the implemented hardware and its intended design. Typical defects in VLSI chips are process defects, material defects, aging defects, and package defects.
 
-**Error** - it is caused by a fault because of which system went to erroneous state.
+**Fault** - is a physical damage or defect compared to the good system, which may not cause system failure /or/ a representation of a “defect” at the abstracted function level is called a fault.
+
+**Error** - it is caused by a fault because of which system went to erroneous state. A wrong output signal produced by a defective system. An error is an effect whose cause is some “defect.”
 
 **Failure** - when the system is not providing the expected service. 
 
@@ -581,13 +585,15 @@ source: Quora
 
 ![web3](https://user-images.githubusercontent.com/118954022/207812851-67a0c362-c507-40d8-b7a2-c3eb9b22c84d.jpg)
 
-**Defect Level** - refers to the fraction of shipped parts that are defective /or/ the proportion of the faulty chip in which fault isn't detected and has been classified as good. 
+**Defect Level** - refers to the fraction of shipped parts that are defective /or/ the proportion of the faulty chip in which fault isn't detected and has been classified as good. There are two methods for the determination of defect level. One is from the field return data. Chips failing in the field are returned to the manufacturer. The number of returned chips normalized to one million chips shipped is the defect level. The other is using test data. Fault coverage of tests and chip fallout rate are analyzed.
 
-### DFT TECHNIQUES
+### DFT METHODSS
 
-There are mainly 2 techniques :
+There are mainly 2 methods for digital circuits :
 
-1. **Ad-hoc Technique**
+1. **Ad-hoc Methods**
+
+Ad hoc DFT method relies on good design experience and experienced designers to find the problem area, such as low coverage area. Sometimes circuit modification or test-point insertion may be required to improve the testability for these areas. The ad hoc DFT methods are usually too labor-intensive and do not guarantee good results from ATPG. For these reasons, for large circuits it is **discouraged** to use ad hoc DFT.
 
 * Avoid combinational feedback.
 * All flip flops must be initializable.
@@ -595,13 +601,21 @@ There are mainly 2 techniques :
 * Provide test control for the signals which are not controllable.
 * While designing test logic we have to consider the ATE requirements. 
 
-2. **Structured Technique** 
+2. **Structured Methods** 
 
-* Scan : in the design all the flip flops are converted to **scan flip flop**.
-* Boundary Scan.
-* Built-in self-test :
-  - MBist
-  - LBist
+* Scan ( in the design all the flip flops are converted to **scan flip flop** )
+* Partial Scan. ( only selects a subset of flip-flops to be scanned )
+* Boundary Scan. ( uses a shift-register stage to test factors such as interconnects and clusters of logic and memories ) Below is boundary scan architecture.
+
+![web6](https://user-images.githubusercontent.com/118954022/207942470-dc9b34e0-edbb-4d73-ae86-50ffc07c8ecb.jpg)
+
+* Built-in self-test (Bist). Involving the insertion of additional hardware and software features into integrated circuits to allow them to perform self-testing Commonly used for memory block testing. 2 most common categories:
+  - MBist ( Memory Bist ) - used specifically for testing memories. It typically consists of test circuits that apply a collection of write-read-write sequences for memories.
+  - LBist ( Logic Bist ) - is designed for testing random logic.
+Below is Bist architecture.
+
+![web7](https://user-images.githubusercontent.com/118954022/207942672-6de9e8c3-a754-4ac1-b42b-354338401663.jpg)
+
 
 ### INTRO TO SCAN-CHAINS
 
@@ -611,12 +625,20 @@ Scan Chain Technique :
 * Compiling the dft
 * Identifying the number of Scan chains
 
-**Scan chains** are the elements in scan-based designs that are used to _shift-in and shift-out test data_. A scan chain is formed by a number of flops connected back to back in a chain with the output of one flop connected to another. The **input  of first flop** is connected to the **input pin of the chip** ( know as **scan-in** ) from where scan data is fed. The **output of the last flop** is connected to the **output pin of the chip** ( known as **scan-out** ) which is used to take the shifted data out. 
+**Scan Chains** are the elements in scan-based designs that are used to _shift-in and shift-out test data_. They are used to detect manufacturing defects present in the combinational logic of the design. A scan chain is formed by a number of flops connected back to back in a chain with the output of one flop connected to another. The **input  of first flop** is connected to the **input pin of the chip** ( know as **scan-in** ) from where scan data is fed. The **output of the last flop** is connected to the **output pin of the chip** ( known as **scan-out** ) which is used to take the shifted data out. 
+
+![web9](https://user-images.githubusercontent.com/118954022/207946794-65c52b34-7d28-453f-983e-05ee4b3f3274.jpg)
+
+**Scan Flip Flop** (SFF) - SFF is generally used for clock edge-trigged scan design. Scan design is realized by replacing flip-flops by scan flip-flops (SFFs) and connecting them to form one or more shift registers in the test mode. A multiplexer is added in front of the DFF to construct a scan D-type flip-flop (SDFF). The test enable (TE) signal controls the working mode of the SDFF. When it is high, it selects the test mode and the scan-in (SI) bits are taken as the input of the DFF. When the TE signal is low, the SDFF works as in functional mode. It acts as a normal DFF and takes value D from the combination circuits as the input to the DFF. Figure below shows the SFF based on D type flip flop (DFF).
+
+![web5](https://user-images.githubusercontent.com/118954022/207940339-b403ceb7-22e1-4019-bf08-f1c80381440e.jpg)
 
 There are 3 types of scan flip-flops configurations :
 * Multiplexed
 * Clocked
-* Issd
+* LSSD ( Level-Sensitive Scan Design )
+
+![web10](https://user-images.githubusercontent.com/118954022/207947495-11d4689d-96f1-40f1-8a34-ac67f15a894d.jpg)
 
 Purpose of Scan flops : 
 * To test stuck-at faults in manufactured devices.
@@ -631,6 +653,9 @@ The goal is to make each node in the circuit controllable and observable. Simple
 3. **De-assert scan_enable** (for one pulse of clock in case of stuck-at testing and two or more cycles in case of transition testing) to enable D->Q path so that the combinational cloud output can be captured at the next clock edge.
 4. Again **assert scan_enable** and shift out the data through scan_out.
 
+Figure below shows a scan chain in a sequential circuit design. The SFFs are stitched together to form a scan chain. When test enable signal SE is high, the circuit works in test (shift) mode. The inputs from scan-in (SI) are shifted through the scan chain. The scan chain states can be shifted out through scan chain and observed at the scan-out (SO or Q) pin. The test program compares the SO values with expected values to verify the chips performance. 
+Multiple scan chains are often used to reduce the time to load and observe. SFFs can be distributed among any number of scan chains, each having a separate scan-in (SI) and scan-out (SO) pin. The integrity of scan chains must be tested prior to application of scan test sequences.
+
 <img width="701" alt="note1" src="https://user-images.githubusercontent.com/118954022/207884751-e775cf1f-5af7-408c-b28e-a116ec25da4f.png">
 
 How long one single scan-chain can be ??
@@ -643,14 +668,25 @@ By chain length, it means number of flip-flops in a single scan chain.Larger the
 
 **Num of patters to check = ( 2 ) ^ ( Num of flip-flops )**
 
-**ATE ( Automatic Test Equipment )** - also known as ATPG(Automatic Test Pattern Generator). It is used due to we cannot check or test a large number of flip-flops manually. Lets say, there is 100 flip-flops, so 2^100 patterns need to be check, it will take months to complete check all of it. 
+**ATE ( Automatic Test Equipment )** - also known as **ATPG**(Automatic Test Pattern Generator). It is used due to we cannot check or test a large number of flip-flops manually. Lets say, there is 100 flip-flops, so 2^100 patterns need to be check, it will take months to complete check all of it. Basically a method used to find an input (or test) sequence that, when applied to a digital circuit, enables testers to distinguish between the correct circuit behavior and the faulty circuit behavior caused by defects. These algorithms usually operate with a fault generator program, which creates the minimal collapsed fault list, so that the designer needs not be concerned with fault generation. 
+
+![web12](https://user-images.githubusercontent.com/118954022/207948908-3577744a-0cc2-44ff-a168-d85c18b0aac4.jpg)
 
 Basic **ATE Functionality** :
-* Scan-In Phase
-* Parallel Measure
-* Parallel Capture
-* First Scan-Out Phase 
-* Scan-Out Phase 
+
+![web11](https://user-images.githubusercontent.com/118954022/207948536-13f8c3d9-230c-45a2-8710-18884ab798d0.jpg)
+
+1. Scan-In Phase - In each cycle, the next scan bit is applied serially to SI. On the clock edge, it is shifted in to the scan chain. Meanwhile, parallel outputs are masked.
+2. Parallel Measure - PIs are applied early in the cycle. The clock remains inactive. The CUT is now in a known state. POs are measured late in the cycle.
+3. Parallel Capture - The clock is pulsed once. This captures virtual PO data in the scan chain. The CUT is left in a dont care state. Captured bits are ready for scan out.
+4. First Scan-Out Phase - With no clock, the SO port is strobed, measuring the first scanned-out bit.
+5. Scan-Out Phase - In each cycle, the next captured bit is scanned out and measured at SO.
+
+
+Basic ATPG flow :
+
+![web4](https://user-images.githubusercontent.com/118954022/207937104-aef239a3-1a40-43f0-a0e1-2a69d5ba3e9d.jpg)
+source:.sciencedirect.com
 
 Overview of a **DFT Compiler** :
 
@@ -669,9 +705,9 @@ Some sample commands are (can find at synopsys documentation) :
 * set_scan_path
 * set_scan_signal .. and more.
 
-How long can a scan chain be ??
+Scan time of different scan chain lengths : 
 
-
+![web8](https://user-images.githubusercontent.com/118954022/207944644-7f839277-3703-4e42-bccc-0523d0281ec5.jpg)
 
 
 --------------------------------------------------------------------------------------------------
