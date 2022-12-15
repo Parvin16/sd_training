@@ -527,7 +527,7 @@ Need to be very carefull when using blocking statement in verilogs. Avoid mistak
 
 ### DFT ( DESIGN FOR TESTABILITY )
 
-
+**TESTABILITY** - it means a characteristic of an item's design which allows the status (operable, inoperable or degraded) of that item to be confidently and quickly determined. In VLSI term, it means " if a design is [well-Controllable] and [well-Observable] it is said to easily testable ".
 
 ### BASIC TERMINOLOGIES
 
