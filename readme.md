@@ -733,11 +733,52 @@ In a design that having lot of logic gates, if there is one faulty logic in one 
 
 ### Logic Synthesis
 
-**Logic Synthesis** - is the process of automatic production of logic components, in particular digital circuits which that takes place in the transition from the register-transfer level (RTL) to the transistor level. It is a subject about how to abstract and represent logic circuits, how to manipulate and transform them, and how to analyze and optimize them.
+**Logic Synthesis** - is the process of automatic production of logic components, in particular digital circuits which that takes place in the transition from the register-transfer level (RTL) to the transistor level. It is a subject about how to abstract and represent logic circuits, how to manipulate and transform them, and how to analyze and optimize them. 
 
 ![note1](https://user-images.githubusercontent.com/118954022/208251188-7bb1cafc-89ab-4bef-8dbd-d5a972c2c7d7.jpg)
 
+Takeaways from RTL course :
+* Labs using 'iverilog' and 'gtkwave'. We must ensure that it compiles properly using a verilog simulator and its waveform are as expected using gtkwave before attempting to 'synthesize' the verilog code. Only after the code passes the simulation phase, can move on to the synthesis phase of the ASIC design flow. 
+* Good coding style will reduce most hazards while synthesis.
+* Ensure synthesizable constructs are used in RTL.
 
+Design Compiler short background :
+* Synthesis EDA tool by Synopsys Inc.
+* dc_shell for textual interface, and Design Vision for GUI.
+* Synopsys understands .db format instead of .lib(human readable) for the standard library files.
+* Design information can be stored in .ddc format (proprietary).
+* **SDC** : Design intent in terms of power, timing and area constraints.
+* SDC based on TCL.
+* **Flow** : set and link .db, Read .v, Read sdc, integrate all the design information in terms of standard cell libraries provided, synthesize, report, QOR is as expected, write netlist.
+
+Netlist and Libraries :
+* Design written out in terms of standard cells (gates/flops/mux,etc.), as provided in .db.
+* Target library: standard cell database (binary).. cell area/pins/timing data for synthesis decisions.
+* It is generated for a specific process, temperature and voltage (a PVT corner).
+* Various libraries can be appended together using link library. 
+
+Getting start with DC :
+* The differences in Yosys compare to previous labs, is that we have specify our target and link library instead of just reading the db file, and also take care of various file formats, while writing the netlist or/and ddc.  
+* Start-up Commands :
+eg: For opening dc in non-GUI: 'dc_shell', for GUI: 'design_vision', after invoking csh, and to open GUI after opening dc_shell: 'gui_start'
+* Will be having dummy libraries at begining if not provided.
+* Uses GTECH lib to understand the logic when a Verilog file is read into it.
+* For a standard design, multiple libraries at various PVT corner, different library for flops and different libraries for combo logic, can be specified. Linking helps in appending the relevant ones.
+* **.synopsys_dc.setup** - can provide libraries during startup itself without any additional command specification. 
+* DC reads .synopsys_dc.setup files in order :
+1. Synopsys installation directory (all user projects)
+2. User home directory (all projects for this user)
+3. Cureent project directory (this project only)
+
+**TCL** Quick Tips :
+* Strongly typed language, have to take care of spaces as well.
+* Keep track of different bracket types. 
+* While assigning no need to provide $, but while referring a variable in an expression use $. 
+* Make a note of Synopsys proprietary TCL commands. eg: get_lib_cells and constructs like foreach_in_collection. 
+* Collection and lists are different. **Collections** are not a standard part of TCL verbatim. If something is outputted in between '{}' as an output for a Synopsys command, it specifies a collection.
+* Use Wildcards for big data-sets. eg: ' * ' matches any string of characters (including the empty string ). ab*cd, matches a string with ab at the start and cd ar the end. 
+
+r
 
 
 ### LABS
