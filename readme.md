@@ -608,6 +608,7 @@ Ad hoc DFT method relies on good design experience and experienced designers to 
 * Boundary Scan. ( uses a shift-register stage to test factors such as interconnects and clusters of logic and memories ) Below is boundary scan architecture.
 
 ![web6](https://user-images.githubusercontent.com/118954022/207942470-dc9b34e0-edbb-4d73-ae86-50ffc07c8ecb.jpg)
+source: https://www.slideshare.net/NejehFerjani/dft-10717334
 
 * Built-in self-test (Bist). Involving the insertion of additional hardware and software features into integrated circuits to allow them to perform self-testing Commonly used for memory block testing. 2 most common categories:
   - MBist ( Memory Bist ) - used specifically for testing memories. It typically consists of test circuits that apply a collection of write-read-write sequences for memories.
@@ -682,7 +683,6 @@ Basic **ATE Functionality** :
 4. First Scan-Out Phase - With no clock, the SO port is strobed, measuring the first scanned-out bit.
 5. Scan-Out Phase - In each cycle, the next captured bit is scanned out and measured at SO.
 
-
 Basic ATPG flow :
 
 ![web4](https://user-images.githubusercontent.com/118954022/207937104-aef239a3-1a40-43f0-a0e1-2a69d5ba3e9d.jpg)
@@ -691,6 +691,8 @@ source:.sciencedirect.com
 Overview of a **DFT Compiler** :
 
 ![note2](https://user-images.githubusercontent.com/118954022/207894356-c046d522-0172-49a9-ae33-6315fdb43ea1.jpg)
+
+**Design Rule Checking (DRC)** - Verifies as to whether a specific design meets the constraints imposed by the process technology to be used for its manufacturing
 
 How do we put the details to use or test them ??
 
@@ -709,10 +711,31 @@ Scan time of different scan chain lengths :
 
 ![web8](https://user-images.githubusercontent.com/118954022/207944644-7f839277-3703-4e42-bccc-0523d0281ec5.jpg)
 
+Other configurations of scan chains:
+* Test power is a serious problem in the scan-based testing. DFT-based techniques and X-filling are two effective ways to reduce both shift power and capture power.
+* In order to reduce test power and keep the defect coverage, Scan chain configuration based X-filling for low power and high quality testing.
+* In this paper mentioned that the scan chain configuration tries to cluster the scan flip-flops with common successors into one scan chain, in order to distribute the specified bits per pattern over a minimum number of chains.
+
+Design with faulty:
+
+Metastability is a phenomenon of unstable equilibrium in digital electronics in which the sequential element is not able to resolve the state of the input signal; hence, the output goes into unresolved state for an unbounded interval of time. If the setup check is violated, data will not be captured properly at the next clock edge. Similarly, if hold check is violated, data intended to get captured at the next edge will get captured at the same edge.
+
+My individual view on How DFT can be game changer for VLSI engineers:
+
+In a design that having lot of logic gates, if there is one faulty logic in one of the circuit, it will lead to a big issue especially if the logic have multiple connection on it. The higher the test coverage, the higher the quality of the design. In timing aspect, the ealier the engineer found out where is the issue occur, the earlier the design can be fixed and fasten the launch process to market. If the test coverage is high and engineer can found out the issue before the chip is fabricated, then this can reduce the lost in cost.
+
 
 --------------------------------------------------------------------------------------------------
 
 # #Day_6
 
-### Theory
+### Logic Synthesis
 
+**Logic Synthesis** - is the process of automatic production of logic components, in particular digital circuits which that takes place in the transition from the register-transfer level (RTL) to the transistor level. It is a subject about how to abstract and represent logic circuits, how to manipulate and transform them, and how to analyze and optimize them.
+
+![note1](https://user-images.githubusercontent.com/118954022/208251188-7bb1cafc-89ab-4bef-8dbd-d5a972c2c7d7.jpg)
+
+
+
+
+### LAB
