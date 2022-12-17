@@ -14,7 +14,9 @@
    * [Lab](https://github.com/Parvin16/sd_training#labs-3)
 +  [Day_5](https://github.com/Parvin16/sd_training#day_5) - **DFT**
 +  [Day_6](https://github.com/Parvin16/sd_training#day_6) : **Introduction to Logic Synthesis**
-
+   * [Lab](https://github.com/Parvin16/sd_training#labs-4)
++  [Day_7](https://github.com/Parvin16/sd_training#day_7) : **Introduction to Logic Synthesis**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-5)
 
 # #Day_0
 ### BASICS
@@ -738,4 +740,4 @@ In a design that having lot of logic gates, if there is one faulty logic in one 
 
 
 
-### LAB
+### LABS
