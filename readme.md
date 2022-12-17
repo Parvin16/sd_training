@@ -733,9 +733,23 @@ In a design that having lot of logic gates, if there is one faulty logic in one 
 
 ### Logic Synthesis
 
-**Logic Synthesis** - is the process of automatic production of logic components, in particular digital circuits which that takes place in the transition from the register-transfer level (RTL) to the transistor level. It is a subject about how to abstract and represent logic circuits, how to manipulate and transform them, and how to analyze and optimize them. 
+**Logic Synthesis** - is the process of automatic production of logic components, in particular digital circuits which that takes place in the transition from the register-transfer level (RTL) to the transistor level. It is a subject about how to abstract and represent logic circuits, how to manipulate and transform them, and how to analyze and optimize them. Synthesis is the process of converting a high-level description of design (Verilog/VHDL) into an optimized gate-level representation. Logic synthesis uses a standard cell library which have simple cells, such as basic logic gates like AND, OR, and NOR, or macro cells, such as adder, muxes, memory, and flip-flops.
+
+Synthesis = Translation + Optimisation + Mapping 
 
 ![note1](https://user-images.githubusercontent.com/118954022/208251188-7bb1cafc-89ab-4bef-8dbd-d5a972c2c7d7.jpg)
+
+Logic Synthesis Overview : 
+
+![note2](https://user-images.githubusercontent.com/118954022/208255713-af204133-8e0f-45e2-a847-c3f8b4aa395d.jpg)
+
+**RTL Synthesis** - the simple RTL design undergoes synthesis to become a gate-level netlist with all of the designer-specified limitations. Synthesis, to put it simply, is the process of turning an abstract design into a correctly implemented chip in terms of logic gates. Multiple stages are involved in the synthesis.
+
+**HDL Compiler** - translates Verilog HDL descriptions into Design Compiler witha GTECH library.
+
+What is RTL in HDL ??
+
+**RTL** “Register Transfer Level” code is a smaller subset of the full range of HDL code. RTL describes circuits at a level similar to the design description on a schematic: flip-flops activated by fully-specified clocks, and combinatorial logic (ranging from simple gates to large multipliers) between the flip-flops. Verilog is a "Hardware Description Language" **HDL**. It is a language used for describing a digital system like a network switch or a microprocessor or a memory or a flip−flop. It means, by using a HDL we can describe any digital hardware at any level. Writing in an **RTL coding style** means describing the register architecture, the circuit topology, and the functionality between registers.
 
 Takeaways from RTL course :
 * Labs using 'iverilog' and 'gtkwave'. We must ensure that it compiles properly using a verilog simulator and its waveform are as expected using gtkwave before attempting to 'synthesize' the verilog code. Only after the code passes the simulation phase, can move on to the synthesis phase of the ASIC design flow. 
@@ -759,12 +773,19 @@ Netlist and Libraries :
 
 Getting start with DC :
 * The differences in Yosys compare to previous labs, is that we have specify our target and link library instead of just reading the db file, and also take care of various file formats, while writing the netlist or/and ddc.  
+eg: write-format ddc-hierarchy -o file.ddc
 * Start-up Commands :
 eg: For opening dc in non-GUI: 'dc_shell', for GUI: 'design_vision', after invoking csh, and to open GUI after opening dc_shell: 'gui_start'
 * Will be having dummy libraries at begining if not provided.
 * Uses GTECH lib to understand the logic when a Verilog file is read into it.
 * For a standard design, multiple libraries at various PVT corner, different library for flops and different libraries for combo logic, can be specified. Linking helps in appending the relevant ones.
-* **.synopsys_dc.setup** - can provide libraries during startup itself without any additional command specification. 
+* **.synopsys_dc.setup** - can provide libraries during startup itself without any additional command specification.
+What .synopsys_dc.setup defined :
+-> link_library: the library used for interpreting input description.
+-> target_library: the ASIC technology that the design is mapped to.
+-> symbol_library: used during schematic generation.
+-> search_path: the path to search for unsolved reference library or design.
+-> synthetic_library: designware library to be used. 
 * DC reads .synopsys_dc.setup files in order :
 1. Synopsys installation directory (all user projects)
 2. User home directory (all projects for this user)
@@ -778,7 +799,6 @@ eg: For opening dc in non-GUI: 'dc_shell', for GUI: 'design_vision', after invok
 * Collection and lists are different. **Collections** are not a standard part of TCL verbatim. If something is outputted in between '{}' as an output for a Synopsys command, it specifies a collection.
 * Use Wildcards for big data-sets. eg: ' * ' matches any string of characters (including the empty string ). ab*cd, matches a string with ab at the start and cd ar the end. 
 
-r
-
+More info : http://viplab.cs.nctu.edu.tw/course/DCL2019_Fall/DCL_Mat_03.pdf 
 
 ### LABS
