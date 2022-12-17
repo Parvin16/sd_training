@@ -802,3 +802,11 @@ What .synopsys_dc.setup defined :
 More info : http://viplab.cs.nctu.edu.tw/course/DCL2019_Fall/DCL_Mat_03.pdf 
 
 ### LABS
+
+**LAB 1 - Invoking DC Basic Setup**
+
+**LAB 2 - Intro to ddc gui with design_vision**
+
+**LAB 3 - DC Synopsys DC Setup**  
+
+**LAB 4 - TCL Scripting**
