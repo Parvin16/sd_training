@@ -801,6 +801,9 @@ What .synopsys_dc.setup defined :
 
 More info : http://viplab.cs.nctu.edu.tw/course/DCL2019_Fall/DCL_Mat_03.pdf 
 
+
+--------------------------------------------------------------------------------------------------
+
 ### LABS
 
 **LAB 1 - Invoking DC Basic Setup**
@@ -821,16 +824,125 @@ To invoke dc_shell, need to enable cshell first, >> cd .../sky130RTLDesignAndSyn
 
 ![lab1 2](https://user-images.githubusercontent.com/118954022/208436132-b649c672-0caf-44ad-b9be-cf77b6f28d56.jpg)
 
-Read the design, >> read_verilog DC_WORKSHOP/verilog_files/lab1_flop_with_en.v .The file that gonna use in DC compiler is, in pg tab ( not in dc_shell tab) >> gvim DC_WORKSHOP/verilog_files/lab1_flop_with_en.v
+Read the design, >> read_verilog DC_WORKSHOP/verilog_files/lab1_flop_with_en.v .The file that gonna use in DC compiler is, in pg tab ( not in dc_shell tab) >> gvim DC_WORKSHOP/verilog_files/lab1_flop_with_en.v .The circuit drawn is the expected. It is 1 bit flip flop, asychn reset.
 
 ![lab1 3](https://user-images.githubusercontent.com/118954022/208441652-8f1d77d7-d9db-4e09-a55e-e74cb02024fd.jpg)
 
+Next is to point a proper tech library, have to write verilog, >> write -f verilog -out lab1_net.v ; sh gvim /nfs/png/home/chiannio/training/sky130RTLDesignAndSynthesisWorkshop/lab1_net.v .As we see, we cant read the verilog link library as it is imaginary. GTECH - virtual library in DC's memory which is to understand the design. Because there was no proper standard cells it has written out the netlist in the form of the GTECH cells. The 'SEQGEN' should be Sky... .
 
+![lab1 4](https://user-images.githubusercontent.com/118954022/208459818-37149aaf-c8b8-45e8-89aa-5c45c04fe5d4.jpg)
 
+So, lets do and read the correct thing, >> read_db DC_WORKSHOP/lib/sky130_fd_sc_hd__tt_025C_1v80.db ; write -f verilog -out lab1_net.v ; sh gvim /nfs/png/home/chiannio/training/sky130RTLDesignAndSynthesisWorkshop/lab1_net.v ; and we will it is still the same in GTECH format. 
+
+So , now we need to set variables , >> echo $target_library ; echo $link_library ; so we need this library from pointing your_library. So, >> set target_library /nfs/png/home/ppuspara/training/sky130RTLDesignAndSynthesisWorkshop/DC_WORKSHOP/lib/sky130_fd_sc_hd__tt_025C_1v80.db ; set link_library {* /nfs/png/home/ppuspara/training/sky130RTLDesignAndSynthesisWorkshop/DC_WORKSHOP/lib/sky130_fd_sc_hd__tt_025C_1v80.db} ; link ;
+There may be multiple libraries loaded in DC’s memory. The ' * ' represents the exist library in that path that already loaded in DC's memory, so it wont overwrite it. Now after link , we can see it is linking and loading the design into the library pointed earlier.
+
+![lab1 5](https://user-images.githubusercontent.com/118954022/208464607-1242ba3e-4abd-467a-a38d-197a4fcd727e.jpg)
+
+Then compile the design, >> compile ; write -f verilog -out lab1_net.v ; sh cat lab1_net.v ; now we can see it is corrected already (cause we can sky... file). 
+
+![lab1 6](https://user-images.githubusercontent.com/118954022/208465728-9960456f-3ae6-44ca-b97b-59bd673b49b5.jpg)
 
 
 **LAB 2 - Intro to ddc gui with design_vision**
 
+Launch design vision (supports gui format of dc) (not in dc_shell) , >> csh ; design_vision ; then write ddc (in dc_shell) for this >> write -f ddc -out lab1.ddc ; then in design_vision gui, >> read_ddc lab1.ddc ;
+
+![lab2 1](https://user-images.githubusercontent.com/118954022/208477158-55cae19f-1100-4f85-b66a-26a52be73e5a.jpg)
+
+Open another tab of design_vision , and read verilog there >> read_verilog DC_WORKSHOP/verilog_files/lab1_flop_with_en.v ; then compare it with ddc. Read verilog, it only reads verilog file. But read ddc , it automatically pick and load the design file. So, ddc saves all information in the tool memory in that particular session (snynopsis proprietary format).
+
+To view the design, right click select schematic view, then double click the design appeared to view full design in detail. There was a inv connects to reset pin , because the flop is active low reset and we need active high reset. Now it is matching with the earlier expected circuit design.
+
+![lab2 2](https://user-images.githubusercontent.com/118954022/208482005-41e41006-9ed2-4349-9994-d95df15786ce.jpg)
+
+
 **LAB 3 - DC Synopsys DC Setup**  
 
+Lets see on with dc setup options. Invoke dc first >> csh ; dc_shell ; echo $target_library ; echo $link_library ; set target_library /nfs/png/home/ppuspara/training/sky130RTLDesignAndSynthesisWorkshop/DC_WORKSHOP/lib/sky130_fd_sc_hd__tt_025C_1v80.db ; set link_library { * $target_library } ; echo $link_library ; echo $target_library .We can see the library is set.
+
+![lab3 0](https://user-images.githubusercontent.com/118954022/208486541-d5438971-7eee-4e0f-90ff-4496f8e736d0.jpg)
+
+So here we are having only one design, in real working, there are multiple .db files and cannot miss them. Setting lib every time manually is error prone. Solution: .synopsis_dc.setup .There will be 2 version, one in dc setup (default) , another one is at our homeuser directory. DC will pick up the one in our homeuser directory. All repetitive tasks which is needed for tool setup can be pointed in this file: target_library and link_library. 
+
+Pre-configure must in home directory & the file name is .synopsys_dc.setup ,>> gvim .synopsys_dc.setup ; in the gvim file, insert as in below image, save and exit.
+![lab3 1](https://user-images.githubusercontent.com/118954022/208489450-e84af38c-c295-4718-a4c7-7877fce44d21.jpg)
+
+Then invoke dc_shell, we can see the target_library and link_library have been set automatically. >> csh ; dc_shell ; echo $target_library
+
+![lab3 2](https://user-images.githubusercontent.com/118954022/208490072-7c841e6f-b398-4eba-a731-df7269ed8a54.jpg)
+
+
 **LAB 4 - TCL Scripting**
+
+Lest work on TCL. In dc_shell, set variables
+![lab4 0](https://user-images.githubusercontent.com/118954022/208491137-de64001f-13d5-44cc-87d0-d381d3f44c72.jpg)
+
+Next, we create a 'for' loop, must have space after each '}'. Carefull with $i .
+![lab4 1](https://user-images.githubusercontent.com/118954022/208492332-f218961d-575b-485d-a48b-c4a006b92092.jpg)
+
+Now for 'while' loop , there are 2 type which is shown in the image below. 
+![lab4 2](https://user-images.githubusercontent.com/118954022/208494043-17ccb544-77db-4c19-9626-678fa694f6ba.jpg)
+
+Now do 'foreach', lets create mylist, 
+![lab4 3](https://user-images.githubusercontent.com/118954022/208494957-4ba4f5af-5949-4d0c-8d97-cdee68d5e06e.jpg)
+
+Next is 'get_lib_cells' , load a file and look for a specific thing , eg: search for different types of 'and' in the loaded file: 
+![lab4 4](https://user-images.githubusercontent.com/118954022/208496042-bb242381-f839-4f9f-aa86-985cfd5cc096.jpg)
+
+Note: if the output printed print without {}, it mrefers to list, eg: a b c d . If the output printed with {} , it refers to a collection eg like the in pic above. 
+
+The _sel3 is like a pointer for the above collection.
+![lab4 5](https://user-images.githubusercontent.com/118954022/208496997-de4ad365-4b96-4b6a-9aef-58311d5bc115.jpg)
+
+The get_object_name is used to retrieve value of the pointers.
+![lab4 6](https://user-images.githubusercontent.com/118954022/208498117-2a2a6df6-8603-4106-b6b3-35bb35c320ae.jpg)
+
+For this multiple commands, we can create a tcl also (save in a file and source it). >> sh gvim myscript.tcl ; source myscript.tcl .Before source, enter the info into the opened gvim file (save and exit).
+
+![lab4 7](https://user-images.githubusercontent.com/118954022/208500393-3848f78a-948b-486f-93f5-de3a4a731432.jpg)
+
+![lab4 8](https://user-images.githubusercontent.com/118954022/208500729-3c0a2ab4-cc39-4a48-96b5-a1817784473e.jpg)
+
+Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scripting. 
+
+
+--------------------------------------------------------------------------------------------------
+
+# #Day_7
+
+### Theory
+
+
+------------------------------------------------------------------------------------------------
+
+### LABS
+
+**LAB 1 - **
+
+
+--------------------------------------------------------------------------------------------------
+
+# #Day_8
+
+### Theory
+
+
+------------------------------------------------------------------------------------------------
+
+### LABS
+
+**LAB 1 - **
+
+--------------------------------------------------------------------------------------------------
+
+# #Day_9
+
+### Theory
+
+
+------------------------------------------------------------------------------------------------
+
+### LABS
+
+**LAB 1 - **
