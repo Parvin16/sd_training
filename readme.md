@@ -805,6 +805,14 @@ More info : http://viplab.cs.nctu.edu.tw/course/DCL2019_Fall/DCL_Mat_03.pdf
 
 **LAB 1 - Invoking DC Basic Setup**
 
+We will see how to invoke a DC, read various setup related files and write out a netlist. 
+
+Start with >> cd ( get into home directory) ; mkdir -p training ; git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git ; cd sky130RTLDesignAndSynthesisWorkshop ; /p/hdk/pu_tu/prd/sams/mig76_wlw/setup/enter_p31 -cfg ip76p31r08hp7rev03 -ov ./ ; cd DC_WORKSHOP/lib 
+![lab1 0](https://user-images.githubusercontent.com/118954022/208379552-08c8f8bc-90e9-4dfe-a2e6-7e1e1a26a14e.jpg)
+
+
+
+
 **LAB 2 - Intro to ddc gui with design_vision**
 
 **LAB 3 - DC Synopsys DC Setup**  
