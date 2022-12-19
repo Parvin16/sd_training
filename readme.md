@@ -807,8 +807,24 @@ More info : http://viplab.cs.nctu.edu.tw/course/DCL2019_Fall/DCL_Mat_03.pdf
 
 We will see how to invoke a DC, read various setup related files and write out a netlist. 
 
-Start with >> cd ( get into home directory) ; mkdir -p training ; git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git ; cd sky130RTLDesignAndSynthesisWorkshop ; /p/hdk/pu_tu/prd/sams/mig76_wlw/setup/enter_p31 -cfg ip76p31r08hp7rev03 -ov ./ ; cd DC_WORKSHOP/lib 
+Start with >> cd ( get into home directory) ; mkdir -p training ; git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git ; cd sky130RTLDesignAndSynthesisWorkshop ; /p/hdk/pu_tu/prd/sams/mig76_wlw/setup/enter_p31 -cfg ip76p31r08hp7rev03 -ov ./ ; cd DC_WORKSHOP/lib .We can see .lib and .db (which converted from .lib, DC understands .db only) files here.
+
 ![lab1 0](https://user-images.githubusercontent.com/118954022/208379552-08c8f8bc-90e9-4dfe-a2e6-7e1e1a26a14e.jpg)
+
+Lets look at the content of .lib file. ( :syn off (to off the red highlighted)). PVT - process,voltage,temperature. Electronic Circuit Operation = f(Temp,VDD,Process) . So, the .lib is written out for a PVT corner and known as library of standard cells.
+
+![lab1 1](https://user-images.githubusercontent.com/118954022/208426452-00976e64-a0eb-4e4f-8d5b-6780e81e4d52.jpg)
+
+Then check the present verilog, >> cd .../DC_WORKSHOP/verilog_files ; ls 
+
+To invoke dc_shell, need to enable cshell first, >> cd .../sky130RTLDesignAndSynthesisWorkshop ; csh ; dc_shell ; echo $target_library (this to read the technology library) ; echo $link_library (this is to pick the cells for the run) .We can see the compilers that is accesible. your_library.db is a imaginary non existent library. 
+
+![lab1 2](https://user-images.githubusercontent.com/118954022/208436132-b649c672-0caf-44ad-b9be-cf77b6f28d56.jpg)
+
+Read the design, >> read_verilog DC_WORKSHOP/verilog_files/lab1_flop_with_en.v .The file that gonna use in DC compiler is, in pg tab ( not in dc_shell tab) >> gvim DC_WORKSHOP/verilog_files/lab1_flop_with_en.v
+
+![lab1 3](https://user-images.githubusercontent.com/118954022/208441652-8f1d77d7-d9db-4e09-a55e-e74cb02024fd.jpg)
+
 
 
 
