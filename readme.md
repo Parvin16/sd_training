@@ -946,6 +946,20 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 
 **LAB 1 - **
 
+**LAB 2 - **
+
+**LAB 3 - **
+
+**LAB 4 - **
+
+**LAB 5 - **
+
+**LAB 6 - **
+
+**LAB 7 - **
+
+**LAB 8 - **
+
 --------------------------------------------------------------------------------------------------
 
 # #Day_9
@@ -959,6 +973,18 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 
 **LAB 1 - **
 
+**LAB 2 - **
+
+**LAB 3 - **
+
+**LAB 4 - **
+
+**LAB 5 - **
+
+**LAB 6 - **
+
+**LAB 7 - **
+
 --------------------------------------------------------------------------------------------------
 
 # #Day_10
@@ -971,6 +997,9 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 ### LABS
 
 **LAB 1 - **
+
+
+**LAB 2 - **
 
 
 ------------------------------------------------------------------------------------------------
