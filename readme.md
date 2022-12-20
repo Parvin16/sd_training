@@ -15,8 +15,14 @@
 +  [Day_5](https://github.com/Parvin16/sd_training#day_5) - **DFT**
 +  [Day_6](https://github.com/Parvin16/sd_training#day_6) : **Introduction to Logic Synthesis**
    * [Lab](https://github.com/Parvin16/sd_training#labs-4)
-+  [Day_7](https://github.com/Parvin16/sd_training#day_7) : **Introduction to Logic Synthesis**
++  [Day_7](https://github.com/Parvin16/sd_training#day_7) : **Basic SDC Constraints**
    * [Lab](https://github.com/Parvin16/sd_training#labs-5)
++  [Day_8](https://github.com/Parvin16/sd_training#day_8) : **Advanced SDC Constraints**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-6)
++  [Day_9](https://github.com/Parvin16/sd_training#day_9) : **Optimization in Synthesis**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-7)
++  [Day_10](https://github.com/Parvin16/sd_training#day_10) : **QOR**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-8)
 
 # #Day_0
 ### BASICS
@@ -946,3 +952,19 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 ### LABS
 
 **LAB 1 - **
+
+--------------------------------------------------------------------------------------------------
+
+# #Day_10
+
+### Theory
+
+
+------------------------------------------------------------------------------------------------
+
+### LABS
+
+**LAB 1 - **
+
+
+------------------------------------------------------------------------------------------------
