@@ -917,7 +917,13 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 
 # #Day_7
 
-### Theory
+### Intro to STA
+
+
+### What are constraints ??
+
+
+### Inp Trans Output Load 
 
 
 ------------------------------------------------------------------------------------------------
@@ -926,6 +932,7 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 
 **LAB 1 - Timing dot Libs**
 
+We gonna go through the dot Lib and understand the informations. cd ...//DC_WORKSHOP/lib ,
 
 **LAB 2 - Exploring dot Lib Part1**
 
