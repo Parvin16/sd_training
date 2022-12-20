@@ -924,7 +924,13 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 
 ### LABS
 
-**LAB 1 - **
+**LAB 1 - Timing dot Libs**
+
+
+**LAB 2 - Exploring dot Lib Part1**
+
+
+**LAB 3 - Exploring dot Lib Part2**
 
 
 --------------------------------------------------------------------------------------------------
