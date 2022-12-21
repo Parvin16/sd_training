@@ -921,9 +921,11 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 
 Recaps :
 
-**Setup Time** . Ensure that data is setup before the active clock edge occurs. Verifies that the signals don’t arrive too late, and the data is captured reliably. Timing relation between the latest possible data arrival time (longest or max data path) versus the required arrival time (Slack = Required arrival time - Actual Arrival time). Positive slack required to avoid violations. Helps identify the maximum frequency at which the design can operate. Often carried out at worst process corner under worst PVT conditions for yield considerations. Setup value of the flop usually specified as ‘library setup time’ in cell library.
+**Setup Time**
+Ensure that data is setup before the active clock edge occurs. Verifies that the signals don’t arrive too late, and the data is captured reliably. Timing relation between the latest possible data arrival time (longest or max data path) versus the required arrival time (Slack = Required arrival time - Actual Arrival time). Positive slack required to avoid violations. Helps identify the maximum frequency at which the design can operate. Often carried out at worst process corner under worst PVT conditions for yield considerations. Setup value of the flop usually specified as ‘library setup time’ in cell library.
 
-**Hold Time** . Ensures that the data is held long enough at the capture flop so that it doesn’t capture the data being launched by the launch flop at the same edge. Short path analysis that ensures data doesn’t arrive too early. Compares the earliest arriving data with required arrival time of data. It is a same-edge test; neg slack preferred (Required arrival time - Actual Arrival time will be negative to avoid violations). Often conducted at the best process corner under best PVT conditions. Changing the cycle time doesn’t give a remedy to these violations. 
+**Hold Time**
+Ensures that the data is held long enough at the capture flop so that it doesn’t capture the data being launched by the launch flop at the same edge. Short path analysis that ensures data doesn’t arrive too early. Compares the earliest arriving data with required arrival time of data. It is a same-edge test; neg slack preferred (Required arrival time - Actual Arrival time will be negative to avoid violations). Often conducted at the best process corner under best PVT conditions. Changing the cycle time doesn’t give a remedy to these violations. 
 
 <img width="258" alt="note5" src="https://user-images.githubusercontent.com/118954022/208970448-0ab48273-61f2-440d-895d-3eb9b80c9b26.png">
 source: Quora
