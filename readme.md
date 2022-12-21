@@ -923,7 +923,7 @@ Recaps :
 
 **Setup Time**
 
-Ensures that data is setup before the active clock edge occurs. Verifies that the signals don’t arrive too late, and the data is captured reliably. Timing relation between the latest possible data arrival time (longest or max data path) versus the required arrival time (Slack = Required arrival time - Actual Arrival time). Positive slack required to avoid violations. Helps identify the maximum frequency at which the design can operate. Often carried out at worst process corner under worst PVT conditions for yield considerations. Setup value of the flop usually specified as ‘library setup time’ in cell library.
+Ensures that data is setup before the active clock edge occurs. Verifies that the signals don’t arrive too late, and the data is captured reliably. Timing relation between the latest possible data arrival time (longest or max data path) versus the required arrival time (**Slack** = Required arrival time - Actual Arrival time). Positive slack required to avoid violations. Helps identify the maximum frequency at which the design can operate. Often carried out at worst process corner under worst PVT conditions for yield considerations. Setup value of the flop usually specified as ‘library setup time’ in cell library.
 
 **Hold Time**
 
@@ -1006,8 +1006,8 @@ Timing paths :
 
 **Constraining the Design**
 
-* STA cannot check any timing on a path that is unconstrained
-* So it is mandatory to give the IO port constraints to complete the timing of paths involving IO ports 
+* STA cannot check any timing on a path that is unconstrained.
+* So it is mandatory to give the IO port constraints to complete the timing of paths involving IO ports.
 * Tclk -> q = 1.4ns, Tmax_path = 7ns, Tmin_path = 3ns
 * At what time does the data arrive at input port : Tclk->q + Tprop_delay_ext_comb
   - set_input_delay - clock CLK -max 8.4ns [get_ports IN1]
@@ -1015,7 +1015,7 @@ Timing paths :
 
 ![note9](https://user-images.githubusercontent.com/118954022/208976233-5409381b-b789-4b9b-bbc2-6e8184467973.jpg)
 
-* Output delay is specified w.r.t capture clock 
+* **Output Delay** is specified with respect to capture clock. 
 * External logic’s setup requirement relative to CLK
   - set_output_delay -clock CLK -max [Max_Path_Time + Tsetup] [get_ports OUT1]
   - set_output_delay -clock CLK -max 14.8 [get_ports OUT1]
@@ -1087,19 +1087,17 @@ A **negative unatess** - means cell output logic is inverted version of input lo
 Possitive unateness are AND and OR gates. NOT , NAND and NOR are negative unateness. XOR are non-unateness. It is possible for both positive and negative unateness to be in a gate (complex pin). Tools will know how to propagate based on this unateness. 
 
 
-**LAB 2 - Exploring dot Lib Part1**
-
-We going to see on details of the pins.
-
-**LAB 3 - Exploring dot Lib Part2**
-
-
 --------------------------------------------------------------------------------------------------
 
 # #Day_8
 
 ### Theory
 
+**LAB 2 - Exploring dot Lib Part1**
+
+We going to see on details of the pins.
+
+**LAB 3 - Exploring dot Lib Part2**
 
 ------------------------------------------------------------------------------------------------
 
