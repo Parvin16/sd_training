@@ -944,10 +944,10 @@ source: Quora
 ![note6](https://user-images.githubusercontent.com/118954022/208972391-b05fd61a-6eb4-4264-9ef3-59168b1457ba.jpg)
 
 * Design environment should be specified accurately to identify the timing issues :
-- Setting up clocks.
-- Setting up IO timing characteristics.
-- Specifying correct constraints. 
-- Specifying the correct exceptions (like false paths and multi-cycle paths).
+  - Setting up clocks.
+  - Setting up IO timing characteristics.
+  - Specifying correct constraints. 
+  - Specifying the correct exceptions (like false paths and multi-cycle paths).
 
 ![Note7](https://user-images.githubusercontent.com/118954022/208972423-082b51f3-5f61-4ba4-9217-14657a01df3c.jpg)
 
@@ -978,9 +978,9 @@ Input transition and Output Load : **Effect on IO Delays**
 * Each timing arcs has a timing sense that means how the output changes for different types of transitions on input, this is called unateness. **Unateness** is important for timing as it specifies how the output is responding for the particular input and how much time it will take. 
 * For all the combinations of input and outputs and rising and falling conditions of inputs are defined in the .lib file. 
 * **Timing Arc Unateness** are of three types:
-- Positive unate : AND, OR
-- Negative Unate : NOT, NAND, NOR
-- Non Unate : XOR
+  - Positive unate : AND, OR
+  - Negative Unate : NOT, NAND, NOR
+  - Non Unate : XOR
 
 ### What are constraints ??
 
@@ -988,10 +988,10 @@ Input transition and Output Load : **Effect on IO Delays**
 
 * **Timing Paths** are a collection of paths each having a start point and end point. 
 * Valid timing paths based on valid start and end point are categorized into four types:
-- Input port to output port (Not recommended)
-- Input port to input of flop (IO Timing Path)
-- Clock pin of a flop to output port (IO Timing Path)
-- Clock pin of launch flop to input pin of capture flop (Reg2Regs)
+  - Input port to output port (Not recommended)
+  - Input port to input of flop (IO Timing Path)
+  - Clock pin of a flop to output port (IO Timing Path)
+  - Clock pin of launch flop to input pin of capture flop (Reg2Regs)
 * Timing paths are sorted into groups based on clocks associated with endpoint of path.
 
 eg: 
@@ -1010,18 +1010,18 @@ Timing paths :
 * So it is mandatory to give the IO port constraints to complete the timing of paths involving IO ports 
 * Tclk -> q = 1.4ns, Tmax_path = 7ns, Tmin_path = 3ns
 * At what time does the data arrive at input port : Tclk->q + Tprop_delay_ext_comb
-- set_input_delay - clock CLK -max 8.4ns [get_ports IN1]
-- set_input_delay -clock CLK -min 4.4 ns [get_ports IN1]
+  - set_input_delay - clock CLK -max 8.4ns [get_ports IN1]
+  - set_input_delay -clock CLK -min 4.4 ns [get_ports IN1]
 
 ![note9](https://user-images.githubusercontent.com/118954022/208976233-5409381b-b789-4b9b-bbc2-6e8184467973.jpg)
 
 * Output delay is specified w.r.t capture clock 
 * External logic’s setup requirement relative to CLK
-- set_output_delay -clock CLK -max [Max_Path_Time + Tsetup] [get_ports OUT1]
-- set_output_delay -clock CLK -max 14.8 [get_ports OUT1]
+  - set_output_delay -clock CLK -max [Max_Path_Time + Tsetup] [get_ports OUT1]
+  - set_output_delay -clock CLK -max 14.8 [get_ports OUT1]
 * Min external delay can also be specified by using -min option (external hold requirement)
-- set_output_delay -clock CLK -min [Min_path_time - Thold] [get_ports OUT1]
-- set_output_delay -clock CLK -min 3.6 [get_ports OUT1]
+  - set_output_delay -clock CLK -min [Min_path_time - Thold] [get_ports OUT1]
+  - set_output_delay -clock CLK -min 3.6 [get_ports OUT1]
 
 ### IO Constraints : Inp Trans, Output Load 
 
