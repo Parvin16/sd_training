@@ -1059,14 +1059,17 @@ Next, how much load or transition need to model, it comes from the module. If it
 **LAB 1 - Timing dot Libs**
 
 We going to explore the dot Lib and understand the informations. cd ...//DC_WORKSHOP/lib , open gvim the sky....80.lib file. Observe the informatios in the .lib file such as defaults, units, technology, operations, etc. 
+
 ![lab1 0](https://user-images.githubusercontent.com/118954022/208886862-fbf396a0-7fe6-434b-8764-78ac3ec6dc45.jpg)
 
 default_max_transition : 1.5000000000. Let's understand this part. 
+
 ![lab1 1](https://user-images.githubusercontent.com/118954022/208897934-3cc8391f-f4cf-4ead-b299-3c76964ebbad.jpg)
 
 If the cell loaded beyond the limit, the output may not rise at all (practical transition), so propagation delay would be very large and not acceptable. In nano second is acceptabel , but it goes large up to mili or micro seconds. If the delay is too large, the entire circuit operation will be jeopardized. We want to avoid this to happen. So we can see in .lib , the max capacitance limit = 1.5pf
 
 All the capacitance load will add a kill, so we must Let know the DC to buffer or split the net. AS example like the below image. 
+
 ![lab1 2](https://user-images.githubusercontent.com/118954022/208901197-8434c4f0-e1ea-450e-95d8-6e20df29612c.jpg)
 
 DC has to buffer the nets by knowing the max capacitance. If the gate is going to be heavily loaded such that the max capacitance limit is violated, DC will automatically sense and buffer the net. Since in .lib 1.5pf is very large value , hence 1.5pf is the last line of defence. We should never reach the lib limit cause it is very large , we can set it in the DC tools.
