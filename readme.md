@@ -925,6 +925,32 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 
 ### Inp Trans Output Load 
 
+We gonna see on **Advanced Synthesis and STA using Design Compiler IO Constraints**. 
+
+Is IO Delay and Input Transition Modelling sufficient for IO Paths ?? 
+
+Clock time - External time = Internal time = Input logic time + Setup time. Ideal signals has zero rise time. 
+
+![note1](https://user-images.githubusercontent.com/118954022/208827565-45ff3217-2d03-49ea-a6d7-324c8638bbe6.jpg)
+
+**Transition** plays a role at External Delay. If the input logic meets a transition, the delay will vary because cell delay is sensitive to the input transitions. 
+**Cell delay** is a function of input transition. Non Zero rise time (pratical signal) will cause the input "input logic" delay to increase. So this will cause the input setup (setup time) at reg1 to fail. Setup violation is seen with practical transition (non ideal timing). 
+
+![gogle1](https://user-images.githubusercontent.com/118954022/208842314-51918483-7288-4abc-a2db-17e805af8f21.jpg)
+
+![note2](https://user-images.githubusercontent.com/118954022/208845059-d6a766f6-379a-4b00-92f4-00478ba73505.jpg)
+
+Extra optimization need to be done in the input logic to let the DC module to know the practiccal transition is occuring at the input. This is time budgeting.
+
+Lets see the output y flow now. Reacll, Cell Delay = funct(output load). Load plays a role at te output part, it is not an ideal net at output logic so need load to make the output behave correctly. 
+
+![note3](https://user-images.githubusercontent.com/118954022/208862932-296c8299-a49c-4a72-81ca-ce9e54d33473.jpg)
+
+So the Output Load increased the delay of output logic, thereby potentially causing setup failure at the receiving flop. So we need to inform to tool that there is going to be an output load, and need to squeeze the logic such that the output load is not going to delay the setup time.
+
+![note4](https://user-images.githubusercontent.com/118954022/208864238-e12544ad-947c-4d3d-aea3-bf3898e996f4.jpg)
+
+Next, how much load or transition need to model, it comes from the module. If it follows some regular interface, then it will has some regular specification. From this info we can know the answer. The ussual composition is 70% of external delay and 30% of internal delay. 
 
 ------------------------------------------------------------------------------------------------
 
@@ -932,7 +958,22 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 
 **LAB 1 - Timing dot Libs**
 
-We gonna go through the dot Lib and understand the informations. cd ...//DC_WORKSHOP/lib ,
+We going to explore the dot Lib and understand the informations. cd ...//DC_WORKSHOP/lib , open gvim the sky....80.lib file. Observe the informatios in the .lib file such as defaults, units, technology, operations, etc. 
+![lab1 0](https://user-images.githubusercontent.com/118954022/208886862-fbf396a0-7fe6-434b-8764-78ac3ec6dc45.jpg)
+
+default_max_transition : 1.5000000000. Let's understand this part. 
+![lab1 1](https://user-images.githubusercontent.com/118954022/208897934-3cc8391f-f4cf-4ead-b299-3c76964ebbad.jpg)
+
+If the cell loaded beyond the limit, the output may not rise at all (practical transition), so propagation delay would be very large and not acceptable. In nano second is acceptabel , but it goes large up to mili or micro seconds. If the delay is too large, the entire circuit operation will be jeopardized. We want to avoid this to happen. So we can see in .lib , the max capacitance limit = 1.5pf
+
+All the capacitance load will add a kill, so we must Let know the DC to buffer or split the net. AS example like the below image. 
+![lab1 2](https://user-images.githubusercontent.com/118954022/208901197-8434c4f0-e1ea-450e-95d8-6e20df29612c.jpg)
+
+DC has to buffer the nets by knowing the max capacitance. If the gate is going to be heavily loaded such that the max capacitance limit is violate, DC will automatically bufered the net. Since in .lib 1.5pf is very large value , hence 1.5pf is the last line of defence. We should never reach the lib limit. 
+
+
+
+
 
 **LAB 2 - Exploring dot Lib Part1**
 
