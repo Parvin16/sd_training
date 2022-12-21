@@ -919,11 +919,107 @@ Note: Becarefull with syntax ';' , the brackets and spacing in tcl file scriptin
 
 ### Intro to STA
 
+Recaps :
+
+**Setup Time** . Ensure that data is setup before the active clock edge occurs. Verifies that the signals don’t arrive too late, and the data is captured reliably. Timing relation between the latest possible data arrival time (longest or max data path) versus the required arrival time (Slack = Required arrival time - Actual Arrival time). Positive slack required to avoid violations. Helps identify the maximum frequency at which the design can operate. Often carried out at worst process corner under worst PVT conditions for yield considerations. Setup value of the flop usually specified as ‘library setup time’ in cell library.
+
+**Hold Time** . Ensures that the data is held long enough at the capture flop so that it doesn’t capture the data being launched by the launch flop at the same edge. Short path analysis that ensures data doesn’t arrive too early. Compares the earliest arriving data with required arrival time of data. It is a same-edge test; neg slack preferred (Required arrival time - Actual Arrival time will be negative to avoid violations). Often conducted at the best process corner under best PVT conditions. Changing the cycle time doesn’t give a remedy to these violations. 
+
+<img width="258" alt="note5" src="https://user-images.githubusercontent.com/118954022/208970448-0ab48273-61f2-440d-895d-3eb9b80c9b26.png">
+source: Quora
+
+
+**Basics Of STA** 
+
+* Design functionality and its performance gets limited by noise, crosstalk and other such variations. 
+* STA does a complete and exhaustive point to point analysis of the design. 
+* To ensure that despite all possible pessimism in a design, the signals arrive neither too early, nor too late and the design maintains its correct operation.
+* Static because it is input-vector independent -> STA basically tries to verify timing of a design without the use of input vectors.
+* Doesn’t verify the functionality of the design.
+
+![note6](https://user-images.githubusercontent.com/118954022/208972391-b05fd61a-6eb4-4264-9ef3-59168b1457ba.jpg)
+
+* Design environment should be specified accurately to identify the timing issues :
+- Setting up clocks.
+- Setting up IO timing characteristics.
+- Specifying correct constraints. 
+- Specifying the correct exceptions (like false paths and multi-cycle paths).
+
+![Note7](https://user-images.githubusercontent.com/118954022/208972423-082b51f3-5f61-4ba4-9217-14657a01df3c.jpg)
+
+**Delays**
+
+* **Transition Delay** - transition delay or slew is defined as the time taken by signal to rise from 10% (20%) to the 90%(80%) of its maximum value. This is known as “rise time”. OR “fall time” can be defined as the time taken by a signal to fall from 90%(80%) to the 10%(20%) of its maximum value. Transition is the time it takes for the pin to change state. 
+
+* **Propagation Delay** - is the time required for a signal to propagate through a gate or net. Traditionally any gate propagation delay is measured between 50% of input transition to the corresponding 50% of output transition. Propagation delay depends on the input transition time (slew rate) and the output load. 
+
+* **Cell/Gate Delay** - is the amount of delay from input to output of a logic gate in a path. STA tools calculate the cell delay from lookup tables provided in the technology library(.lib), which is a function of input transition and output load. The Tech libs model this delay values dependent on PVT (Process, Voltage and Temperature). This is needed in order to make the chip work in after fabrication in all possible conditions. 
+
+* **Net Delay** - Net delay is the difference between the time a signal is first applied to the net and the time it reaches other devices connected to that net. It is due to the finite resistance and capacitance of the net. Hence calculated as a function of Resistance and Capacitance. 
+
+*  Depends on Process and Temperature variation. These net delays are computed using WLM or SPEF dumped after routing. 
+
+Input transition and Output Load : **Effect on IO Delays**
+
+* Cell or gate delay is calculated using Non-Linear Delay Models (NLDM). NLDM is highly accurate as it is derived from SPICE characterizations. 
+* The delay is a function of the input transition time (I.e. slew) of the cell, the wire capacitance and the pin capacitance of the driven cells. 
+* A slow input transition time will slow the rate at which the cell’s transistors can change state logic 1 to logic 0 (or logic 0 to logic 1), as well as a large output load Cload (Cnet + Cpin), thereby increasing the delay of the logic gate.
+
+**Timing Arcs**
+
+* **Cell Arc** is between an input pin and an output pin of a cell I.e. source pin is an input pin of a cell and sink pin is the output pin of the same cell. Cell arcs can be further divided into sequential and combinational arcs.
+* **Combinational Arcs** are between an input and output pin of a combinational cell or block. 
+* **Sequential Arcs** are between the clock pin and either input or output pin. Setup and hold timing arcs are between the input data pin and clock pin of flip flop and are termed as timing check arcs as they constrain a form of the timing relationship between a set of signals. Sequential delay arc is between clock pin and output Q pin of FF. An example of a sequential delay arc is clk to q is called delay arc and clk to D input is called timing check arcs in sequential circuits. 
+* **Net Arcs** - These arcs are between driver (cell) pin of a net and load pin of a net I.e. the source pin is output pin of one cell and the sink pin is input pin of another cell. Net arcs are always a **delay timing arcs**. 
+* Each timing arcs has a timing sense that means how the output changes for different types of transitions on input, this is called unateness. **Unateness** is important for timing as it specifies how the output is responding for the particular input and how much time it will take. 
+* For all the combinations of input and outputs and rising and falling conditions of inputs are defined in the .lib file. 
+* **Timing Arc Unateness** are of three types:
+- Positive unate : AND, OR
+- Negative Unate : NOT, NAND, NOR
+- Non Unate : XOR
 
 ### What are constraints ??
 
+**Timing Paths**
 
-### Inp Trans Output Load 
+* **Timing Paths** are a collection of paths each having a start point and end point. 
+* Valid timing paths based on valid start and end point are categorized into four types:
+- Input port to output port (Not recommended)
+- Input port to input of flop (IO Timing Path)
+- Clock pin of a flop to output port (IO Timing Path)
+- Clock pin of launch flop to input pin of capture flop (Reg2Regs)
+* Timing paths are sorted into groups based on clocks associated with endpoint of path.
+
+eg: 
+![note8](https://user-images.githubusercontent.com/118954022/208975449-06dc1418-a4f1-4f99-b03a-012dea3955dd.jpg)
+
+Timing paths : 
+ 
+- REG 2 REG : Constrained by Clock
+- REG 2 OUT : Constrained by Output External Delay, Output Load and Clock Period
+-  IN 2 REG : Constrained by Input External Delay, Input Transition and Clock Period
+-   Note    : The IO paths needs to be constrained for both Max delay (Setup) and Min Delay (Hold)
+
+**Constraining the Design**
+
+* STA cannot check any timing on a path that is unconstrained
+* So it is mandatory to give the IO port constraints to complete the timing of paths involving IO ports 
+* Tclk -> q = 1.4ns, Tmax_path = 7ns, Tmin_path = 3ns
+* At what time does the data arrive at input port : Tclk->q + Tprop_delay_ext_comb
+- set_input_delay - clock CLK -max 8.4ns [get_ports IN1]
+- set_input_delay -clock CLK -min 4.4 ns [get_ports IN1]
+
+![note9](https://user-images.githubusercontent.com/118954022/208976233-5409381b-b789-4b9b-bbc2-6e8184467973.jpg)
+
+* Output delay is specified w.r.t capture clock 
+* External logic’s setup requirement relative to CLK
+- set_output_delay -clock CLK -max [Max_Path_Time + Tsetup] [get_ports OUT1]
+- set_output_delay -clock CLK -max 14.8 [get_ports OUT1]
+* Min external delay can also be specified by using -min option (external hold requirement)
+- set_output_delay -clock CLK -min [Min_path_time - Thold] [get_ports OUT1]
+- set_output_delay -clock CLK -min 3.6 [get_ports OUT1]
+
+### IO Constraints : Inp Trans, Output Load 
 
 We gonna see on **Advanced Synthesis and STA using Design Compiler IO Constraints**. 
 
@@ -969,14 +1065,27 @@ If the cell loaded beyond the limit, the output may not rise at all (practical t
 All the capacitance load will add a kill, so we must Let know the DC to buffer or split the net. AS example like the below image. 
 ![lab1 2](https://user-images.githubusercontent.com/118954022/208901197-8434c4f0-e1ea-450e-95d8-6e20df29612c.jpg)
 
-DC has to buffer the nets by knowing the max capacitance. If the gate is going to be heavily loaded such that the max capacitance limit is violate, DC will automatically bufered the net. Since in .lib 1.5pf is very large value , hence 1.5pf is the last line of defence. We should never reach the lib limit. 
+DC has to buffer the nets by knowing the max capacitance. If the gate is going to be heavily loaded such that the max capacitance limit is violated, DC will automatically sense and buffer the net. Since in .lib 1.5pf is very large value , hence 1.5pf is the last line of defence. We should never reach the lib limit cause it is very large , we can set it in the DC tools.
 
+Lets understand about delay model : "table_lookup" , known as **Delay Model Lookup Table** or **'lut'**. The table is for every each cell. The delay will be present in the table of input trans (ns) vs output load (pf). The information will be presented in the .lib file. With two exact value of input trans and output load, interpolation done by taking the range from the table. 
 
+![lab1 3](https://user-images.githubusercontent.com/118954022/208957089-6617df6b-38f8-4583-a473-80bcff60e392.jpg)
 
+VNC knowledge: to split the gvim side by side , in gvim file type ' :vsp '
+
+Let's observe two differentfalvours and2 gates. Tool only understand .lib not vlsi.Infos such as power pins, area, connections, leakage power, etc. Comparing the area; the widder the cell, the greater the area, the bigger the leakage area, the lesser the delay and capacitance. The timing window, Index 1 and index 2 is refering to the lookup table collums and rows respectively, and delays are shown there. 
+
+![lab1 4](https://user-images.githubusercontent.com/118954022/208959083-e490359c-080c-4aaf-b11f-c0add7dd1ef4.jpg)
+
+There is this, timing_sense : "positive_unate" and timing_type : "combinational" . It saya it is combinationational timing arc. **Unateness** . A **non-unatess** timing edge is a clock signal that passes through some sort of block that does not maintain the direction of the edge. A **positive unateness** : 'Rising Input' – Rising Output OR No change in Output. If we apply Rising signal to the input of a Timing Arc, corresponding output signal is either Rising or there is "No change".
+A **negative unatess** - means cell output logic is inverted version of input logic. eg. In inverter having input A and output Y, Y is negative unate with respect to A.
+
+Possitive unateness are AND and OR gates. NOT , NAND and NOR are negative unateness. XOR are non-unateness. It is possible for both positive and negative unateness to be in a gate (complex pin). Tools will know how to propagate based on this unateness. 
 
 
 **LAB 2 - Exploring dot Lib Part1**
 
+We going to see on details of the pins.
 
 **LAB 3 - Exploring dot Lib Part2**
 
