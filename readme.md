@@ -1089,6 +1089,29 @@ A **negative unatess** - means cell output logic is inverted version of input lo
 
 Possitive unateness are AND and OR gates. NOT , NAND and NOR are negative unateness. XOR are non-unateness. It is possible for both positive and negative unateness to be in a gate (complex pin). Tools will know how to propagate based on this unateness. 
 
+**LAB 2 - Exploring dot Lib Part1**
+
+We going to see on details of the pins. /df - search for flop. We should see the clk2 timing delay which is seq timing arc. pin ("CLK_N") --> active low clk ; attribute clock : "true" --> pin is connected to the clock pin. Attribute driection is input (input pin). If we see pin ("D") , clock is false , means it is not a clock pin. 
+
+![lab2 0](https://user-images.githubusercontent.com/118954022/209068568-7ae42e93-76ce-4bf9-aa23-c66862f19689.jpg)
+
+For clk_N, the timing sense : non unate anf timing type : falling edge. This is because with respect to clock, Q maybe rising or falling depends on the input D pin. Q depends on D pin. We take posedge dff and negedge dff, clock to Q delay measured after the clock edge. Setup time is before the posedge and negedge. This informations is captured in the .lib so the tool knows it. CLK with rising edge is posedge clock and CLK_N with falling edge is negedge clock.   
+
+timing_type : "setup_rising" --> means setup time is measured with respect to the rising edge. This is for the setup check for the specific flop. 
+
+Invoke dc_shell to know the dff and latch names. (>> csh ; dc_shell ; echo $target_library ; get_lib_cells */* -filter "is_sequential==true" ). 'df' is flip flop and 'dlr' is latches. 
+
+![lab2 1](https://user-images.githubusercontent.com/118954022/209090108-254e53e3-90d6-4153-bbe1-f57b9dc916ca.jpg)
+
+Next, we see on latches. _dlrp --> positive latch , _dlrn --> negative latch. Setup is always before the sampling point. So, setup time of pos latch is with respect to negedge (falling). Setup time of neg latch is with respect to the posedge (rissing).
+
+![lab2 2](https://user-images.githubusercontent.com/118954022/209091076-1381664e-5c15-4c12-990c-b7fac6954a92.jpg)
+
+It is important to do setup calculation to with respect of which edge. 
+
+**LAB 3 - Exploring dot Lib Part2**
+
+We will look on how to vary the properties of .lib from the dc shell. 
 
 --------------------------------------------------------------------------------------------------
 
@@ -1096,11 +1119,6 @@ Possitive unateness are AND and OR gates. NOT , NAND and NOR are negative unaten
 
 ### Theory
 
-**LAB 2 - Exploring dot Lib Part1**
-
-We going to see on details of the pins.
-
-**LAB 3 - Exploring dot Lib Part2**
 
 ------------------------------------------------------------------------------------------------
 
