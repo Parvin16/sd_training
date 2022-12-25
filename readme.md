@@ -1121,9 +1121,11 @@ We will look on how to vary the properties of .lib from the dc shell. List out w
 
 Not to do this , >> foreach_in_collection my_lib_cell [get_lib_cells */*and*] {echo $my_lib_cell}; as it will only list out the pointers. 
 
-To know pins that is available for specific gate ( dc_shell >> get_lib_pins sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__and2_0/* )
+To know pins that is available for specific gate ( dc_shell >> get_lib_pins sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__and2_0/* ). For functionality of gate ( dc_shell >> foreach_in_collection my_pins [get_lib_pins sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__and2_0/*] {set my_pin_name [get_object_name $my_pins];      set pin_dir [get_lib_attribute $my_pin_name direction]; echo $my_pin_name $pin_dir; } ) or ( >>  get_lib_attribute sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__and2_0/X function )
 
+Writing script to print out output pin names and its functionality ( dc_shell >> sh gvim my_script.tcl ; source my_script.tcl ). Can also use to get attributes that we want, eg: area, capacitance, clock pin, etc.
 
+To know all the attributes ( dc_shell >> list_attributes -app ; list_attributes -app > a ; sh gvim a & ). 
 
 
 
