@@ -935,11 +935,13 @@ source: Quora
 
 **Basics Of STA** 
 
+* **STA** - Static Timing Analysis. 
 * Design functionality and its performance gets limited by noise, crosstalk and other such variations. 
 * STA does a complete and exhaustive point to point analysis of the design. 
 * To ensure that despite all possible pessimism in a design, the signals arrive neither too early, nor too late and the design maintains its correct operation.
 * Static because it is input-vector independent -> STA basically tries to verify timing of a design without the use of input vectors.
 * Doesn’t verify the functionality of the design.
+* Provides a faster and simpler way of checking and analyzing all the timing paths in a design for any timing violations
 
 ![note6](https://user-images.githubusercontent.com/118954022/208972391-b05fd61a-6eb4-4264-9ef3-59168b1457ba.jpg)
 
@@ -952,6 +954,8 @@ source: Quora
 ![Note7](https://user-images.githubusercontent.com/118954022/208972423-082b51f3-5f61-4ba4-9217-14657a01df3c.jpg)
 
 **Delays**
+
+**Path** - multiple path in combinational logic, **Case** - interms of condition or PVT, **Min Delay** - shortest path and best case, **Max Delay** - longest path and worst case.
 
 * **Transition Delay** - transition delay or slew is defined as the time taken by signal to rise from 10% (20%) to the 90%(80%) of its maximum value. This is known as “rise time”. OR “fall time” can be defined as the time taken by a signal to fall from 90%(80%) to the 10%(20%) of its maximum value. Transition is the time it takes for the pin to change state. 
 
@@ -1111,7 +1115,17 @@ It is important to do setup calculation to with respect of which edge.
 
 **LAB 3 - Exploring dot Lib Part2**
 
-We will look on how to vary the properties of .lib from the dc shell. 
+We will look on how to vary the properties of .lib from the dc shell. List out what library loaded ( dc_shell >> list_lib ). It will show the library, file and path name. To know all the AND gate in the library: in collection form ( >> get_lib_cells */*and* ) ; in list form ( >> foreach_in_collection my_lib_cell [get_lib_cells */*and*] { set my_lib_cell_name [get_object_name $my_lib_cell]; echo $my_lib_cell_name; } ). 
+
+![lab3 0](https://user-images.githubusercontent.com/118954022/209462258-bd734d32-e034-4590-bd04-19a7e3032682.jpg)
+
+Not to do this , >> foreach_in_collection my_lib_cell [get_lib_cells */*and*] {echo $my_lib_cell}; as it will only list out the pointers. 
+
+To know pins that is available for specific gate ( dc_shell >> get_lib_pins sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__and2_0/* )
+
+
+
+
 
 --------------------------------------------------------------------------------------------------
 
