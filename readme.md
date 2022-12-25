@@ -1123,10 +1123,13 @@ Not to do this , >> foreach_in_collection my_lib_cell [get_lib_cells */*and*] {e
 
 To know pins that is available for specific gate ( dc_shell >> get_lib_pins sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__and2_0/* ). For functionality of gate ( dc_shell >> foreach_in_collection my_pins [get_lib_pins sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__and2_0/*] {set my_pin_name [get_object_name $my_pins];      set pin_dir [get_lib_attribute $my_pin_name direction]; echo $my_pin_name $pin_dir; } ) or ( >>  get_lib_attribute sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__and2_0/X function )
 
+![lab3 1](https://user-images.githubusercontent.com/118954022/209478275-b385fd6a-8fdb-42ad-9062-8689017f7997.jpg)
+
 Writing script to print out output pin names and its functionality ( dc_shell >> sh gvim my_script.tcl ; source my_script.tcl ). Can also use to get attributes that we want, eg: area, capacitance, clock pin, etc.
 
 To know all the attributes ( dc_shell >> list_attributes -app ; list_attributes -app > a ; sh gvim a & ). 
 
+![lab3 2](https://user-images.githubusercontent.com/118954022/209478407-80aab570-c643-4cf7-aa85-35a2b9680ea0.jpg)
 
 
 --------------------------------------------------------------------------------------------------
