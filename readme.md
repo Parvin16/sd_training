@@ -1136,8 +1136,15 @@ To know all the attributes ( dc_shell >> list_attributes -app ; list_attributes 
 
 # #Day_8
 
-### Theory
+### Clocks
 
+
+### Paths
+
+
+### Asynchronous Timing Checks 
+
+## Removal Time 
 
 ------------------------------------------------------------------------------------------------
 
