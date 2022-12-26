@@ -1136,76 +1136,117 @@ To know all the attributes ( dc_shell >> list_attributes -app ; list_attributes 
 
 # #Day_8
 
-### Clocks
+## Clocks
+
+### Querying Cells 
+
+* The following example queries the cells that begin with o and references an FD2 library cell: (1)
+* The following example shows that, given a collection of pins, we can query the cells connected to those pins: (2)
+* The following example shows that, given a collection of nets, we can query the cells connected to those nets: (3)
+
+![note1](https://user-images.githubusercontent.com/118954022/209571559-316aabd8-7d5f-4c8c-bc35-7a4449179a28.jpg)
+
+### Clock Terminology 
+
+The difference in the arrival time of a clock signal at two different registers, which can be caused by path length differences between two clock paths, or by using gated or rippled clocks. Clock skew is the most common cause of internal hold violations. 
+
+* **Local Skew** - The difference in clock arrival between two consecutive/related pins of flops.
+* **Global Skew**- The difference in clock arrival between the longest path and shortest path.
+* **Positive Skew** - If the capture clock comes late than the launch clock.
+* **Negative Skew** - If the capture clock comes early than the launch clock. 
+* **Useful Skew** - If the clock is skewed intentionally to resolve setup violation.
+
+![note2](https://user-images.githubusercontent.com/118954022/209571701-ad3e3023-22b1-412b-a7a2-52b29ce425a1.jpg)
+
+**Clock Latency** - The total time it takes from the clock source to an end point.
+* **Source Latency** - Is also called **Insertion Delay**. The delay from the clock source to the clock definition points.
+* **Network Latency**-  The delay from the clock definition points (create_clock) to the flip-flop clock pins.
+
+![note3](https://user-images.githubusercontent.com/118954022/209571802-819f7ae9-5f01-4234-b444-35500a9dea72.jpg)
+
+* **Clock Jitter** - The short-term variations of a signal with respect to its ideal position in time. It is the variation of the clock period from edge to edge. It can vary +/- jitter value. Jitter value depends on the type of clock source.
+* **Clock Uncertainty** - Specifies a window within which a clock edge can occur. The uncertainty in the timing of  the clock edge is to account for several factors such as jitter and additional margins used for timing verification. 
+
+![note4](https://user-images.githubusercontent.com/118954022/209571863-dc4b7b5f-9e7f-4916-834c-98e1e85ad5fa.jpg)
+
+### 
+
+## Paths
 
 
-### Paths
+## Asynchronous Timing Checks 
 
+### Removal Time 
 
-### Asynchronous Timing Checks 
+Related to asynchronous control signals like asynchronous reset. It ensures there is adequate time between an active edge of clock and release of the asynchronous signal. This is done to ensure the clock edge has no effect and does not cause any change in the values. It is a min path check like hold check. Timing checks are based on the removal time specified in the asynchronous pin of the flop in cell library as ‘library removal time’. All asynchronous timing checks are assigned to default path groups and the endpoint shows it is a removal timing check.
 
-## Removal Time 
+![onenote1](https://user-images.githubusercontent.com/118954022/209569245-190cb7a4-cbdd-4cc0-aada-3e031f3b58e3.jpg)
+
+### Recovery Time 
+
+Ensures that there is minimum amount of time between asynchronous signal becoming inactive and arrival of next active edge of clock. It also ensures that once the asynchronous signal inactivates, the design has enough time to recover and respond back to the clocks. Defined in the cell library of the asynchronous pin of the flops as the ‘library recovery time’. Max path check like the setup clock. Endpoint in the report indicates the check is a recovery check against the clock. Here also the timing path group is ‘async_default’ path group. 
+
+![onenote2](https://user-images.githubusercontent.com/118954022/209569305-8119e819-8b2a-4346-9b2f-72113e0bf60f.jpg)
+
 
 ------------------------------------------------------------------------------------------------
 
-### LABS
+## LABS
 
-**LAB 1 - **
+# LAB 1 -
 
-**LAB 2 - **
+# LAB 2 -
 
-**LAB 3 - **
+# LAB 3 -
 
-**LAB 4 - **
+# LAB 4 - 
 
-**LAB 5 - **
+# LAB 5 - 
 
-**LAB 6 - **
+# LAB 6 - 
 
-**LAB 7 - **
+# LAB 7 - 
 
-**LAB 8 - **
+# LAB 8 - 
 
 --------------------------------------------------------------------------------------------------
 
 # #Day_9
 
-### Theory
+## Theory
 
 
 ------------------------------------------------------------------------------------------------
 
-### LABS
+## LABS
 
-**LAB 1 - **
+# LAB 1 -
 
-**LAB 2 - **
+# LAB 2 -
 
-**LAB 3 - **
+# LAB 3 -
 
-**LAB 4 - **
+# LAB 4 - 
 
-**LAB 5 - **
+# LAB 5 - 
 
-**LAB 6 - **
+# LAB 6 - 
 
-**LAB 7 - **
+# LAB 7 -
 
 --------------------------------------------------------------------------------------------------
 
 # #Day_10
 
-### Theory
+## Theory
 
 
 ------------------------------------------------------------------------------------------------
 
-### LABS
+## LABS
 
-**LAB 1 - **
+# LAB 1 -
 
-
-**LAB 2 - **
-
+# LAB 2 -
 
 ------------------------------------------------------------------------------------------------
