@@ -1169,6 +1169,52 @@ The difference in the arrival time of a clock signal at two different registers,
 
 ![note4](https://user-images.githubusercontent.com/118954022/209571863-dc4b7b5f-9e7f-4916-834c-98e1e85ad5fa.jpg)
 
+### Setting Up Clocks
+
+By defining a clock, all internal timing paths (flop to flop) are constrained to operate in one clock cycle. Is a single cycle timing analysis from flop to flop (unless the constraints are relaxed in some exception cases – false and multicycle paths).
+
+<img width="409" alt="image" src="https://user-images.githubusercontent.com/118954022/209572335-d52786e7-514c-4d95-ad30-37bd54b993e3.png">
+
+Incase multiple clocks are used in the design, specify the timing relationship between the clocks. Specifying the skew/transition at the source of the clock (applies only to ideal clocks and are disregarded once the clock trees are built) : 
+* - rise and -fall options to specify slew for rising and falling edges 
+* - min and -max options to specify constraints in various operating conditions 
+
+![note5](https://user-images.githubusercontent.com/118954022/209572526-b87472c5-7488-4922-a8a4-45572db42e9a.jpg)
+
+Specify clock uncertainty that may be introduced due to jitter, skew and other pessimism when performing setup and hold checks. It models factors that effectively reduce the clock period: (1) . Inter-clock uncertainties foe clock domain boundaries will also take into account the skew between the clocks for setup and hold checks: (2)
+
+![note6](https://user-images.githubusercontent.com/118954022/209573082-7bf8a476-c29d-45cf-b422-460e232f3888.jpg)
+
+### Clock Latency
+
+* 2 types: 
+  * Source Latency (insertion delay) – (front clock source to clock definition pin)(could be on chip or off chip) 
+  * Network Latency – (from clock definition point to clock pin of the flop) 
+* **Total Latency = Source latency + Network latency**
+
+<img width="401" alt="image" src="https://user-images.githubusercontent.com/118954022/209573311-9eb0bd3b-5fdb-4438-b09a-ee2b51da3eee.png">
+
+* We can represent external delay through the longest (-late) , shortest (-early) paths and also with respect to rising (-rise) and falling (-fall) edges of the clock transition.
+* Network latency gets ignored once the clock tree is built as it is the estimate delay of the clock tree prior to synthesis. (if set_propogated_clock command is set true)
+* Source latency cannot be ignored.
+
+![note7](https://user-images.githubusercontent.com/118954022/209573574-93c24656-b370-40ab-9fda-323c08eab836.jpg)
+
+### Generated Clocks
+
+* Such clocks are derived from master clock and are in phase with master clock. Eg: at outputs of divide-by-logic, to notify the STA tool regarding updated clock specifications).
+* Major advantage – clock origin is still that of master clock  source latency specifications are automatically included.
+* Creating a new master clock instead of generated clocks has below disadvantages : 
+  * More clock domains to deal with 
+  * Requires additional constraints to be specified 
+  * Source latency specifications need to be defined all over again for the new master clocks.
+  
+ ![note8](https://user-images.githubusercontent.com/118954022/209573829-0be596ea-4f6e-486c-b2f0-fd796f821c28.jpg)
+
+* Generated clocks can also be defined using clock -edge specifications and -edge shift specifications.
+
+![note9](https://user-images.githubusercontent.com/118954022/209573950-35b44512-57fc-4cab-9863-57a7fb2077fe.jpg)
+
 ### 
 
 ## Paths
