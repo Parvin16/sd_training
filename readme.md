@@ -1215,10 +1215,50 @@ Specify clock uncertainty that may be introduced due to jitter, skew and other p
 
 ![note9](https://user-images.githubusercontent.com/118954022/209573950-35b44512-57fc-4cab-9863-57a7fb2077fe.jpg)
 
-### 
+Clock Latency : 
+
+* Source latency specified for the generated clock is from the master clock definition point to the generated clock definition point.
+* Total latency = Source latency  of (Master clock + Generated clock) + Network latency of generated clock
+
+![note10](https://user-images.githubusercontent.com/118954022/209574360-01f6c333-f4a6-4fbf-b57f-d3cd577e0a8f.jpg)
+
+### Virtual Clocks
+
+Is not associated with any pin or port, not a real clock but mimics the functionality of a real clock. It used as a reference to constrain the interface pins by relating the arrivals  at input/output port with respect to it with help of input and output delays. ROW_In is being timed by CLK_SAD. In such cases timing constraint at input port are specified with virtual clocks. Similar issue occurs at STATE_O :
+
+<img width="339" alt="image" src="https://user-images.githubusercontent.com/118954022/209574453-aada48ed-15e1-4859-af64-e6b26155c013.png">
+
+Once the virtual clocks have been defined, specify the IO delay with respect to virtual clock :
+
+![note11](https://user-images.githubusercontent.com/118954022/209574528-68fca519-70b0-40f2-9d4e-b604877e39b7.jpg)
 
 ## Paths
 
+### False Paths
+
+Certain timing paths are not real/possible and need to be excluded from STA as they don’t occur during the functional operation of the design. Such paths are turned off in STA as false paths. Advantage : reduces the analysis to focus only on real paths. Eg: a clock pin of a flip flop to the input of another flip flop ; a few paths that are architecturally not possible. 
+
+![note12](https://user-images.githubusercontent.com/118954022/209574835-7131a60b-ab4e-46a7-a58b-ed404953575c.jpg)
+
+###  Half-cycle Paths 
+
+If the design has both positive and negative edge triggered flops, such path might exist. It could be from rising edge of a flop to the falling edge of another flop. Data path gets only half a cycle for setup check (more stringent condition). The hold check gets relaxed by half a cycle  resulting in slack met with a large value.
+
+![note13](https://user-images.githubusercontent.com/118954022/209575001-67290df2-741b-4f9b-bf57-c6c896e43ec5.jpg)
+
+### Multicycle Paths  
+
+In some cases, the combinational path between two flops may take longer than one cycle to propagate through the logic. We direct the STA tool that the relevant capture edge occurs after some specified number of clocks.
+
+![note14](https://user-images.githubusercontent.com/118954022/209575137-18ed36e1-3c0f-4071-92ff-feec9a187060.jpg)
+
+Here considering default checks would lead to a lot of violation  declare the path as a multicycle exception for setup checks and move the setup capture edge to 3rd edge. However, multicycle exception will move both setup (to 3rd edge) and hold edge (to 2nd edge). Eg: to the edge before setup capture edge.
+
+![note15](https://user-images.githubusercontent.com/118954022/209575352-98edae6e-8ee9-443a-93d2-eb287b193f38.jpg)
+
+This is not the correct way as the hold check should remain at the 0th edge, eg: should be same setup launch edge so we need to define MCP again to bring back hold edge to 0th edge. 
+
+![note16](https://user-images.githubusercontent.com/118954022/209575355-95e490cd-36bf-4df9-83ad-a70ec87bbf60.jpg)
 
 ## Asynchronous Timing Checks 
 
