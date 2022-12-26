@@ -1150,6 +1150,7 @@ To know all the attributes ( dc_shell >> list_attributes -app ; list_attributes 
 
 The difference in the arrival time of a clock signal at two different registers, which can be caused by path length differences between two clock paths, or by using gated or rippled clocks. Clock skew is the most common cause of internal hold violations. 
 
+* **Clock skew - Clock path delay mismatches which causes difference in the arrival of the clock.
 * **Local Skew** - The difference in clock arrival between two consecutive/related pins of flops.
 * **Global Skew**- The difference in clock arrival between the longest path and shortest path.
 * **Positive Skew** - If the capture clock comes late than the launch clock.
@@ -1164,10 +1165,24 @@ The difference in the arrival time of a clock signal at two different registers,
 
 ![note3](https://user-images.githubusercontent.com/118954022/209571802-819f7ae9-5f01-4234-b444-35500a9dea72.jpg)
 
-* **Clock Jitter** - The short-term variations of a signal with respect to its ideal position in time. It is the variation of the clock period from edge to edge. It can vary +/- jitter value. Jitter value depends on the type of clock source.
+* **Clock Jitter** - The short-term variations of a signal with respect to its ideal position in time. It is the variation of the clock period from edge to edge. It can vary +/- jitter value. Jitter value depends on the type of clock source. Stochastic variations of clock generation.
 * **Clock Uncertainty** - Specifies a window within which a clock edge can occur. The uncertainty in the timing of  the clock edge is to account for several factors such as jitter and additional margins used for timing verification. 
 
 ![note4](https://user-images.githubusercontent.com/118954022/209571863-dc4b7b5f-9e7f-4916-834c-98e1e85ad5fa.jpg)
+
+### Clock Generation
+
+All our clock sources will also have inherent variations in the clock period due to stochastic effects. There will be non-zero rise time, and the edge will arrive within a window, wherein the location of edge varies from cycle to cycle within window. This is known as jitter, meaning edge will arrive within a margin window and not at the exact time as expected. Because of this jitter, our timing will not be as expected as our margin will not be the same anymore.
+
+Tclk - Tjitter >= Tcq + Tcombi + Tsetup
+
+Clock sources such as Oscillator, Phase-Locked Loop (PLL) and external clock source. All the clock sources have inherent variations in the clock period due to stochastic effects. 
+
+### Clock Skew
+
+Practical Clock Tree - Clock Tree built during CTS. Ideal Clock Tree - Logic optimization happens in synthesis. Timing Clean path in synthesis may fail after STA. During synthesis, our timing will be clean, but once CTS is performed and the delays and clock skews are introduced, our available timing window will be eaten up. Thus we need to perform optimization with consideration to clock skew and jitter. Our timing delay now affected by the clock skew.
+
+Tclk => Tcq + Tcomb + T su + Tskew
 
 ### Setting Up Clocks
 
@@ -1234,6 +1249,12 @@ Once the virtual clocks have been defined, specify the IO delay with respect to 
 
 ## Paths
 
+### Timing Paths
+
+* Reg-to-reg: constrained by clock -> clock period
+* Reg-to-output: constrained by output external delay, output load and clock period
+* Input-to-reg: constrained by input external delay, input transition and clock period
+
 ### False Paths
 
 Certain timing paths are not real/possible and need to be excluded from STA as they don’t occur during the functional operation of the design. Such paths are turned off in STA as false paths. Advantage : reduces the analysis to focus only on real paths. Eg: a clock pin of a flip flop to the input of another flip flop ; a few paths that are architecturally not possible. 
@@ -1274,6 +1295,9 @@ Ensures that there is minimum amount of time between asynchronous signal becomin
 
 ![onenote2](https://user-images.githubusercontent.com/118954022/209569305-8119e819-8b2a-4346-9b2f-72113e0bf60f.jpg)
 
+### IO Delays
+
+DC takes constraints in the form of **SDC** (Synopsys Design Constraints). Ports are the primary IOs of the design for the inputs and outputs. Keep in mind that the attributes will be case sensitive. We use the commands set_input_delay and set_input_transition on our input ports to constrain the IO paths. Similarly for output ports, we need to use the command set_output_delay and set_output_load for constraining the IO path. Command of getting ports in DC, 'get_ports' ,while command of getting clocks in DC, 'get_clocks' .
 
 ------------------------------------------------------------------------------------------------
 
