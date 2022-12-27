@@ -1148,9 +1148,13 @@ To know all the attributes ( dc_shell >> list_attributes -app ; list_attributes 
 
 ### Clock Terminology 
 
+Clock is built during **CTS** (Clock Tree Synthesis) only, till then the clock is an ideal network. 
+
+![note20](https://user-images.githubusercontent.com/118954022/209626387-193dee25-b1c8-49e5-83bb-5541c61a1a72.jpg)
+
 The difference in the arrival time of a clock signal at two different registers, which can be caused by path length differences between two clock paths, or by using gated or rippled clocks. Clock skew is the most common cause of internal hold violations. 
 
-* **Clock skew - Clock path delay mismatches which causes difference in the arrival of the clock.
+* **Clock skew** - Clock path delay mismatches which causes difference in the arrival of the clock.
 * **Local Skew** - The difference in clock arrival between two consecutive/related pins of flops.
 * **Global Skew**- The difference in clock arrival between the longest path and shortest path.
 * **Positive Skew** - If the capture clock comes late than the launch clock.
@@ -1165,8 +1169,10 @@ The difference in the arrival time of a clock signal at two different registers,
 
 ![note3](https://user-images.githubusercontent.com/118954022/209571802-819f7ae9-5f01-4234-b444-35500a9dea72.jpg)
 
-* **Clock Jitter** - The short-term variations of a signal with respect to its ideal position in time. It is the variation of the clock period from edge to edge. It can vary +/- jitter value. Jitter value depends on the type of clock source. Stochastic variations of clock generation.
-* **Clock Uncertainty** - Specifies a window within which a clock edge can occur. The uncertainty in the timing of  the clock edge is to account for several factors such as jitter and additional margins used for timing verification. 
+* **Clock Jitter** - The short-term variations of a signal with respect to its ideal position in time. It is the variation of the clock period from edge to edge. It can vary +/- jitter value. Jitter value depends on the type of clock source. Stochastic variations of clock generation. 2 types:
+   * Dutty Cycle Jitter varriation at on time, Ton of the clock.
+   * Period Jitter - 
+* **Clock Uncertainty** - Specifies a window within which a clock edge can occur. The uncertainty in the timing of  the clock edge is to account for several factors such as jitter and additional margins used for timing verification. Collectively clock skew and clock jitter is called clock uncertainty.
 
 ![note4](https://user-images.githubusercontent.com/118954022/209571863-dc4b7b5f-9e7f-4916-834c-98e1e85ad5fa.jpg)
 
@@ -1182,7 +1188,9 @@ Clock sources such as Oscillator, Phase-Locked Loop (PLL) and external clock sou
 
 Practical Clock Tree - Clock Tree built during CTS. Ideal Clock Tree - Logic optimization happens in synthesis. Timing Clean path in synthesis may fail after STA. During synthesis, our timing will be clean, but once CTS is performed and the delays and clock skews are introduced, our available timing window will be eaten up. Thus we need to perform optimization with consideration to clock skew and jitter. Our timing delay now affected by the clock skew.
 
-Tclk => Tcq + Tcomb + T su + Tskew
+(Tclk - Tskew) => Tcq + Tcomb + T su .We can see the availabe timing window shrinks, path is timing clean before CTS, but fails after CTS which is not good.
+
+![note21](https://user-images.githubusercontent.com/118954022/209626845-d6c895e1-1ad0-4bcd-bee0-2ac653963a21.jpg)
 
 ### Setting Up Clocks
 
@@ -1236,6 +1244,18 @@ Clock Latency :
 * Total latency = Source latency  of (Master clock + Generated clock) + Network latency of generated clock
 
 ![note10](https://user-images.githubusercontent.com/118954022/209574360-01f6c333-f4a6-4fbf-b57f-d3cd577e0a8f.jpg)
+
+### Clock Modelling
+
+Things need to model for the clock :
+
+* Period
+* **Clock Skew** - Clock path delay mismatches which causes difference in the arrival of the clock.
+* **Source Latency** - Time taken by the clock source to generate clock.
+* **Clock Network Latency** - Time taken by Clock Distribution network.
+* **Jitter** - Random variation in clock source.
+
+Post CTS, the clock network is real, and hence this modelled clock skew and clock network latency MUST BE REMOVED. In post CTS, clock uncertainty must only contains jitter. 
 
 ### Virtual Clocks
 
@@ -1297,7 +1317,23 @@ Ensures that there is minimum amount of time between asynchronous signal becomin
 
 ### IO Delays
 
-DC takes constraints in the form of **SDC** (Synopsys Design Constraints). Ports are the primary IOs of the design for the inputs and outputs. Keep in mind that the attributes will be case sensitive. We use the commands set_input_delay and set_input_transition on our input ports to constrain the IO paths. Similarly for output ports, we need to use the command set_output_delay and set_output_load for constraining the IO path. Command of getting ports in DC, 'get_ports' ,while command of getting clocks in DC, 'get_clocks' .
+DC takes constraints in the form of **SDC** (Synopsys Design Constraints). Ports are the primary IOs of the design for the inputs and outputs. Keep in mind that the attributes will be case sensitive. We use the commands set_input_delay and set_input_transition on our input ports to constrain the IO paths. Similarly for output ports, we need to use the command set_output_delay and set_output_load for constraining the IO path. Command of get query ports in DC, 'get_ports' ,while command of getting clocks in DC, 'get_clocks'. 'filter' used to set condition for the outcomes. Clock dont have attributes in or out , it only has 'period'.
+
+![note18](https://user-images.githubusercontent.com/118954022/209624513-b2d7ca57-77fd-4b5c-a104-54f656e3659f.jpg)
+
+Net is connection of 2 or more pins and ports. Pins are the with pointed by letters or numbers. 
+
+![note17](https://user-images.githubusercontent.com/118954022/209622456-2fbfa772-5d3e-465e-bb49-09d830b8a76b.jpg)
+
+( get_cells * -hier) - will list all the cells. 
+
+![note19](https://user-images.githubusercontent.com/118954022/209625131-bb9ef847-100b-4af9-a4d1-05e23295ac56.jpg)
+
+To check wethwer it s hier cell or physical cell. eg: as below in the image. The first will how as true and the second one will show as false due to it is not a hier cell.
+
+<img width="281" alt="image" src="https://user-images.githubusercontent.com/118954022/209625424-e25fc63b-30ac-484e-b27f-220f8c3db6b9.png">
+
+
 
 ------------------------------------------------------------------------------------------------
 
