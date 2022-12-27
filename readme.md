@@ -1267,6 +1267,8 @@ Once the virtual clocks have been defined, specify the IO delay with respect to 
 
 ![note11](https://user-images.githubusercontent.com/118954022/209574528-68fca519-70b0-40f2-9d4e-b604877e39b7.jpg)
 
+Note: for virtual clock, there is no latency , no clock definition point.
+
 ## Paths
 
 ### Timing Paths
@@ -1355,31 +1357,64 @@ Input transition and input delay need to modelled based on what the correct thin
 
 ## generated_clk 
 
-t
+Let's say the spec for the output out_y as below image. Looking at the output path, the output y is constrained with the clock leaving the module. Logically it is same as MY_CLK defined at port clk but physically it is not. Due to it going to suffer routing delay, uncertainty or latency is not modelled here, so there will be Propogation Delay. 
+  
+![note23](https://user-images.githubusercontent.com/118954022/209680882-01a56478-747f-40bb-a48e-1ce16b7584be.jpg)
+
+We going to generate clock. Generated clocks are always create with respect to master clock (clock source or primary IO pins). ' -div 1 ' - this telling that there is no clock divider, this is Division Value of generated clock (useful for clock dividers). 
+  
+![note24](https://user-images.githubusercontent.com/118954022/209681289-961f4da7-8b68-49dc-820b-1b53d71c0503.jpg)
+
+Constraining the design. SEL (selections) is to select which data input to take. SEL wont toggle actively. OUT DATA can come w.r.t CLKA or CLKB. 
+  
+![note25](https://user-images.githubusercontent.com/118954022/209682235-93baac38-d413-4504-a680-15d92ebccbff.jpg)
+
+IN_DATA, IN_CLK has 2 functionalities:
+* In one functionality the IN_DATA and IN_CLK gets the data and clock corresponding to A and in other functionality it gets data and clock corresponding to B.
+* Same for OUT_DATA, OUT_CLK (can get from A or B).
+* Selection line is common.
+  
+How the clocks are propogated: 
+* Once a clock is created on a pin/port, DC will propogate that clock downstream based on the timing arcs.
+* All the timing arcs from the definition point will see the clock propogate by default.
+* Both wont work simultaneously, when A works , input only goes thru A. 
 
 ## vclk, max_latency, rise_fall IO Delays
   
-t
-
+### INPUT DELAYS : 
+set_input_delay -max 3 -clock myclk [gets_port IN_A]
+set_input_delay -max -3 -clock myclk [gets_port IN_A]
+set_input_delay -min 1 -clock myclk [gets_port IN_A]
+set_input_delay -min -1 -clock myclk [gets_port IN_A]
+  
+### OUTPUT DELAYS :
+set_output_delay -max 3 -clock myclk [gets_port IN_A]
+set_output_delay -max -3 -clock myclk [gets_port IN_A]
+set_output_delay -min 1 -clock myclk [gets_port IN_A]
+set_output_delay -min -1 -clock myclk [gets_port IN_A]
+  
+### IO Constraints revisited 
+***No clock definition point -> virtual clock inferred . Note: for virtual clock, there is no latency , no clock definition point. create_clock; set_input_delay; set_output_delay; set_driving_cell; set_input_transition;  -> will discuss in detail in labs. 
+  
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
-### LAB 1 -
+### LAB 1 - Loading Designs (get cells, ports and nets)
 
-### LAB 2 -
+### LAB 2 - Loading Designs (get pins and clocks, querying_clocks)
 
-### LAB 3 -
+### LAB 3 - Create Clock Waveform
 
-### LAB 4 - 
+### LAB 4 - Clock Network Modelling (uncertainty, report_timing)
 
-### LAB 5 - 
+### LAB 5 - IO Dealys
 
-### LAB 6 - 
+### LAB 6 -  Generated_clocks
 
-### LAB 7 - 
+### LAB 7 - Set_max_delay
 
-### LAB 8 - 
+### LAB 8 - VCLK
 
 --------------------------------------------------------------------------------------------------
 
