@@ -1315,7 +1315,7 @@ Ensures that there is minimum amount of time between asynchronous signal becomin
 
 ![onenote2](https://user-images.githubusercontent.com/118954022/209569305-8119e819-8b2a-4346-9b2f-72113e0bf60f.jpg)
 
-### IO Delays
+## IO Delays
 
 DC takes constraints in the form of **SDC** (Synopsys Design Constraints). Ports are the primary IOs of the design for the inputs and outputs. Keep in mind that the attributes will be case sensitive. We use the commands set_input_delay and set_input_transition on our input ports to constrain the IO paths. Similarly for output ports, we need to use the command set_output_delay and set_output_load for constraining the IO path. Command of get query ports in DC, 'get_ports' ,while command of getting clocks in DC, 'get_clocks'. 'filter' used to set condition for the outcomes. Clock dont have attributes in or out , it only has 'period'.
 
@@ -1333,27 +1333,51 @@ To check wethwer it s hier cell or physical cell. eg: as below in the image. The
 
 <img width="281" alt="image" src="https://user-images.githubusercontent.com/118954022/209625424-e25fc63b-30ac-484e-b27f-220f8c3db6b9.png">
 
+In Clock Distribution , the command to create clock is 'create_clock -name <clock name> -per <period(ns)> [clock definition point]' ,eg: 'create_clock -name MY_CLK -per 5 [get_ports CLK]' .Clock must be created on a valid clock generators (PLL, Oscilator) or Primary IO Pins (for external clocks) , and not be created on hierarchical pins which are not clock generators. 
 
+Bringing in the practicalities (latency, uncertainty,..) of clock network. Set skew and jitter. This needs to be modified post CTS to reflect only Jitter. 
+
+<img width="442" alt="image" src="https://user-images.githubusercontent.com/118954022/209643968-8d8f28c3-6671-47ec-bdfe-9dafc461bb30.png">
+
+### Clocks waveform.
+  
+![note22](https://user-images.githubusercontent.com/118954022/209645614-a93df095-7c0d-497e-8386-78b8a5864669.jpg)
+
+### Constraining the IO paths. 
+  
+Input transition and input delay need to modelled based on what the correct thing it is, depends on the design. So below images , the max min numbers are based on the design , not a constant number to be use anywhere. Input and output constraints :
+  
+<img width="365" alt="image" src="https://user-images.githubusercontent.com/118954022/209657702-bbeb17ff-16ec-4af3-ae68-5ee98ba0d96b.png">
+  
+<img width="374" alt="image" src="https://user-images.githubusercontent.com/118954022/209658371-93f69206-0aad-4ac0-b5a4-6a6ad9873db4.png">
+
+## generated_clk 
+
+t
+
+## vclk, max_latency, rise_fall IO Delays
+  
+t
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
-# LAB 1 -
+### LAB 1 -
 
-# LAB 2 -
+### LAB 2 -
 
-# LAB 3 -
+### LAB 3 -
 
-# LAB 4 - 
+### LAB 4 - 
 
-# LAB 5 - 
+### LAB 5 - 
 
-# LAB 6 - 
+### LAB 6 - 
 
-# LAB 7 - 
+### LAB 7 - 
 
-# LAB 8 - 
+### LAB 8 - 
 
 --------------------------------------------------------------------------------------------------
 
@@ -1366,19 +1390,19 @@ To check wethwer it s hier cell or physical cell. eg: as below in the image. The
 
 ## LABS
 
-# LAB 1 -
+### LAB 1 -
 
-# LAB 2 -
+### LAB 2 -
 
-# LAB 3 -
+### LAB 3 -
 
-# LAB 4 - 
+### LAB 4 - 
 
-# LAB 5 - 
+### LAB 5 - 
 
-# LAB 6 - 
+### LAB 6 - 
 
-# LAB 7 -
+### LAB 7 -
 
 --------------------------------------------------------------------------------------------------
 
@@ -1391,8 +1415,8 @@ To check wethwer it s hier cell or physical cell. eg: as below in the image. The
 
 ## LABS
 
-# LAB 1 -
+### LAB 1 -
 
-# LAB 2 -
+### LAB 2 -
 
 ------------------------------------------------------------------------------------------------
