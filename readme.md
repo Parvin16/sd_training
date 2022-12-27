@@ -1339,6 +1339,8 @@ Bringing in the practicalities (latency, uncertainty,..) of clock network. Set s
 
 <img width="442" alt="image" src="https://user-images.githubusercontent.com/118954022/209643968-8d8f28c3-6671-47ec-bdfe-9dafc461bb30.png">
 
+Overall summarize : create_clock; set_clock_latency; set_clock_uncertainty (Pre and Post CTS); set_input_delay; set_input_transition; set_output_delay; set_load; get_ports; get_clocks; get_cells. 
+
 ### Clocks waveform.
   
 ![note22](https://user-images.githubusercontent.com/118954022/209645614-a93df095-7c0d-497e-8386-78b8a5864669.jpg)
