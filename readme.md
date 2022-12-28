@@ -1466,15 +1466,39 @@ If remove all clocks, then >> report_timing ,it will show the (Path is unconstra
 
 ![lab4 1](https://user-images.githubusercontent.com/118954022/209859506-059f5e03-fa12-4cbb-a834-129e94f0164f.jpg)
 
-Model pratical efforts of the clock, >> set_clock_latency -source 2 [get_clocks MYCLK] ; set_clock_latency 1 [get_clocks MYCLK] ; set_clock_uncertainty -setup 0.5 [get_clocks MYCLK] ; set_clock_uncertainty -hold 0.1 [get_clocks MYCLK] ; report_timing ; Then compare the report timing , observe slack and so on.
+Model pratical efforts of the clock, >> set_clock_latency -source 2 [get_clocks MYCLK] ; set_clock_latency 1 [get_clocks MYCLK] ; set_clock_uncertainty -setup 0.5 [get_clocks MYCLK] ; set_clock_uncertainty -hold 0.1 [get_clocks MYCLK] ; report_timing ; Then compare the report timing , observe slack and so on. (skew and jitter exists)
  
 ![lab4 2](https://user-images.githubusercontent.com/118954022/209861143-0a37fbea-73e5-493d-8565-83b27e58000c.jpg)
 
 ### LAB 5 - IO Dealys
 
+From previous lab , report_ timing will show the path constrained from regB to RegC. If >> report_timing -from IN_A ,or, -to out_y ; the path is unconstrained. Because no IO delay given to the ports. To review details of all ports, dc_shell >> report_port -verbose .The dash and blanks due to not model some stuffs.
+  
+![lab5 0](https://user-images.githubusercontent.com/118954022/209864453-27a52426-63b3-4bee-83b5-0b55c05d6dbd.jpg)
 
+So we start modeling, >> set_input_delay -max 5 -clock [get_clocks MYCLK] [get_ports IN_A] ; set_input_delay -max 5 -clock [get_clocks MYCLK] [get_ports IN_B] ; report_port -verbose ;The input delay max is modelled. And report_timing -from IN_A path is constrained now.
+  
+![lab5 1](https://user-images.githubusercontent.com/118954022/209865559-7314416b-f8b0-4e42-be5a-e8c25ae3886a.jpg)
+
+Modelling transition delay for path, >> report_timing -from IN_A -trans -cap -nosplit ; To see the whole timing, >> report_timing -from IN_A -trans -cap -nosplit -delay_type min , the path is unconstrained, this is because we not model yet any of the min.
+
+![lab5 2](https://user-images.githubusercontent.com/118954022/209866547-053fcb5a-afeb-4253-bd31-90d73d479de8.jpg)
+
+Model the min, >> set_input_delay -min 1 -clock [get_clocks MYCLK] [get_ports IN_B] ; set_input_delay -min 1 -clock [get_clocks MYCLK] [get_ports IN_A] ; report_timing -from IN_A -trans -cap -nosplit -delay_type min ; it is constrained now.
+  
+![lab5 3](https://user-images.githubusercontent.com/118954022/209867351-01f93736-fa85-4b7c-af42-f0db2a2e5163.jpg)
+
+Now pick input transition, >> set_input_transition -max 0.3 [get_ports IN_A] ; set_input_transition -max 0.3 [get_ports IN_B] ; set_input_transition -min 0.1 [get_ports IN_A] : set_input_transition -min 0.1 [get_ports IN_B] ; report_timing -from IN_A -trans -cap -nosplit > a_trans ; then compare both reports.
+  
+<img width="35" alt="image" src="https://user-images.githubusercontent.com/118954022/209868287-bce1aba5-f813-459c-bd94-b123a082a5b2.png">
+
+Moddeling output delays, >> set_output_delay -max 1 -clock [get_clocks MYCLK] [get_ports OUT_Y] ; set_output_delay -max 5 -clock [get_clocks MYCLK] [get_ports OUT_Y] ; set_output_delay -min 1 -clock [get_clocks MYCLK] [get_ports OUT_Y] ; report_timing -to OUT_Y -cap -trans -nosplit > out_Y ; Then modelling the output load path, >> set_load -max 0.4 [get_ports OUT_Y] ; report_timing -to OUT_Y -cap -trans -nosplit > out_load ;Then observe the reports.
 
 ### LAB 6 -  Generated_clocks
+
+Creating generated clock , dc_shell>> create_generated_clock -name MYGEN_CLK -master MYCLK -source [get_ports clk] -div 1 [get_ports out_clk] ; report_clock ;The 'G' in attr refers to 'generated'.
+  
+![lab6 0](https://user-images.githubusercontent.com/118954022/209869001-b2841f39-906f-4f7b-80b5-c5b055f001cc.jpg)
 
 
 
