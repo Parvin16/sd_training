@@ -1432,7 +1432,7 @@ To filter search, like set dir in and clk pin, >> foreach_in_collection my_pin [
   
 ![lab2 1](https://user-images.githubusercontent.com/118954022/209794804-d66e2fb5-1723-4bf9-8e1e-62fc512346f5.jpg)
 
-Now, querying clocks, dc_shell>> sh gvim query_clock_pin.tcl (copy the above filter search into this tcl file); source query_clock_pin.tcl
+Get_clocks wont show cause clocks not created, will create in next lab. Now, querying clocks, dc_shell>> sh gvim query_clock_pin.tcl (copy the above filter search into this tcl file); source query_clock_pin.tcl
 
 ![lab2 2](https://user-images.githubusercontent.com/118954022/209799129-a6370c19-bcba-4220-8425-0e21f23fa6b2.jpg)
 
@@ -1442,17 +1442,49 @@ Now, querying clocks, dc_shell>> sh gvim query_clock_pin.tcl (copy the above fil
 
 ### LAB 3 - Create Clock Waveform
   
-r
+Check dc_shell >> get_ports * ; current_design (name of top module);Then create clock waveform >> create_clock -name MYCLK -per 10 [get_ports clk] ('1' means clock is successfully created); get_clock * ; get_attr [get_clocks MYCLK] period ; get_attr [get_clocks MYCLK] is_generated (false, cause it is a master clock); report_clocks ;
+
+![lab3 0](https://user-images.githubusercontent.com/118954022/209845466-e3f424ea-4544-4b6f-89bb-7fed61f37cba.jpg)
+
+Now, >> source query_clock_pins.tcl ; get_attribute [get_pins REGB_reg/CLK] clocks ;Now it wil show ' {MYCLK}, due to the clock has created.
+
+Next modify the tcl script, get object name for clk, will get the clock name created, >> sh gvim query_clock_pin.tcl & ; (edit the tcl file); 
+
+![lab3 1](https://user-images.githubusercontent.com/118954022/209853458-3b73a401-1d3c-4b10-9a77-19bab389c20b.jpg)
+
+If say we created a wrong clock, to remove it >> remove_clock <clock name> .Lets see on waveform, new clock named MYCLK1 created with different waveform. 
+
+![lab3 2](https://user-images.githubusercontent.com/118954022/209854709-a7b404ac-bb6f-46c6-8ea3-a576101af229.jpg)
 
 ### LAB 4 - Clock Network Modelling (uncertainty, report_timing)
 
+Modelling source for clock in design, >> set_clock_latency -source 1 [get_clocks MYCLK]  (modelling source latency); set_clock_latency 1 [get_clocks MYCLK]  (modelling network latency); Then set uncertainty and min, >> set_clock_uncertainty 0.5 [get_clocks MYCLK] ; set_clock_uncertainty -hold 0.1 [get_clocks MYCLK] ;
+
+![lab4 0](https://user-images.githubusercontent.com/118954022/209857772-14b611b2-6e2a-4d25-93a1-2bc05df8c980.jpg)
+
+If remove all clocks, then >> report_timing ,it will show the (Path is unconstrained). Path will only be constrained when thr is clock. Based on the report, we can observe the timmings. Slack is to be met based on the formula calculation. 
+
+![lab4 1](https://user-images.githubusercontent.com/118954022/209859506-059f5e03-fa12-4cbb-a834-129e94f0164f.jpg)
+
+Model pratical efforts of the clock, >> set_clock_latency -source 2 [get_clocks MYCLK] ; set_clock_latency 1 [get_clocks MYCLK] ; set_clock_uncertainty -setup 0.5 [get_clocks MYCLK] ; set_clock_uncertainty -hold 0.1 [get_clocks MYCLK] ; report_timing ; Then compare the report timing , observe slack and so on.
+ 
+![lab4 2](https://user-images.githubusercontent.com/118954022/209861143-0a37fbea-73e5-493d-8565-83b27e58000c.jpg)
+
 ### LAB 5 - IO Dealys
+
+
 
 ### LAB 6 -  Generated_clocks
 
+
+
 ### LAB 7 - Set_max_delay
 
+
+
 ### LAB 8 - VCLK
+
+
 
 --------------------------------------------------------------------------------------------------
 
