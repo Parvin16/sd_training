@@ -1402,6 +1402,12 @@ set_output_delay -min -1 -clock myclk [gets_port IN_A]
 
 ### LAB 1 - Loading Designs (get cells, ports and nets)
 
+the code (design diagram) we are going to use >> gvim lab8_circuit.v ; observe the code and try to understand it refering to its circuit design. 3 Regs, Output logic - inverter, input logic - Or and XOR gate, comb logic - NAND gate.
+
+![lab1 0](https://user-images.githubusercontent.com/118954022/209704031-6dac2954-7dfa-4590-81d3-fa3d8cabd34a.jpg)
+
+In dc_shell >> echo $target_library; echo $link_library; read_verilog lab8_circuit.v; (check the reg listed, must be successfull); link; compile_ultra; (opimization completed, design compiled perfectly); get_ports; 
+
 ### LAB 2 - Loading Designs (get pins and clocks, querying_clocks)
 
 ### LAB 3 - Create Clock Waveform
