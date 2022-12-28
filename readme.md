@@ -1496,18 +1496,19 @@ Moddeling output delays, >> set_output_delay -max 1 -clock [get_clocks MYCLK] [g
 
 ### LAB 6 -  Generated_clocks
 
-Creating generated clock , dc_shell>> create_generated_clock -name MYGEN_CLK -master MYCLK -source [get_ports clk] -div 1 [get_ports out_clk] ; report_clock ;The 'G' in attr refers to 'generated'.
+Creating generated clock , dc_shell>> create_generated_clock -name MYGEN_CLK -master MYCLK -source [get_ports clk] -div 1 [get_ports out_clk] ; report_clocks * ;The 'G' in attr refers to 'generated'. MYGEN_CLK , if we do >> get_attr [get_clocks MYGEN_CLK] is_generated , it will show "true" because it is a generated clock, not a master clock. 
   
 ![lab6 0](https://user-images.githubusercontent.com/118954022/209869001-b2841f39-906f-4f7b-80b5-c5b055f001cc.jpg)
 
+Next, to make timing path capture data at generated clock (MYGEN_CLK) instead of master clock (MYCLK), >> set_output_delay -max 5 [get_ports OUT_Y] -clock [get_clocks MYGEN_CLK] ; set_output_delay -min 1 [get_ports OUT_Y] -clock [get_clocks MYGEN_CLK] ; report_timing -to OUT_Y ; 
+  
+![lab6 1](https://user-images.githubusercontent.com/118954022/209871886-c41eab82-8957-41c1-9d8a-85dab9f952b2.jpg)
 
+Then, reset design and read another design (lab8_circuit_modified), write a tcl with design constraints and source it, >> sh gvim lab8_circuit_modified.v  (copy from lab8_circuit.v and modify); reset_design ; read_verilog lab8_circuit_modified.v ; sh gvim lab8_cons.tcl & (copy from lab8_cons.tcl and paste, no modify); link ; source lab8_cons.tcl ;  report_clocks (we can see the waveform got automatcally generated).
+  
+![lab6 2](https://user-images.githubusercontent.com/118954022/209874508-beebb02d-99cf-422c-9152-fa7e0b3970b4.jpg)
 
-### LAB 7 - Set_max_delay
-
-
-
-### LAB 8 - VCLK
-
+See all generated clocks >> get_generated_clocks ,and see full report >> report_port -verbose
 
 
 --------------------------------------------------------------------------------------------------
@@ -1520,6 +1521,10 @@ Creating generated clock , dc_shell>> create_generated_clock -name MYGEN_CLK -ma
 ------------------------------------------------------------------------------------------------
 
 ## LABS
+  
+### LAB 7 - Set_max_delay
+
+### LAB 8 - VCLK
 
 ### LAB 1 -
 
