@@ -1406,11 +1406,25 @@ the code (design diagram) we are going to use >> gvim lab8_circuit.v ; observe t
 
 ![lab1 0](https://user-images.githubusercontent.com/118954022/209704031-6dac2954-7dfa-4590-81d3-fa3d8cabd34a.jpg)
 
-In dc_shell >> echo $target_library; echo $link_library; read_verilog lab8_circuit.v; (check the reg listed, must be successfull); link; compile_ultra; (opimization completed, design compiled perfectly); get_ports; (get all ports)
+In dc_shell >> echo $target_library; echo $link_library; read_verilog lab8_circuit.v; (check the reg listed, must be successfull); link; compile_ultra; (opimization completed, design compiled perfectly); get_ports; (get all ports, 6 ports); foreach_in_collection my_port [get_ports *] { set my_port_name [get_object_name $my_port]; set dir [get_attribute [get_ports $my_port_name] direction]; echo $my_port_name $dir; } ; (to know ports with its direction);
   
+![lab1 1](https://user-images.githubusercontent.com/118954022/209763412-f172446b-766a-4527-bb3f-1d8e2efa4e3f.jpg)
 
+To get cells and check wether it is hier or not (false means it is not hier), >> get_cells * ('*' - this refers to alll); get_attribute [get_cells REGA_reg] is_hierarchical ; (check one by one),  get_cells * -filter "is_hierarchical == false" ; get_cells * -filter "is_hierarchical == true" ; (check overall (also can replace '*' by '-hier', so there is no hier cell since all false).
+  
+![lab1 2](https://user-images.githubusercontent.com/118954022/209764727-5d6cecfc-eb2d-4df8-b3b2-23824644a7a1.jpg)
+
+To get reference name of cells in library, >> get_attribute [get_cells REGA_reg] ref_name; (for one), foreach_in_collection my_cell [get_cells * -hier] { set my_cell_name [get_object_name $my_cell]; set rname [get_attribute [get_cells $my_cell_name] ref_name]; echo $my_cell_name $rname; } ; (for all). ' dfrtp ' - df (D flip flop), r (reset) , t (true output, is Q, not Q bar) , p (posedge).
+  
+![lab1 3](https://user-images.githubusercontent.com/118954022/209766538-924128d3-a2cc-4bc2-962d-ef8168960ee8.jpg)
+
+Write in ddc format and launch design, in dc_shell>> write -f ddc -out lab8_circuit.ddc ; in tab >> csh; design_vision; (in design vision tab); read_ddc lab8_circuit.ddc 
+  
+![lab1 4](https://user-images.githubusercontent.com/118954022/209769163-d79a45a9-a7f2-4a7d-9a03-9ed54aae4fde.jpg)
 
 ### LAB 2 - Loading Designs (get pins and clocks, querying_clocks)
+
+  
 
 ### LAB 3 - Create Clock Waveform
 
