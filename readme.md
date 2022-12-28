@@ -1422,11 +1422,27 @@ Write in ddc format and launch design, in dc_shell>> write -f ddc -out lab8_circ
   
 ![lab1 4](https://user-images.githubusercontent.com/118954022/209769163-d79a45a9-a7f2-4a7d-9a03-9ed54aae4fde.jpg)
 
-### LAB 2 - Loading Designs (get pins and clocks, querying_clocks)
+### LAB 2 - (get pins and clocks, querying_clocks)
 
+To get pins, dc_shell>> get_pins * ; foreach_in_collection my_pin [get_pins *] { set pin_name [get_object_name $my_pin]; echo $pin_name; } ; get_attribute [get_pins REGA_reg/RESET_B] direction ; (to know the direction attributes), get_attribute [get_pins REGA_reg/RESET_B] clock ; (to know it is a clock pin or not), foreach_in_collection my_pin [get_pins *] { set pin_name [get_object_name $my_pin]; set dir [get_attr [get_pins $pin_name ] direction]; echo $pin_name $dir; } ;(directions for all the pins)
   
+![lab2 0](https://user-images.githubusercontent.com/118954022/209784165-46e5b4c4-c9e3-4c5e-a87a-dcace5039956.jpg)
+
+To filter search, like set dir in and clk pin, >> foreach_in_collection my_pin [get_pins *] { set pin_name [get_object_name $my_pin]; set dir [get_attr [get_pins $pin_name] direction]; if { [regexp $dir in] } { if { [get_attr [get_pins $pin_name] clock] } {  echo $pin_name; } } } .The command 'regexp' is for shows that certain pairs pattern are matching, matches(1) or not(0). 
+  
+![lab2 1](https://user-images.githubusercontent.com/118954022/209794804-d66e2fb5-1723-4bf9-8e1e-62fc512346f5.jpg)
+
+Now, querying clocks, dc_shell>> sh gvim query_clock_pin.tcl (copy the above filter search into this tcl file); source query_clock_pin.tcl
+
+![lab2 2](https://user-images.githubusercontent.com/118954022/209799129-a6370c19-bcba-4220-8425-0e21f23fa6b2.jpg)
+
+>> get_attribute [get_pins REGB_reg/CLK] clocks ; get_attribute [get_pins REGB_reg/CLK] clock .The difference is, clocks -what are the clocks that reaching the pin, clock - wether the pin is meant to be a clock pin or not. 
+  
+![lab2 3](https://user-images.githubusercontent.com/118954022/209800521-38138cb5-6be9-4c22-8e90-f200e2a4879c.jpg)
 
 ### LAB 3 - Create Clock Waveform
+  
+r
 
 ### LAB 4 - Clock Network Modelling (uncertainty, report_timing)
 
