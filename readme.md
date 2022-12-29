@@ -1541,6 +1541,22 @@ Write ddc and review the schematic, >> write -f ddc -out lab14.ddc ; reset_desig
 ![lab7 5](https://user-images.githubusercontent.com/118954022/209964140-0c03114b-3021-461b-bfa6-31ffedb87e5a.jpg)
 
 
+### LAB 8 - VCLK
+
+Virtual clock dont have definition point (source). The path OUT_Z need to optimize properly. So, >> create_clock -name MYVCLK -per 10 ; reset_design ; read_verilog lab14_circuit.v ; link ; source lab8_cons.tcl ; compile_ultra ; report_timing -to OUT_Z ; then now create virtual clock, >> 
+
+![lab8 0](https://user-images.githubusercontent.com/118954022/209998017-1cdff650-38e5-473c-b45f-0fe9f35c07bb.jpg)
+
+then now create virtual clock, >> create_clock -name MYVCLK -per 10 ; report_clocks ;(There is no source, this is how we know it is virtual clock) 
+
+![lab8 1](https://user-images.githubusercontent.com/118954022/210003103-15ea80a4-2ddf-461d-8ff1-8bcc052d7d0c.jpg)
+
+Set IO delays, >> set_input_delay -max 5 [get_ports IN_C] -clock [get_clocks MYVCLK] ; set_input_delay -max 5 [get_ports IN_D] -clock [get_clocks MYVCLK] ; set_output_delay -max 4.9 [get_ports OUT_Z] -clock [get_clocks MYVCLK] ; report_timing ;(slack is violated with -0.02ns). Then >> compile_ultra ; report_timing -to OUT_Z -sig 4;  report_port -verbose ;
+
+![lab8 2](https://user-images.githubusercontent.com/118954022/210005941-6aeae48f-9646-4913-92fb-991f5b11eb52.jpg)
+![lab8 3](https://user-images.githubusercontent.com/118954022/210006277-57564844-d9af-4b0e-b780-80d74e23f407.jpg)
+
+
 --------------------------------------------------------------------------------------------------
 
 # #Day_9
@@ -1551,8 +1567,6 @@ Write ddc and review the schematic, >> write -f ddc -out lab14.ddc ; reset_desig
 ------------------------------------------------------------------------------------------------
 
 ## LABS
-
-### LAB 8 - VCLK
 
 ### LAB 1 -
 
