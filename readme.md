@@ -1561,40 +1561,83 @@ Set IO delays, >> set_input_delay -max 5 [get_ports IN_C] -clock [get_clocks MYV
 
 # #Day_9
 
-## Theory
+## Optimizations Combinational Operations
+
+
+## Sequential Optimizations
+
+
+## Special Optimizations
+
+
+## How Paths are Timed MCP ?
 
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
-### LAB 1 -
+### LAB 1 - Combinational Optimizations
 
-### LAB 2 -
+### LAB 2 - Resource Sharing Optimizations
 
-### LAB 3 -
+### LAB 3 - Sequential Optimizations
 
-### LAB 4 - 
+### LAB 4 - Boundary Optimizations
 
-### LAB 5 - 
+### LAB 5 - Register Retiming
 
-### LAB 6 - 
+### LAB 6 - Isolating Output Ports
 
-### LAB 7 -
+### LAB 7 - MultiCycle Path 
 
 --------------------------------------------------------------------------------------------------
 
 # #Day_10
 
-## Theory
+## Report Timing
 
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
-### LAB 1 -
+### LAB 1 - Report Timing
 
-### LAB 2 -
+### LAB 2 - Check_timing , Check_design , Set_max_capacitance , HFN
 
 ------------------------------------------------------------------------------------------------
+
+
+# #Day_11
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+### LAB 2 - 
+
+------------------------------------------------------------------------------------------------
+
+
+# #Day_12
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+### LAB 2 - 
+
+------------------------------------------------------------------------------------------------
+
+
