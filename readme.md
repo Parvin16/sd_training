@@ -1510,6 +1510,36 @@ Then, reset design and read another design (lab8_circuit_modified), write a tcl 
 
 See all generated clocks >> get_generated_clocks ,and see full report >> report_port -verbose
 
+### LAB 7 - Set_max_delay
+
+>> reset_design ; The file we going to use is, >> sh gvim lab14_circuit.v ; read_verilog lab14_circuit.v ; current_design (the lab name is still lab8); source lab8_cons.tcl ; report_clocks ; link ; compile_ultra ; report_timing (check all clk is present); everything is proper now. 
+
+![lab7 0](https://user-images.githubusercontent.com/118954022/209948440-429ebfa3-9d5e-40bd-be20-264570bcaeb6.jpg)
+
+So now, >> get_ports * ; report_timing -to OUT_Z ; (path is unconstrained) , 
+
+![lab7 1](https://user-images.githubusercontent.com/118954022/209948794-d05e65ec-c7ff-4403-97d5-fe182c611985.jpg)
+
+Before constrained it , let look at list all commands in the design , >> all_inputs ; all_outputs ; all_registers ; all_clocks ; all_registers -clock MYCLK ; all_registers -clock MYCGEN_DIV_CLK ; 
+
+![lab7 2](https://user-images.githubusercontent.com/118954022/209949937-4b352f33-2be8-4eae-99c0-97739c3e4fa4.jpg)
+
+Then lets constrained it, >> report_timing -from IN_A -to OUT_Z ; report_timing -from IN_B -to OUT_Z ; report_timing -from IN_C -to OUT_Y ; There wont be any path. To see fanout of registers (endpoint) and can review how timing path start and ends, >> all_fanout -flat -endpoints_only -from IN_A ; all_fanout -from IN_A ; foreach_in_collection my_points [all_fanout -from IN_A] { set my_pnt_name [get_object_name $my_points]; set my_cell_name [get_attribute [get_cells -of_objects [get_pins $my_pnt_name]] ref_name]; echo $my_pnt_name $my_cell_name; } ;(to get all 9 listed). All fanout giving the collection of pins, then getting the object and cell name. 
+
+![lab7 3](https://user-images.githubusercontent.com/118954022/209954647-49f1b4d2-7c51-4830-a4f0-80f6ae978043.jpg)
+
+There is only 2 endpoints in the design, >> all_fanout -flat -endpoints_only -from IN_A ( to check in pins of an endpoint, >> all_fanin -to REGA_reg/D )
+
+<img width="255" alt="image" src="https://user-images.githubusercontent.com/118954022/209955141-54901cef-7ca5-4bc5-8373-d9a0e37e7e9e.png">
+
+Lets constrained OUT_Z , >> set_max_delay 0.1 -from [all_inputs] -to [get_port OUT_Z] ; report_timing -to OUT_Z -sig 4 ;(sig - refers to significant digit). We can see the slack is violated and the path is now constrained.  so, >> compile_ultra ;  report_timing -to OUT_Z -sig 4 ;the slack is now met. 
+
+![lab7 4](https://user-images.githubusercontent.com/118954022/209958015-9630fb41-6513-4139-a0d0-255dfcea12e4.jpg)
+
+Write ddc and review the schematic, >> write -f ddc -out lab14.ddc ; reset_design ; read_ddc lab14.ddc ; gui_start ;(the path is added to the schematic). 
+
+![lab7 5](https://user-images.githubusercontent.com/118954022/209964140-0c03114b-3021-461b-bfa6-31ffedb87e5a.jpg)
+
 
 --------------------------------------------------------------------------------------------------
 
@@ -1521,8 +1551,6 @@ See all generated clocks >> get_generated_clocks ,and see full report >> report_
 ------------------------------------------------------------------------------------------------
 
 ## LABS
-  
-### LAB 7 - Set_max_delay
 
 ### LAB 8 - VCLK
 
