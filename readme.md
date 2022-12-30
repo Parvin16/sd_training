@@ -23,19 +23,24 @@
    * [Lab](https://github.com/Parvin16/sd_training#labs-7)
 +  [Day_10](https://github.com/Parvin16/sd_training#day_10) : **QOR**
    * [Lab](https://github.com/Parvin16/sd_training#labs-8)
++  [Day_10](https://github.com/Parvin16/sd_training#day_11) : ** **
+   * [Lab](https://github.com/Parvin16/sd_training#labs-9)
++  [Day_10](https://github.com/Parvin16/sd_training#day_12) : ** **
+   * [Lab](https://github.com/Parvin16/sd_training#labs-10)
+ 
 
 # #Day_0
 ### BASICS
 
 ![chip](https://user-images.githubusercontent.com/118954022/205806514-3bc166e8-7d8f-4fa7-bfb1-9f8445d3a3b6.jpg)
 
-* **IC Package** - the material that contains a semiconductor device. The package is a case that surrounds the circuit material to protect it from corrosion or physical damage and allow mounting of the electrical contacts connecting it to the printed circuit board (PCB).
+* **IC Package** - the ==material that contains a semiconductor== device. The package is a case that surrounds the circuit material to protect it from corrosion or physical damage and allow mounting of the electrical contacts connecting it to the printed circuit board (PCB).
 
 ![chip parts](https://user-images.githubusercontent.com/118954022/205562390-02869142-9fd8-461e-99e4-732a76a7dcd0.jpg)
 
 * **Pad** - a square of top-level metal of approximately 100µm on a side that is either soldered to bond wire connecting to a package or coated with lead solder ball. Pad refers to metal square only or to the complete I/O cell containing the metal.
 * **Core** - a core comprises a logical execution unit and functional units. It able to independently execute programs or threads. Consists of main logics.
-* **Die** - [is the formal term for the square of silicon containing an integrated circuit that has been cut out of the wafer.](#)
+* **Die** - is the formal term for the square of silicon containing an integrated circuit that has been cut out of the wafer.
 
 **Macro and Foundry IP's**
 
