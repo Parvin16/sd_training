@@ -1602,7 +1602,52 @@ Set IO delays, >> set_input_delay -max 5 [get_ports IN_C] -clock [get_clocks MYV
 
 ## Report Timing
 
+### Generating Timing Reports
 
+*	The delays associated with timing parameters are modelled on semiconductor device physics principles. 
+*	Transistor sizing, their type, and how they are connected to each other contributes to different cells, and in turn different cell delays.
+*	Similarly, wires can be modelled in terms of Resistance and Capacitance, which in turn adds to the path delay. The path with the worst delay is the critical path. 
+* [report_timing](#)
+  * -to {list of signals} -> Inputs/flipflop outputs to these signals 
+  * -from {list of signals} -> Flip-flop outputs/inputs to these signals 
+  * -through {list of pins} -> Paths that go through these pins 
+  * -max_paths N -> Number of paths to report
+* The difference between the clock signal’s arrival time (called data required time in the report) and the data signal’s arrival time (data arrival time) is called the slack. &#x1F539; Slack = data required time - data arrival time
+* **Setup Check** - For your circuit to work at the specified cycle time, the clock signal’s rising edge should always arrive later (or at the same time) than your data signal, which means that your slack should be non-negative.
+* **Hold Check** - You want your data to change (data arrival time) a hold-time after the clock signal’s rising edge (data required time). Then, for hold checks we want the following slack to be non-negative. &#x1F539; Slack = data arrival time - data required time 
+* DC makes a note of all paths (fall to rise, rise to fall, etc.) and uses that for timing path calculations, apart from the provided constraints. 
+*	[-max_paths N](#) : Specifies the number of paths to be reported per path group.
+*	[-n_worst paths_per_endpoint](#) : Specifies the number of paths to be reported per endpoint per path group.
+
+###	check_design, check_timing and report_constraints
+
+* [check_design](#) checks for design consistency. E.g.: Will report a feedthrough, as we take out_clk in some of our examples directly from the defined clock.
+* [check_timing](#) checks for the specification of constraints, and also let us know if the provided constraints are enough. It might not specify proper end-points to be constrained, that we need to justify.
+* [report_constraints](#) provide us with a glimpse as to how our design is feasible in terms of electrical parameters such as power and capacitance.
+
+###	HFN (High Fanout Nets)
+
+* In digital electronics, the **Fan-out** is the number of load gate inputs driven by the output of another single logic gate. **Fan-in** is the number of inputs to the gate. 
+* Gates with large fan-out are slower. Gates with large fan-in are bigger and slower. 
+* Generally, clock nets, reset, scan, enable nets are High Fanout Nets.
+* A high fan-out corresponds to a very high capacitance load, which in turn translates to timing violation, because of a high transition time which adds up in the delay calculation.
+* [set_max_capacitance](#) helps in breaking or buffering the High fanout net. 
+
+![note1 2](https://user-images.githubusercontent.com/118954022/210059509-310bb124-4a9f-496d-84ca-a07ecdef9f4e.jpg)
+
+###	Summary
+
+* **Constraints** - clock, genclk (if any), vclk (if any), practicalities of the clock (Uncertainty and Latency), input, output delay, transition, load, set_max_capacitance, transition, etc.
+* **Synthesis Optimization Parameters** - Boundary Optimization, Retiming, Constant propagation, unused flop removal, isolating ports, etc.
+* **Flow** - read_verilog, provide dbs, source constraints, check_design, check_timing, compile or compile_ultra, report_constraints, report_area and report_timing, write.
+* **QOR** - Quality of Results, if you are meeting all your design constraints with good margins, the QOR is good. 
+
+###	Synopsys DC UG Flow
+
+![note1](https://user-images.githubusercontent.com/118954022/210058261-650482ee-1523-4126-8ecf-96e5f0ae8b37.jpg)
+
+**QTM** - Quick Time Models
+**ETM** - Extracted Time Models 
 
 ------------------------------------------------------------------------------------------------
 
