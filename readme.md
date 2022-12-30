@@ -1677,7 +1677,7 @@ Another is **Logic Sharing**. Optimizing something that is common between two ci
 
 Eg: assign y = a & b & c & d & e .Compare the delay from an input to output y..If we see, the circuit at left is Balanced because all input has same delay (2 gate delays) . The circuit at right is  Preferential , as we can see the input e is prefered the most compared to other input with the least delay.
 
-![note8](https://user-images.githubusercontent.com/118954022/210108314-1e90fb00-6b0e-4f9d-96e6-e5995c154321.jpg)
+![note8](https://user-images.githubusercontent.com/118954022/210108913-fc549257-b274-4a52-b59e-075ea8e4bff1.jpg)
 
 ## Sequential Optimizations
 
