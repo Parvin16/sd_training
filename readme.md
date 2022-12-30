@@ -35,7 +35,7 @@
 
 * **Pad** - a square of top-level metal of approximately 100µm on a side that is either soldered to bond wire connecting to a package or coated with lead solder ball. Pad refers to metal square only or to the complete I/O cell containing the metal.
 * **Core** - a core comprises a logical execution unit and functional units. It able to independently execute programs or threads. Consists of main logics.
-* **Die** - is the formal term for the square of silicon containing an integrated circuit that has been cut out of the wafer [Blue](#)
+* **Die** - [is the formal term for the square of silicon containing an integrated circuit that has been cut out of the wafer.](#)
 
 **Macro and Foundry IP's**
 
