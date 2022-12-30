@@ -1637,6 +1637,48 @@ The following limitations apply to the use of constraints and attributes in your
 
 ## Optimizations Combinational Operations
 
+### Goals:
+
+* Cost function based optimizations
+  * Optimization till the cost is met.
+  * Over optimization of one goal will harm other goals.
+  * Goal of synthesis, 3 metrics of netlist which will be contradictory : Meet Timing , Meet Area and Meet Power .
+* Faster cells only meet timing ; slower cells meet area and power. 
+* Cost function is basically about IO delay, clock period, max_delay, area and power goals. 
+
+### Combinational Logic Optimization
+
+* Squeezing the logic to get the most optimized design. 
+  * Area power savings.
+* Constant propogation.
+  * Direct optimization.
+* Boolean Logic optimization. 
+  * K-map
+  * Quine McKluskey 
+
+Example of Boolean equation :
+![note4](https://user-images.githubusercontent.com/118954022/210106717-bb015369-e0b5-4f69-b12f-f6e1c407e1f6.jpg)
+
+### Boolean Logic Optimization
+
+Example of equation (nested with 3 Mux) in the pic below. If 'a' is false, then not of c '!c'. If 'a' is treu, it will look at 'b'. 'b' is true, it will pick 'c'. If 'b' is false, it will look at 'c' wether it is true or false, if 'c' is true will pick 'a' else '0'.
+
+![note6](https://user-images.githubusercontent.com/118954022/210107358-34c86f10-31ec-49ec-bac7-eed789f698c7.jpg)
+
+### Resource Sharing
+
+Multiplier are huge in area and power compare to mux. Eg of simplication of it : ( the right circuit is optimized) 
+
+![note5](https://user-images.githubusercontent.com/118954022/210107716-80dea2c1-5387-43b4-a642-1fba06a50c50.jpg)
+
+Another is **Logic Sharing**. Optimizing something that is common between two circuit or path. Eg: ( right circuit is less consume in area and power, so optimized) 
+
+### Balanced vs Preferential Implementation
+
+Eg: assign y = a & b & c & d & e .Compare the delay from an input to output y..If we see, the circuit at left is Balanced because all input has same delay (2 gate delays) . The circuit at right is  Preferential , as we can see the input e is prefered the most compared to other input with the least delay.
+
+![note8](https://user-images.githubusercontent.com/118954022/210108314-1e90fb00-6b0e-4f9d-96e6-e5995c154321.jpg)
+
 ## Sequential Optimizations
 
 ## Special Optimizations
