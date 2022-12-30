@@ -23,9 +23,9 @@
    * [Lab](https://github.com/Parvin16/sd_training#labs-7)
 +  [Day_10](https://github.com/Parvin16/sd_training#day_10) : **QOR**
    * [Lab](https://github.com/Parvin16/sd_training#labs-8)
-+  [Day_10](https://github.com/Parvin16/sd_training#day_11) : ** **
++  [Day_11](https://github.com/Parvin16/sd_training#day_11) : ** **
    * [Lab](https://github.com/Parvin16/sd_training#labs-9)
-+  [Day_10](https://github.com/Parvin16/sd_training#day_12) : ** **
++  [Day_12](https://github.com/Parvin16/sd_training#day_12) : ** **
    * [Lab](https://github.com/Parvin16/sd_training#labs-10)
  
 
