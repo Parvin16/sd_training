@@ -1692,9 +1692,23 @@ Eg: assign y = a & b & c & d & e .Compare the delay from an input to output y..I
 
 ### LAB 1 - Combinational Optimizations
 
+We look at the various comb opt logics,set of opt files , dc_shell >> sh gvim opt_check*.v -o ; (opens 4 opt files). To read the optimised design, >> read_verilog opt_check.v ; link ; compile ; report_timing ; get_cells * ; write -f ddc -out opt_check.ddc ; (then load the design in gui), verilog_files >> csh ; design_vision ; /or/ dc_shell >>  gui_start ; Then double click and view schematic at the gui. >> reset_design (before to other opt.v file). So from what we skeched, the expected optimized circuit, we can see them in gui. 
+
+![lab1 0](https://user-images.githubusercontent.com/118954022/210179769-4268a53e-282f-43b9-8b4a-e7713dacc809.jpg)
+![lab1 1](https://user-images.githubusercontent.com/118954022/210182345-4759cb5b-660c-49b5-81d0-c37d676ad2ff.jpg)
+![lab1 2](https://user-images.githubusercontent.com/118954022/210182353-f100ec3a-f457-4f20-a8e8-4c1a9d3d7f67.jpg)
+
+Then check report timing, >> report_timing -to y ; set_max_delay .06 -from [all_inputs] -to [get_ports y] ; report_timing -sig 4 ; compile_ultra ; report_timing ; get_lib_cells */sky130_fd_sc_hd__xnor2* ; size_cell U3 sky130_fd_sc_hd__tt_025C_1v80/sky130_fd_sc_hd__xnor2_4 (to up/down the size cell); compile_ultra ; report_timing ; (done set 6ps max delay).
+
+![lab1 3](https://user-images.githubusercontent.com/118954022/210182693-c1147abc-8b0f-4aae-a2a6-6c5219cbfe8a.jpg)
+
 ### LAB 2 - Resource Sharing Optimizations
 
+
+
 ### LAB 3 - Sequential Optimizations
+
+
 
 ### LAB 4 - Boundary Optimizations
 
