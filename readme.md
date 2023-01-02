@@ -1713,8 +1713,18 @@ We look in using design vision for better vision, dc_shell >> gui_start ; (in th
 
 ![lab2 1](https://user-images.githubusercontent.com/118954022/210200895-520f99a6-f292-4f39-8435-f27ef858581b.jpg)
 
-The 'select' is at the begining of the logic at input itself. Select should be at the output based on the initial circuit diagram. In optimized circuit, the select is at input, so it is optimized. eg: at U17 , 
+The 'select' is at the begining of the logic at input itself. Select should be at the output based on the initial circuit diagram. In optimized circuit, the select is at input, so it is optimized. eg: at U17 , Output = a.sel + c.!sel .The multiplier logic is present at the output. Then, >> report_timing (path is unconstraint), set_max_delay  -from [all_inputs] -to [all_outputs] 2.5 , report_timing (violated 0.31ps); compile_ultra ; report_timing ;  report_area ; (compare with run 1). So all delays from each input to output is sort of similar. Sel delay is only on multiplexer. a to y is through multiplier and mux. 
 
+![lab2 2](https://user-images.githubusercontent.com/118954022/210259715-868fb686-cece-4616-82e4-3dc59ac95ec3.jpg)
+
+Make select more restricted path >>  set_max_delay 0.1  -from sel -to [all_outputs] ; report_timing ; compile_ultra ; report_area .This is RUN 2. Select is very close to output now.
+
+![lab2 3](https://user-images.githubusercontent.com/118954022/210260459-feaee9a3-2c52-4290-9220-300b4c73de5b.jpg)
+![lab2 4](https://user-images.githubusercontent.com/118954022/210261177-62da5294-062c-4459-af9f-7dac42147bc5.jpg)
+
+Then constrain the area, >> set_max_area 800 ; compile_ultra ; report_timing -sig 4 ; report_area ,(this is RUN 3). The area cannot go below 800 because maybe the timing constraints are too tight.
+
+![lab2 5](https://user-images.githubusercontent.com/118954022/210261957-4231c02b-bf8b-4b04-b5f6-fedb8a72eb5d.jpg)
 
 ### LAB 3 - Sequential Optimizations
 
