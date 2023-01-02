@@ -1704,6 +1704,16 @@ Then check report timing, >> report_timing -to y ; set_max_delay .06 -from [all_
 
 ### LAB 2 - Resource Sharing Optimizations
 
+We look in using design vision for better vision, dc_shell >> gui_start ; (in the gui), sh gvim resource_sharing_mult_check.v & ; read_verilog resource_sharing_mult_check.v ; link ; compile_ultra ; (below is the circuit for this code which is same as the notes)
+
+![note5](https://user-images.githubusercontent.com/118954022/210199983-856326ed-8e2e-4742-8ae3-947e4dcce29d.jpg)
+![lab2 0](https://user-images.githubusercontent.com/118954022/210200256-43ca5bdb-222d-420c-891e-0f9d80d980bc.jpg)
+
+>> report_area (to know details of the area). 25ports - refers to the bits used ( 16 input bits, 1 sel input bit and 8 output bits). This is RUN 1.
+
+![lab2 1](https://user-images.githubusercontent.com/118954022/210200895-520f99a6-f292-4f39-8435-f27ef858581b.jpg)
+
+The 'select' is at the begining of the logic at input itself. Select should be at the output based on the initial circuit diagram. In optimized circuit, the select is at input, so it is optimized. eg: at U17 , 
 
 
 ### LAB 3 - Sequential Optimizations
