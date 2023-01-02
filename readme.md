@@ -1728,11 +1728,68 @@ Then constrain the area, >> set_max_area 800 ; compile_ultra ; report_timing -si
 
 ### LAB 3 - Sequential Optimizations
 
+The files, in verilog all the 5 dff_const files. 
 
+![lab3 0](https://user-images.githubusercontent.com/118954022/210266461-2c0c5573-3c79-4959-bea1-5390cc7f2db8.jpg)
+![lab3 1](https://user-images.githubusercontent.com/118954022/210266533-9e15c9f3-4330-4cea-aa0d-0edcc2af42d9.jpg)
+
+In dc_shell >>  reset_design ; read_verilog dff_const1.v ; link ; compile ; get_cells ; foreach_in_collection my_cell [get_cells *] { set cell_name [get_object_name $my_cell]; echo $cell_name; } ;  foreach_in_collection my_cell [get_cells *] { set cell_name [get_object_name $my_cell]; set rn [get_attribute [get_cells $cell_name] ref_name]; echo $cell_name $rn; } ; .If we see q_reg is a flop, U5 is inv and U4 is conb.
+
+![lab3 2](https://user-images.githubusercontent.com/118954022/210266939-7b1a27dc-7958-4d64-a0c8-e8705706c8a2.jpg)
+
+Then open design vision, >> read_verilog dff_const1.v ; link ; compile ; .The conb cell is a **tie cell**. Inverter to make active high reset in flop. Input are on gate pin of cmos. It is very sensitive due to "gate oxide", so we should never allow gate terminal of cmos to see any surges , thats why we need to use tie cell. Tie cell is a standard cell that designed specially to provide the high or low signal to the input (gate terminal) of any logic gate. The high/low signal can not be applied directly to the gate of any transistors because of some limitations of transistors, especially in the lower node. So tie cell used to drive 1'b1 or the 1'b0.
+
+![lab3 3](https://user-images.githubusercontent.com/118954022/210267292-81b5e0f5-3925-498d-8ec8-adec93158f2e.jpg)
+
+For dff_const2.v , >> reset_design ; read_verilog dff_const2.v ; link ; compile ;
+
+![lab3 4](https://user-images.githubusercontent.com/118954022/210268713-36dcd684-0106-4adb-9bde-88b221580d98.jpg)
+
+It was tie cell, so set seq const = false , >> reset_design ; read_verilog dff_const2.v ; set compile_seqmap_propagate_constants false (we dont want to propogate the constants) ; link ; compile_ultra ; gui_start ; (we control the seq, we prevent the flop from optimize).
+
+![lab3 6](https://user-images.githubusercontent.com/118954022/210270091-c78d0c4a-31ee-47e5-b9fc-bb939228ac84.jpg)
+
+For dff_const3.v , >> reset_design ; read_verilog dff_const3.v ; link ; compile ; .There are 2 flops. D is always 1, q1 and q are both not seq constants, so not getting optimized.
+
+![lab3 5](https://user-images.githubusercontent.com/118954022/210269407-08bec0a7-a4b0-4610-818d-6ed549a4f979.jpg)
+
+For dff_const4.v , >> reset_design ; read_verilog dff_const4.v ; link ; set compile_seqmap_propagate_constants true ; compile_ultra ; Both flop are set d flip flop and get optimized. This is seq const. 
+
+![lab3 7](https://user-images.githubusercontent.com/118954022/210270920-51efd145-cc8a-4657-93d0-53996f1a317c.jpg)
+
+For dff_const5.v , >> reset_design ; read_verilog dff_const5.v ; link ; compile ; .Not seq const.
+
+![lab3 8](https://user-images.githubusercontent.com/118954022/210271141-f04cfc75-317e-4f64-aad5-1ec2065f6068.jpg)
 
 ### LAB 4 - Boundary Optimizations
 
+dc_shell >> sh gvim check_boundary.v & ; read_verilog check_boundary.v (2regs with 3bit flop and 4bit flop); link ; compile_ultra ; write -f ddc -out boundary.ddc ; gui_start .There is no internal module (IM) here and no hier because of boundary optimisation.
+
+![lab4 0](https://user-images.githubusercontent.com/118954022/210272137-c28b591c-1276-48c2-bee6-8bf183fa0204.jpg)
+
+>> reset_design ; read_verilog check_boundary.v ; link ; get_cells ; get_pins u_im/* ; set_boundary_optimization u_im false ; compile_ultra ; gui_start ; .Boundary of u_im is maintained. The design hierarchy are also maintained, so if there any ECO, can quickly search for the bug, let tool not optimized fully for flexibility.
+
+![lab4 1](https://user-images.githubusercontent.com/118954022/210272952-ebe5f942-d912-42be-83d3-60132d5b5cc7.jpg)
+
 ### LAB 5 - Register Retiming
+
+Open the only file, >> reset_design ; sh gvim check_reg_retime.v & ; .It is a 4bit multiplier, 3 flops.
+
+![lab5 0](https://user-images.githubusercontent.com/118954022/210273570-c7f96fbd-8ebb-410f-b223-c48a35d61328.jpg)
+
+Read the design, dc_shell >> read_verilog check_reg_retime.v ; link ; compile ; report_timing ; gui_start ; 
+
+![lab5 1](https://user-images.githubusercontent.com/118954022/210274154-45fb01c6-acc4-45bb-9964-630c36aadb33.jpg)
+![lab5 2](https://user-images.githubusercontent.com/118954022/210274295-d0f096f1-6ffd-4f92-854f-c00dcd8ce4d1.jpg)
+
+Then constraints, >>  sh gvim reg_retime_cons.tcl ; source reg_retime_cons.tcl ; report_clock ; report_timing ; compile_ultra -retime ; .We can see logics between regs and multipliers. It sliced the multiplier and split the logic into partition and nicely optimized it.
+
+![lab5 3](https://user-images.githubusercontent.com/118954022/210274970-e399e1b3-795f-4f6d-a46a-10af88775335.jpg)
+![lab5 4](https://user-images.githubusercontent.com/118954022/210275135-30ed3704-329d-4898-95cb-44d5bb5707ad.jpg)
+
+>> report_timing -from [all_inputs] -trans -cap -nosplit -sig 4 ; .Everything is nicely modeled and meeting the time.
+
+![lab5 5](https://user-images.githubusercontent.com/118954022/210275325-05164fa0-b96e-4753-9c07-452f1c6b3776.jpg)
 
 ### LAB 6 - Isolating Output Ports
 
