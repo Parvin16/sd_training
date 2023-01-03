@@ -1795,6 +1795,8 @@ Then constraints, >>  sh gvim reg_retime_cons.tcl ; source reg_retime_cons.tcl ;
 
 ### LAB 6 - Isolating Output Ports
 
+File used , >> sh gvim check_boundary.v & ; 
+
 ### LAB 7 - MultiCycle Path 
 
 --------------------------------------------------------------------------------------------------
