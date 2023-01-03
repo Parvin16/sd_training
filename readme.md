@@ -1865,6 +1865,29 @@ Then constraints, >>  sh gvim reg_retime_cons.tcl ; source reg_retime_cons.tcl ;
 
 ## Lecture
 
+### What is SoC and Why SoC?
+  
+* **SoC** is a single-die chip that has some different IP cores on it. These IPs could vary from microprocessors (completely digital) to 5G broadband modems (completely analog).
+* The design of a system on chip usually includes a central processing unit, memory, ports for input and outputs, secondary storage devices, and peripheral interfaces such as Timers, etc. 
+* Depending upon the requirement it can also consist of a digital or analog signal processing system or a floating-point unit.
+* SoC with equivalent functionality will have increased **performance** and reduced **power** consumption as well as a smaller semiconductor **die area**.
+
+### Typical Structure of Snapdragon SoC
+ 
+### Types of SoC
+  
+### SoC Structure
+  
+### SoC Design Flow 
+  
+### How are Microchips made?
+  
+### Introduction to BabySoC
+  
+###	BabySoC Components
+  
+### Introduction to Modelling
+
 
 ------------------------------------------------------------------------------------------------
 
@@ -1873,7 +1896,7 @@ Then constraints, >>  sh gvim reg_retime_cons.tcl ; source reg_retime_cons.tcl ;
 ### LAB 1 - 
 
 ### LAB 2 - 
-
+  
 ------------------------------------------------------------------------------------------------
 
 
