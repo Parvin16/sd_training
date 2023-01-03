@@ -23,11 +23,13 @@
    * [Lab](https://github.com/Parvin16/sd_training#labs-7)
 +  [Day_10](https://github.com/Parvin16/sd_training#day_10) : **QOR**
    * [Lab](https://github.com/Parvin16/sd_training#labs-8)
-+  [Day_11](https://github.com/Parvin16/sd_training#day_11) : ** **
++  [Day_11](https://github.com/Parvin16/sd_training#day_11) : **Introduction to the BabySoC**
++  [Day_12](https://github.com/Parvin16/sd_training#day_12) : **BabySoC Modelling**
    * [Lab](https://github.com/Parvin16/sd_training#labs-9)
-+  [Day_12](https://github.com/Parvin16/sd_training#day_12) : ** **
-   * [Lab](https://github.com/Parvin16/sd_training#labs-10)
- 
++  [Day_13](https://github.com/Parvin16/sd_training#day_13) : **Post-synthesis Simulation**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-10) 
++  [Day_14](https://github.com/Parvin16/sd_training#day_14) : **Synopsys DC and Timing Analysis**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-11) 
 
 # #Day_0
 ### BASICS
