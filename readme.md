@@ -1794,8 +1794,24 @@ Then constraints, >>  sh gvim reg_retime_cons.tcl ; source reg_retime_cons.tcl ;
 ![lab5 5](https://user-images.githubusercontent.com/118954022/210275325-05164fa0-b96e-4753-9c07-452f1c6b3776.jpg)
 
 ### LAB 6 - Isolating Output Ports
+  
+Load varries , cell delay will vary. So if load increases, cell delay also increases. This may cause other logic path to fail. We dont want internal paths to fail because of external load. So we need to isolate the output ports. Add buffer before output port, so the load is driven by buffer. Internal path are decoupled from output paths.
 
-File used , >> sh gvim check_boundary.v & ; 
+File used , >> sh gvim check_boundary.v & (from previous lab), read_verilog check_boundary.v ; link ; compile_ultra ; gui_start ; .We can see the flop is driving the internal load and output load as well, this is not good. 
+  
+![lab6 0](https://user-images.githubusercontent.com/118954022/210399135-cb154726-5286-454c-a07f-2e07efd038d9.jpg)
+
+Next we isolate the ports, >> set_isolate_ports -type buffer [all_outputs] ; compile_ultra ; .The internal load are driven by the flop and outputs are driven by the buffer. It is not sensitive by the load anymore. Flop delay remain constant, only buffers see variation.
+  
+![lab6 1](https://user-images.githubusercontent.com/118954022/210400139-260dc7a6-5439-4c59-ae99-a2867c73d016.jpg)
+
+Before isolating ports, dc_shell>> reset_design ; read_verilog check_boundary.v ;  link ; compile_ultra ; create_clock -per 5 -name myclk [get_ports clk] ; set_input_delay -max 2 [all_inputs] -clock myclk ; set_output_delay -max 2 [all_outputs] -clock myclk ; set_load -max 0.3 [all_outputs] ; report_timing -nosplit -inp -cap -trans -sig 4 ,(reg to io path) ; report_timing -to val_out_reg[0]/D -inp -cap -trans -nosplit -sig 4 ,(reg to reg path).There huge load on the flop.
+  
+![lab6 2](https://user-images.githubusercontent.com/118954022/210402894-a7faf9db-d4d5-4ff7-af26-1cf22b766b59.jpg)
+
+Report timing after isolate the ports, >> set_isolate_ports -type buffer [all_outputs] ; compile_ultra ; report_timing -nosplit -inp -cap -trans -sig 4 ; report_timing -from val_out_reg[0]/CLK -to val_out_reg[0]/D  -inp -cap -trans -nosplit -sig 4 ;  .The flop is nnow driving small load and we can see the presence of buffers.
+  
+![lab6 3](https://user-images.githubusercontent.com/118954022/210404392-70d2e2a1-6da5-4345-827e-14d430549f3f.jpg)
 
 ### LAB 7 - MultiCycle Path 
 
