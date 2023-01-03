@@ -1815,6 +1815,35 @@ Report timing after isolate the ports, >> set_isolate_ports -type buffer [all_ou
 
 ### LAB 7 - MultiCycle Path 
 
+File used, >> sh gvim mcp_check.v .The path a*b will get loaded into register only when there is a valid and valid is not going to be generated every cycle, then we can multicycle a*b path.
+
+![lab7 0](https://user-images.githubusercontent.com/118954022/210406200-2f884176-a1bc-4322-919a-3ad96cffbaa8.jpg)
+
+Read constraints, >> read_verilog mcp_check.v ,(1bit reg asynch, 16bit async prod_reg); link ; compile_ultra ; sh gvim mcp_check_cons.tcl & ;
+
+![lab7 1](https://user-images.githubusercontent.com/118954022/210411499-c5d9b3ca-5b7c-4d74-8cc4-17dcaa21a7ac.jpg)
+
+Source the constraints and look report, >> source mcp_check_cons.tcl ; report_timing ; compile_ultra ; report_timing ; .We see a huge violation at slack. The input to prod_reg path can be 2 cycles delay because only when en_int coming.
+
+![lab7 2](https://user-images.githubusercontent.com/118954022/210409493-9d7b2d5a-768a-4946-8fbd-c4901e357459.jpg)
+
+All inputs in, >> set_multicycle_path -setup 2 -to prod_reg[*]/D -from [all_inputs]  ; report_timing -to prod_reg[*]/D -from valid_reg/CLK ; report_clock * ; .Valid to prog_reg is a single cycle path. 
+
+![lab7 3](https://user-images.githubusercontent.com/118954022/210411867-a7e83a02-5b52-45ed-bfd2-46d055fd980c.jpg)
+
+Hold check, >> report_timing -delay min .A huge failure, because it is doing single cycle hold check, suppose zero cycle hold check.
+
+![lab7 4](https://user-images.githubusercontent.com/118954022/210412549-e3a249b3-f151-4060-b3b0-4a5a6d006a20.jpg)
+
+So, we have to perform hold MCP, >> set_multicycle_path -hold 1 -from [all_inputs] -to prod_reg[*]/D ; report_timing -delay min -to prod_reg[*]/D -from [all_inputs] ; .Time launch at zero and captured at zero, so it good now. 
+
+![lab7 5](https://user-images.githubusercontent.com/118954022/210413162-3abf003a-a201-4769-b404-0a53183adb0f.jpg)
+
+Port isolated report, >> set_isolate_ports -type buffer [all_outputs] ; compile_ultra ; report_timing -nosplit -inp -cap -trans -sig 4 ; .Did to avoid timing violation (previous lab). 
+
+![lab7 6](https://user-images.githubusercontent.com/118954022/210415207-c069edd6-37d2-4859-b7b1-87898c0ce92b.jpg)
+
+
 --------------------------------------------------------------------------------------------------
 
 # #Day_10
@@ -1873,6 +1902,11 @@ Report timing after isolate the ports, >> set_isolate_ports -type buffer [all_ou
 ## LABS
 
 ### LAB 1 - Report Timing
+
+File used, >> sh gvim lab8_circuit_modified.v & ; sh gvim lab8_cons_modified.tcl & ,(constraints) ; read_verilog lab8_circuit_modified.v ; .4 registers.
+
+![lab1 0](https://user-images.githubusercontent.com/118954022/210417934-ca8ac117-0832-4ef7-bb3f-d0af0e3b8228.jpg)
+
 
 ### LAB 2 - Check_timing , Check_design , Set_max_capacitance , HFN
 
