@@ -1873,21 +1873,61 @@ Then constraints, >>  sh gvim reg_retime_cons.tcl ; source reg_retime_cons.tcl ;
 * SoC with equivalent functionality will have increased **performance** and reduced **power** consumption as well as a smaller semiconductor **die area**.
 
 ### Typical Structure of Snapdragon SoC
- 
+
+![note1](https://user-images.githubusercontent.com/118954022/210316889-78dd715c-6745-4c45-ac9c-29bc5bc53ef6.jpg)
+
 ### Types of SoC
+
+* SoCs built around a microcontroller.
+* SoCs built around a microprocessor, often found in cell phones.
+*	Specialized application-specific integrated circuit SoCs designed for specific applications that do not fit into the above two categories.
+
+### Advantages of SoC
+
+* Reduction in overall system design as compare to motherboard based designs.
+* Compact and small size chips even the size of a fingertip.
+* Better efficiency and performance.
+* Less power consumption.
+* Less time to market.
   
 ### SoC Structure
+
+* An SoC consists of hardware functional units, including microprocessors that run software code, as well as a communications subsystem to connect, control, direct and interface between these functional modules.
+* **Functional components**: Processor Cores, Memory, Interfaces, Digital Signal Processor, others.
+*	**Intermodule communication**: Bus-Based Communication, Network on a chip.
   
 ### SoC Design Flow 
+
+![note2](https://user-images.githubusercontent.com/118954022/210317133-97571541-02bc-48ac-a410-4a2ab4358955.jpg)
   
 ### How are Microchips made?
+
+Sorce : https://www.youtube.com/watch?v=bor0qLifjz4 
   
 ### Introduction to BabySoC
+
+**VSDBabySoC** is a small yet powerful RISCV-based SoC. The main purpose of designing such a small SoC is to test three open-source IP cores together for the first time and calibrate the analog part of it. VSDBabySoC contains one RVMYTH microprocessor, an 8x-PLL to generate a stable clock, and a 10-bit DAC to communicate with other analog devices.
+
+![note3](https://user-images.githubusercontent.com/118954022/210318103-9b658264-d1f7-46db-bba9-d1378fa17935.jpg)
   
 ###	BabySoC Components
-  
+
+* **RVMYTH**: RVMYTH core is a simple RISCV-based CPU.
+* **PLL**: A phase-locked loop or PLL is a control system that generates an output signal whose phase is related to the phase of an input signal. PLLs are widely used for synchronization purposes, including clock generation and distribution.
+* **DAC**: A digital-to-analog converter or DAC is a system that converts a digital signal into an analog signal. DACs are widely used in modern communication systems enabling the generation of digitally-defined transmission signals. 
+
 ### Introduction to Modelling
 
+* Some initial input signals will be fed into BabySoC module that make the pll start generating the proper CLK for the circuit.
+* The clock signal will make the rvmyth to execute instructions in its imem. As a result, the register r17 will be filled with some values cycle by cycle 
+* These values are used by dac core to provide the final output signal named OUT.
+* So, we have got 3 main elements (IP cores) and a wrapper as an SoC and off course there would be also a testbench module out there.
+
+GitHub Reps for references:
+* https://github.com/manili/VSDBabySoC#what-is-rvmyth
+* https://github.com/Devipriya1921/avsddac28nm 
+* https://github.com/ireneann713/PLL 
+* https://github.com/lakshmi-sathi/avsdpll_1v8 
 
 ------------------------------------------------------------------------------------------------
 
