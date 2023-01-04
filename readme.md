@@ -582,7 +582,8 @@ source: Quora
 
 ### BASIC TERMINOLOGIES
 
-**Controllability** - from DFT point of view, we intend if both '0' and '1' are able to _propagate_  to each and every node within the target patterns. A point is said to be controllable if both '0' and '1' can be propogated through scan patterns. 
+**Controllability** - from DFT point of view, we intend if both '0' and '1' are able to _propagate_  to each and every node within the 
+patterns. A point is said to be controllable if both '0' and '1' can be propogated through scan patterns. 
 
 **Observability** - the ability to _measure_ the state of a logic signal. When we say that a node is observable, we mean that the value at the node can be shifted out through scan patterns and can be observed through scan out ports. Example like adding a flip flop to a node line between register to other extra circuitry. 
 
@@ -1907,6 +1908,15 @@ File used, >> sh gvim lab8_circuit_modified.v & ; sh gvim lab8_cons_modified.tcl
 
 ![lab1 0](https://user-images.githubusercontent.com/118954022/210417934-ca8ac117-0832-4ef7-bb3f-d0af0e3b8228.jpg)
 
+then, >> link ; source lab8_cons_modified.tcl ; compile_ultra ; report_timing -sig 4 -nosplit -trans -cap -inp -from IN_A ; .It is reporting max path, so it is setup check. This report showing from fall to rise then fall. 'f' - fall, 'r' - rising, showing negative unate gate. Launch at 0 and capture at 10, so different.
+
+![lab1 1](https://user-images.githubusercontent.com/118954022/210544423-2ee2b848-6578-474c-8a85-60927379eaa7.jpg)
+
+Check worst delay, >> report_timing -rise_from IN_A -sig 4 -trans -cap -nets -inp ; .This report showing from rise to fall the rise. Having more slack. So previous report has less (min) slack , so it is a worst path. 
+
+![lab1 2](https://user-images.githubusercontent.com/118954022/210546184-01e985de-348f-4b11-8452-031855443f14.jpg)
+
+Time video - 9.48
 
 ### LAB 2 - Check_timing , Check_design , Set_max_capacitance , HFN
 
