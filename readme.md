@@ -30,6 +30,10 @@
    * [Lab](https://github.com/Parvin16/sd_training#labs-10) 
 +  [Day_14](https://github.com/Parvin16/sd_training#day_14) : **Synopsys DC and Timing Analysis**
    * [Lab](https://github.com/Parvin16/sd_training#labs-11) 
++  [Day_15](https://github.com/Parvin16/sd_training#day_15) : **Inception of EDA and PDK**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-12) 
++  [Day_16](https://github.com/Parvin16/sd_training#day_16) : **Understand Importance of Good Floorplan vs Bad Floorplan & Intro to Library Cells**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-13) 
 
 # #Day_0
 ### BASICS
@@ -1908,7 +1912,7 @@ File used, >> sh gvim lab8_circuit_modified.v & ; sh gvim lab8_cons_modified.tcl
 
 ![lab1 0](https://user-images.githubusercontent.com/118954022/210417934-ca8ac117-0832-4ef7-bb3f-d0af0e3b8228.jpg)
 
-then, >> link ; source lab8_cons_modified.tcl ; compile_ultra ; report_timing -sig 4 -nosplit -trans -cap -inp -from IN_A ; .It is reporting max path, so it is setup check. This report showing from fall to rise then fall. 'f' - fall, 'r' - rising, showing negative unate gate. Launch at 0 and capture at 10, so different.
+then, >> link ; source lab8_cons_modified.tcl ; compile_ultra ; report_timing -sig 4 -nosplit -trans -cap -inp -from IN_A ; .It is reporting max path, there is library setip time and slack = required time - arrival time, so it is **Setup Check**. This report showing from fall to rise then fall. 'f' - fall, 'r' - rising, showing negative unate gate. Launch at 0 and capture at 10, so different.
 
 ![lab1 1](https://user-images.githubusercontent.com/118954022/210544423-2ee2b848-6578-474c-8a85-60927379eaa7.jpg)
 
@@ -1916,7 +1920,11 @@ Check worst delay, >> report_timing -rise_from IN_A -sig 4 -trans -cap -nets -in
 
 ![lab1 2](https://user-images.githubusercontent.com/118954022/210546184-01e985de-348f-4b11-8452-031855443f14.jpg)
 
-Time video - 9.48
+**Hold check** , >> report_timing -delay min -from  IN_A ; .How to know it Hold check, in report,path type is min, there is library old time, and the slack = arrival time - required time. 
+
+![lab1 3](https://user-images.githubusercontent.com/118954022/210970338-3d4d3fea-e557-4220-b8d2-43b9e1e3618e.jpg)
+
+Thru max path, the cell path maybe minimum but overall path maybe taking maximum. So, always look at overall path delay not contribution of a cell only. 
 
 ### LAB 2 - Check_timing , Check_design , Set_max_capacitance , HFN
 
@@ -1991,14 +1999,7 @@ GitHub Reps for references:
 * https://github.com/ireneann713/PLL 
 * https://github.com/lakshmi-sathi/avsdpll_1v8 
 
-------------------------------------------------------------------------------------------------
 
-## LABS
-
-### LAB 1 - 
-
-### LAB 2 - 
-  
 ------------------------------------------------------------------------------------------------
 
 
@@ -2018,3 +2019,62 @@ GitHub Reps for references:
 ------------------------------------------------------------------------------------------------
 
 
+# #Day_13
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+### LAB 2 - 
+
+------------------------------------------------------------------------------------------------
+
+# #Day_14
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+### LAB 2 - 
+
+------------------------------------------------------------------------------------------------
+
+# #Day_15
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+### LAB 2 - 
+
+------------------------------------------------------------------------------------------------
+
+# #Day_16
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+### LAB 2 - 
+
+------------------------------------------------------------------------------------------------
