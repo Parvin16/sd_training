@@ -2274,7 +2274,9 @@ https://www.mpi-inf.mpg.de/fileadmin/inf/d1/teaching/winter20/how_to_clock/ lect
 
 ## LAB
 
-### 
+### BabySoC Modeling
+  
+### Simulation of basic circuit using VCS
 
 ------------------------------------------------------------------------------------------------
 
