@@ -2262,7 +2262,6 @@ Additional: Synopsys uses needs its proprietary file for post synthesis. Eg: .dc
 NOTE : make sure to go through synopsys documentation for VCS. 
 
 References
-
 1.	Risc-v : https://myth3.makerchip.com/sandbox/# 
 2.	Risc-v waterfall flow diagram : 
 https://www.vlsisystemdesign.com/risc-v-waterfall-diagram-and-hazards/ 
@@ -2273,27 +2272,91 @@ https://www.mpi-inf.mpg.de/fileadmin/inf/d1/teaching/winter20/how_to_clock/ lect
 
 ------------------------------------------------------------------------------------------------
 
-## LABS
+## LAB
 
-### LAB 1 - 
-
-### LAB 2 - 
+### 
 
 ------------------------------------------------------------------------------------------------
 
 
 # #Day_13
 
-## Lecture
+## Recap on Pre-synthesis 
+
+In pre-synthesis - modelled and simulated the IP cores in VSDBabySoC(for checking its functionality). Just a refresh on synthesizable and non-synthesizable constructs in verilog.
+![note1](https://user-images.githubusercontent.com/118954022/211336378-4230b2fe-23b2-411f-be85-af29309e6404.jpg)
+
+Why we have to do Pre-synthesis ??
+
+**Pre-Synthesis Simulation** is done according to the logic we have designed for and written -> only functionality.
+
+## Post-synthesis
+
+**Post Synthesis Simulation** - ‘gate level simulation’ is done after synthesis considering each and every gate delays into account. reports the violations in both functionality and timing. 
+This also shows the mismatches we are likely to get due to wrong usage of operators and inference of latches. For eg: using ‘X’(simulator terms/ synthesizer terms) - ‘Unknown’/“Don’t care”.
+
+## GLS - Gate Level Simulations
+
+**Gate Level Simulation** is used to boost the confidence regarding implementation of a design and can help verify dynamic circuit behaviour, which cannot be verified accurately by static methods. It is a significant step in the verification process.
+
+*	The term "gate level" refers to the netlist view of a circuit, usually produced by logic synthesis. 
+*	So while RTL simulation is pre-synthesis, **GLS is post-synthesis**. 
+*	The netlist view is a complete connection list consisting of gates and IP models with full functional and timing behavior. 
+*	RTL simulation is a **zero delay** environment and events generally occur on the active clock edge. GLS can be zero delay also, but is more often used in unit delay or full timing mode. 
+
+## How do we do Synthesizing ??
+
+What are we going to synthesize the netlist with ??
+
+We will be using Synopsys’s DC shell (**Design Compiler**). Design Compiler® RTL synthesis solution enables users to meet today's design challenges with concurrent optimization of **timing, area, power** and **test**.
+
+Synthesize using DC:
+
+Will point to the right files for one example. Let us say, we have to do for rvmyth_avsddac.v
+
+Steps in brief : (refer day 6,7 repo)
+1.	Invoke DC and Read the verilog file -> [rvmyth_avsddac.v](#)
+2.	Read .db file and set target_lib -> [sky130_fd_sc_hd__tt_025C_1v80.lib, avsddac.lib](#)
+
+But, we need a **.db** , we only have **.lib** .So the answer is synopsys’s lc_shell (Library Compiler). Follow these commands to convert .lib to .dc :
+1.	lc_shell
+2.	read_lib library.lib(if in the same directory as the .lib) Else - > read_lib <your_path>/library.lib
+3.	write_lib library -format db -output library.db  (If the program is successfully reading your commend, it will returns '1').
+4.	quit
+
+After getting the .db , let us resume 
+1.	Invoke DC and Read the verilog file -> [rvmyth_avsddac.v](#)
+2.	Read .db file and set target_lib -> [sky130_fd_sc_hd__tt_025C_1v80.db, avsddac.db](#) (use both the timing libraries) 
+3.	Write -f verilog command, synthesizing the code. Get the synthesized code.
+
+We need to perform post-synthesis simulations.
+
+Why do it? - To make sure we consider each and every gate delays into account. However the pre-synthesis simulations were done using VCS and DVE(./simv), we do the same and observe the output. The post-simulation output and pre-simulation output **should match**.
+
+Example for post-synthesis simulations(rvmyth_avsddac) :
+1.	cd <to the directory with the synthesis file>
+2.	csh
+3.	vcs  gls.v sky130_fd_sc_hd.v primitives.v https://github.com/vsdip/rvmyth_avsddac_interface/blob/main/iverilog/Post-synthesis/gls.v https://github.com/vsdip/rvmyth_avsddac_interface/blob/main/iverilog/Post-synthesis/primitives.v https://github.com/vsdip/rvmyth_avsddac_interface/blob/main/iverilog/Post-synthesisky130_fd_sc_hd.v/ Understand the codes and makes sure “**include all the dependencies**”
+4.	dve -full64 &
+5.	Go to file/design file -> expand the DUT’s 
+6.	Add the required waveforms.
+
+Additional : Can we optimize what we have synthesized using DC? Hint : use the ‘Optimization’ part from the repos.
+
+References 
+1.	https://www.electronicsforu.com/electronics-projects/gate-level-simulation-in creasing-trend#:~:text=Gate%20level%20simulation%20is%20used,step%2 0in%20the%20verificathttps://github.com/vsdip/rvmyth_avsdpll_interfaceion %20process.
+2.	https://personal.utdallas.edu/~xxx110230/lc/
+3.	https://github.com/vsdip/rvmyth_avsddac_interface - for post synthesis
+4.	https://github.com/vsdip/rvmyth_avsdpll_interface - for post synthesis
+5.	https://github.com/manili/VSDBabySoC#post-synthesis-simulation-gls - for post synthesis of full VSDBabySoC
+6.	http://www.sunburst-design.com/papers/CummingsSNUG1999SJ_SynthMis match.pdf   - Important!
 
 
 ------------------------------------------------------------------------------------------------
 
-## LABS
+## LAB
 
-### LAB 1 - 
-
-### LAB 2 - 
+### 
 
 ------------------------------------------------------------------------------------------------
 
