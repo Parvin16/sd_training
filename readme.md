@@ -2114,9 +2114,162 @@ We will be using **VCS** - is a high-performance, high-capacity Verilog simulato
 Modelling and Simulating on VCS involves 2 main steps :
 
 1.	Compilation - VCS builds the instance hierarchy and generates a binary executable simv. This binary executable is later used for simulation.
-2.	Simulation  - During compilation, VCS generates a binary executable, **simv**. 
+2.	Simulation  - During compilation, VCS generates a binary executable, **simv** - to run the simulation. It has 2 types mainly - **Interactive Mode** and **Batch Mode**. For modelling and simulation [Interactive Mode is preferred](#).
 
+In interactive mode, we mean to say **debug the design** and so on. One down side is the compilation will not be “optimized”. VCS has the following compile-time options for debug mode: 
+*	-debug_pp,
+*	-debug, 
+*	-debug_access(+), 
+*	-debug_all,
+*	-debug_region=()(+)
 
+We will be debugging using tools like **DVE** -  Discovery Visualization Environment. Few tips on modelling our design :
+1.	Avoid race Conditions - can use VCS [race detection tool](#).
+2.	Use a optimized Testbench for debugging your design.
+3.	Creating models that simulate faster.
+4.	Case statement behaviour.
+
+![note8](https://user-images.githubusercontent.com/118954022/211277871-979d6476-c326-42be-9ea9-30b16d39162f.jpg)
+
+Basic commands : 
+
+Always start with a `**csh**` command on your terminal
+*	vcs [options] model_file(verilog file)
+  *	**-h** or **--help** : lists the most commonly used commands.(GO TO COMMAND) 
+* To use GUI version can do `**vcs -gui**`.
+
+#### Using DVE - 1(normally)
+
+DVE provides you with a graphical user interface to debug your design. Now, first run the design, with a valid testbench using the commands :
+* ` csh `
+* ` vcs design_file.v design_testbench.v `
+* ` ./simv ` - (this should run without any errors and also preferably without warnings in the **simulation report**)
+* So one KEEP IN MIND point : in previous sessions, there was a introduction to .vcd file - means **Value Code Dump**.(cross check if its created or not)
+* So in the testbench, always have this block
+  * Initial 
+          Begin
+          $dumpfile("design_tb.vcd");
+          $dumpvars; end
+
+NOTE : make sure to run these commands in our project directory/design folder.
+
+Now, we are going to open dve :
+* dve &       // (basically opening the tool).
+* Go to “File/Open Database” and select the “.vcd” file from the project folder.
+*	Then you will find the name of your test bench model in the Hierarchy box (design_tb). Expand it so that you can find DUT in the options.
+* If we click on DUT , select the signals listed(all or partial) and right click, you will find an option “Add to Waves”.
+* Click on “Add to New Wave View” to see the waveforms of your Inputs and Outputs. You should see your results in a new window. Then adjust the size of the waveform and explore other options as well.
+
+#### Using DVE - 1(interactive mode)
+
+DVE provides us with a graphical user interface to debug our design. Using DVE, we can debug the design in Interactive Mode or in Post-processing Mode.
+Command for using it - `simv -gui`
+
+To run the Testbench and the design file :
+* vcs -debug_access<+options> [compile_options] TOP.v
+* vcs -lca -debug_access+all design.v design_tb.v
+
+After getting the code dump file :
+*	Run `simv -gui`
+
+This should open the dve tool automatically and we can fully run our test bench or debug it step by step. To do this first select **‘inputs’** and **‘outputs’** from variable window and right click “Add to the Waves”. Then click the tool button of blue arrow in brace or press F11 to run the test bench step by step. Or click the tool button of the blue arrow pointing downward or press F5 to run the test bench fully.
+
+![note9](https://user-images.githubusercontent.com/118954022/211282164-02b08839-ef95-4b9b-8e75-4c1fc3847b17.jpg)
+
+#### RVMYTH Modelling 
+
+The steps for modelling RVMYTH :
+1.	We have a RISC-V CPU core written in Verilog and an already written testbench code for the same.
+2.	The entire C program will be converted into a hex format and and will be loaded into memory.
+3.	The CPU will then read the contents of the memory, process it and finally display the output result of sum of numbers from 1 to n.
+
+The steps to model the IP cores separately :
+
+For modelling RVMYTH(RISC-V)
+1.	git clone https://github.com/kunalg123/rvmyth/ 
+2.	cd rvmyth 
+3.	csh
+4.	vcs mythcore_test.v tb_mythcore_test.v 
+5.	./simv
+6.	dve & 
+7.	Go to file/File/Open Database” and select the “.vcd” file from the project folder
+8.	Add the required waveforms. 
+
+For modelling DAC
+1.	git clone https://github.com/kunalg123/rvmyth/     /// ignore if already done once!
+2.	cd rvmyth 
+3.	csh
+4.	vcs avsddac.v avsddac_tb_test.v
+5.	./simv
+6.	dve & 
+7.	Go to file/File/Open Database” and select the “.vcd” file from the project folder
+8.	Add the required waveforms. 
+
+Follow the same for pll using design file as - [avsd_pll_1v8.v](#) and testbench - [pll_tb.v](#)
+
+Steps for simulating in interactive mode(debug mode)
+1.	git clone https://github.com/kunalg123/rvmyth/  // ignore if already done once 
+2.	cd rvmyth 
+3.	csh
+4.	vcs -lca -debug_access+all mythcore_test.v tb_mythcore_test.v 
+5.	./simv -gui &
+6.	Add the required waveforms.
+7.	You will get to debug line-by-line for the whole code
+
+Note: Understand the code using debug mode(either PLL/DAC/RISC-V -> as per your time).
+
+Now, we have verified each block separately, lets interface blocks together. Lets simulate risc_v and pll : 
+1.	cd rvmyth 
+2.	csh
+3.	vcs rvmyth_pll.v rvmyth_pll_tb.v 
+4.	./simv
+5.	dve & 
+6.	Go to file/File/Open Database” and select the “.vcd” file from the project folder
+7.	Add the required waveforms. 
+
+Follow the same for DAC and RVMYTH using design file as - [rvmyth_avsddac.v](#) and testbench - [rvmyth_avsddac_TB.v](#)
+
+Finally lets simulate and model all three IP’s together :
+* Simulate [https://github.com/manili/VSDBabySoC/blob/main/src/module/vsdbabysoc.v](#)
+* Using VCS with the testbench in [https://github.com/manili/VSDBabySoC/blob/main/src/module/](#)
+
+There will be some errors you will be facing. So time to some DEBUGGING.
+
+Hint : mostly the error will be in ‘include files’ - that are available in [https://github.com/manili/VSDBabySoC/tree/main/src/include](#) and
+[https://github.com/manili/VSDBabySoC/blob/main/src/module/](#) , just have to go through the **simulation report** thoroughly.
+
+For cross verification of your simulations (OR) how do we know which outputs to observe for :
+1.	PLL/ RVMYTH – [https://github.com/vsdip/rvmyth_avsdpll_interface](#)
+2.	DAC/RVMYTH – [https://github.com/vsdip/rvmyth_avsddac_interface](#)
+3.	PLL interfacing RVMYTH -  [https://github.com/vsdip/rvmyth_avsdpll_interface](#)
+4.	DAC interfacing RVMYTH – [https://github.com/vsdip/rvmyth_avsddac_interface](#)
+5.	vsdbabySoC – [https://github.com/manili/VSDBabySoC/blob/main/images/pre_synth_sim.png](#)
+
+Tasks and to be added on to our repo.
+1.	Make a difference table for all the modes in interactive mode I,e -debug_pp, -debug, -debug_access(+)... and so on.
+2.	To get more used to VCS, each one take an example circuit for example
+    a. 4- bit adder
+    b.	Counter 
+    c.	4x1 mux
+    d.	Decoder 
+    e.	Encoder 
+    f.	Any circuit of your choice -- PREFERRED 
+And simultate, attach snippets of code, screenshots of simulation, block  diagrams etc on to the github repo.
+3. 	After getting acquainted with VCS, then get into modelling and simulation of VSDBabySoC.
+
+Additional: Synopsys uses needs its proprietary file for post synthesis. Eg: .dc files. In hand we have .lib files - liberty files. How do we convert .lib to .dc file : (try to see for converting **shells**  from synopsys itself).
+
+NOTE : make sure to go through synopsys documentation for VCS. 
+
+References
+
+1.	Risc-v : https://myth3.makerchip.com/sandbox/# 
+2.	Risc-v waterfall flow diagram : 
+https://www.vlsisystemdesign.com/risc-v-waterfall-diagram-and-hazards/ 
+3.	Why PLL :
+https://www.mpi-inf.mpg.de/fileadmin/inf/d1/teaching/winter20/how_to_clock/ lecture_13_PLLs_2020_12_14.pdf 
+4.	https://github.com/manili/VSDBabySoC 
+5.	https://github.com/Devipriya1921/VSDBabySoC_ICC2 
 
 ------------------------------------------------------------------------------------------------
 
