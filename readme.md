@@ -2101,10 +2101,20 @@ For VSDBabySoC, it consists of a 10-Bit DAC.
 
 #### The Task.
 
-To do - module RVMYTH modelling , PLL modelling and DAC modelling. 
+To do - module RVMYTH modelling , PLL modelling and DAC modelling. RVMYTH is a digital block, so yes we can use a HDL for designing and check its functionality using a testbench. But, DAC and PLL are analog.
 
+Because verilog can’t synthesis analog design. We are going to simulate it using verilog itself. We will be using data-types such real. Our goal is to be able to simulate “functionality” - **to verify its logical correctness** . So we will be using verilog to model and use **VCS** to simulate. 
 
-### Basic Introduction to Synopsys VCS
+### Modelling and Simulating using Synopsys VCS
+
+#### How do we model and simulate ??
+
+We will be using **VCS** - is a high-performance, high-capacity Verilog simulator that incorporates advanced, high-level abstraction verification technologies into a single open native platform.  
+
+Modelling and Simulating on VCS involves 2 main steps :
+
+1.	Compilation - VCS builds the instance hierarchy and generates a binary executable simv. This binary executable is later used for simulation.
+2.	Simulation  - During compilation, VCS generates a binary executable, **simv**. 
 
 
 
