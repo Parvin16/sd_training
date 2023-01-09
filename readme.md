@@ -24,7 +24,7 @@
 +  [Day_10](https://github.com/Parvin16/sd_training#day_10) : **QOR**
    * [Lab](https://github.com/Parvin16/sd_training#labs-8)
 +  [Day_11](https://github.com/Parvin16/sd_training#day_11) : **Introduction to the BabySoC**
-+  [Day_12](https://github.com/Parvin16/sd_training#day_12) : **BabySoC Modelling**
++  [Day_12](https://github.com/Parvin16/sd_training#day_12) : **VSD BabySoC Modelling**
    * [Lab](https://github.com/Parvin16/sd_training#labs-9)
 +  [Day_13](https://github.com/Parvin16/sd_training#day_13) : **Post-synthesis Simulation**
    * [Lab](https://github.com/Parvin16/sd_training#labs-10) 
@@ -2005,7 +2005,107 @@ GitHub Reps for references:
 
 # #Day_12
 
-## Lecture
+## VSDBabySoC Modelling
+
+### Recap on SoC
+
+* **SoC** is a single-die chip that has some different IP cores on it. These IPs could vary from microprocessors (completely digital) to 5G broadband modems (completely analog).
+* SoC with equivalent functionality will have increased performance and reduced power consumption as well as a smaller semiconductor die area.
+
+### Modelling of the VSDBaby SoC
+
+#### What does Modelling mean ??
+
+In electronics terminology, **Modeling** and **Simulation** (M&S) is the use of a **physical or logical** representation of a given system to generate data and help determine decisions or make predictions about the system. Models are representations that can aid in Defining, Analyzing, and Communicating a set of concepts. M&S is widely used in the VLSI domain. 
+
+Purpose of Modelling :
+
+System models are specifically developed to :
+a.	support analysis, specification, 
+b.	design, 
+c.	verification, 
+d.	and validation of a system,
+e.	as well as to communicate certain information.
+
+What are we Modelling ??
+
+* In VSDBabySoC modelling, we are going to model and simulate the VSDBabySoC.
+* Some **initial input signals** will be fed into vsdbabysoc module, that will get the pll start generating the proper CLK for the circuit. 
+* The clock signal will make the RVMYTH to execute instructions and some values are generated, these values are used by DAC core to provide the final output signal named OUT.
+* So we have 3 main elements (**IP cores**) and a wrapper as an SoC and of course there would be also a testbench module out there.
+
+#### RVMYTH - Risc-V based MYTH(Microprocessors for You in Thirty Hours)  
+
+VSDMemSoC is a small SoC including a RISCV-based processor named **RVMYTH** and an external 1kB SRAM Instruction Memory (IMem) to separate the processor core and the IMem. RVMYTH core is a simple RISCV-based CPU, introduced in a workshop by RedwoodEDA and VSD. Source : https://www.vlsisystemdesign.com/vsd-intern-fpga/ 
+
+**RISC** stands for Reduced Instruction Set Computer. **RISC-V**(pronounced “risk-five”) ISA is defined as a base integer ISA, which must be present in any implementation, plus optional extensions to the base ISA. Each base integer instruction set is characterized by the width of the integer registers and the corresponding size of the address space and by the number of integer registers. There are two primary base integer variants, RV32I and RV64I. Eg: A simple one cycle CPU for Risc-V.
+![note1](https://user-images.githubusercontent.com/118954022/211268139-1b7a83b9-755f-468e-8ca9-e856bf3a59e6.jpg)
+
+Waterfall flow diagram for a **pipelined** Risc-v processor instructions :
+![note2](https://user-images.githubusercontent.com/118954022/211268291-bb781294-4a09-417e-8199-7e5404319246.jpg)
+
+#### Phase Locked Loop (PLL)
+
+A **Phase Locked Loop** (PLL) is an electronic circuit with a voltage or voltage-driven oscillator that constantly adjusts to match the frequency of an input signal. PLLs are used to generate, stabilize, modulate, demodulate etc.
+
+Now, question is why do we need a PLL for our SoC? Before that how is a clock generated? 
+Quartz Crystal Oscillator. For 100Mhz and below off chip oscillator will do, but for 100Mhz and above it won’t be good enough.-how?
+
+Why off-chip clocks can’t be used all the time?
+* The clock will be a supply for a lot of blocks on the chip, it will have delays due to long wires(if used only one clock source) - also reasons like **clock jitter**.
+* Some blocks might need 200Mhzs and some might need 100Mhz - point is different frequencies just on one small chip.
+* A concept of **ppm**(clock accuracy) comes in, when ever quartz is acquired, it comes with a **x ppm error**.
+
+What is this **ppm error**?
+
+**ppm** - parts per million. For ex:  20ppm quartz used in watches this translates as 20/1e6 (2e-5), which  gives an error over a day of 86400 * 2e-5 = 1.73 seconds per day, so in a month it loses 30 x 1.72 = 51 seconds or 1 minute a month. Now, in terms of a chip, just imagine the mishap it will cause just due to very small error for ,microseconds, when the processor works at nanoseconds , it can be a **huge blow**.
+
+PLL used on SoC’s
+
+Main components : 
+1.  Phase detector
+2.	Loop filter
+3.	Voltage controlled oscillator
+4.	Frequency divider 
+
+![note3](https://user-images.githubusercontent.com/118954022/211269923-d2d4176d-201c-4ab9-89d2-2c2e5ac15e50.jpg)
+
+Expected outcome:
+![note4](https://user-images.githubusercontent.com/118954022/211270098-e09b33c1-be79-42c3-8747-089af043c177.jpg)
+
+#### Digital to Analog Converter (DAC)
+
+A **Digital to Analog Converter (DAC)** converts a digital input signal into an analog output signal. The digital signal is represented with a binary code, which is a combination of bits 0 and 1. A Digital to Analog Converter (DAC) consists of several binary inputs and a single output. In general, the number of binary inputs of a DAC will be a **power of two**.
+
+There are two types of DACs :
+* Weighted Resistor DAC.
+* R-2R Ladder DAC.
+
+Weighted Resistor DAC.
+
+A weighted resistor DAC produces an analog output, which is almost equal to the digital (binary) input by using binary weighted resistors in the inverting adder circuit. In short, a binary weighted resistor DAC is called as weighted resistor 
+DAC.
+
+![note5](https://user-images.githubusercontent.com/118954022/211270663-aba073dd-855b-49a8-9f88-8b95546e2de4.jpg)
+
+R-2R Ladder DAC.
+
+The **R-2R Ladder DAC** overcomes the disadvantages of a binary weighted resistor DAC. As the name suggests, R-2R Ladder DAC produces an analog output, which is almost equal to the digital (binary) input by using a R-2R ladder network in the inverting adder circuit. 
+
+![note6](https://user-images.githubusercontent.com/118954022/211270928-1bdc7b87-c1f2-4bf5-af13-d8d0262b60ed.jpg)
+
+Expected output for 3-bit DAC :
+![note7](https://user-images.githubusercontent.com/118954022/211271061-425d07c4-5a22-49c7-954f-c51c963d732c.jpg)
+
+For VSDBabySoC, it consists of a 10-Bit DAC.
+
+#### The Task.
+
+To do - module RVMYTH modelling , PLL modelling and DAC modelling. 
+
+
+### Basic Introduction to Synopsys VCS
+
 
 
 ------------------------------------------------------------------------------------------------
