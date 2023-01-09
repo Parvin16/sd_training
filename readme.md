@@ -2081,14 +2081,14 @@ There are two types of DACs :
 * Weighted Resistor DAC.
 * R-2R Ladder DAC.
 
-Weighted Resistor DAC.
+**Weighted Resistor DAC**
 
 A weighted resistor DAC produces an analog output, which is almost equal to the digital (binary) input by using binary weighted resistors in the inverting adder circuit. In short, a binary weighted resistor DAC is called as weighted resistor 
 DAC.
 
 ![note5](https://user-images.githubusercontent.com/118954022/211270663-aba073dd-855b-49a8-9f88-8b95546e2de4.jpg)
 
-R-2R Ladder DAC.
+**R-2R Ladder DAC**
 
 The **R-2R Ladder DAC** overcomes the disadvantages of a binary weighted resistor DAC. As the name suggests, R-2R Ladder DAC produces an analog output, which is almost equal to the digital (binary) input by using a R-2R ladder network in the inverting adder circuit. 
 
@@ -2133,10 +2133,10 @@ We will be debugging using tools like **DVE** -  Discovery Visualization Environ
 
 Basic commands : 
 
-Always start with a `**csh**` command on your terminal
+Always start with a `csh` command on your terminal
 *	vcs [options] model_file(verilog file)
   *	**-h** or **--help** : lists the most commonly used commands.(GO TO COMMAND) 
-* To use GUI version can do `**vcs -gui**`.
+* To use GUI version can do `vcs -gui`.
 
 #### Using DVE - 1(normally)
 
@@ -2154,7 +2154,7 @@ DVE provides you with a graphical user interface to debug your design. Now, firs
 NOTE : make sure to run these commands in our project directory/design folder.
 
 Now, we are going to open dve :
-* dve &       // (basically opening the tool).
+* `dve &`       // (basically opening the tool).
 * Go to “File/Open Database” and select the “.vcd” file from the project folder.
 *	Then you will find the name of your test bench model in the Hierarchy box (design_tb). Expand it so that you can find DUT in the options.
 * If we click on DUT , select the signals listed(all or partial) and right click, you will find an option “Add to Waves”.
