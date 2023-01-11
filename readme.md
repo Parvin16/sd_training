@@ -1928,6 +1928,7 @@ Thru max path, the cell path maybe minimum but overall path maybe taking maximum
 
 ### LAB 2 - Check_timing , Check_design , Set_max_capacitance , HFN
 
+
 ------------------------------------------------------------------------------------------------
 
 
@@ -2272,7 +2273,7 @@ https://www.mpi-inf.mpg.de/fileadmin/inf/d1/teaching/winter20/how_to_clock/ lect
 
 ------------------------------------------------------------------------------------------------
 
-## LAB
+## TASKS
 
 ### BabySoC Modeling
   
@@ -2356,24 +2357,43 @@ References
 
 ------------------------------------------------------------------------------------------------
 
-## LAB
-
-### 
+## TASKS
 
 ------------------------------------------------------------------------------------------------
 
 # #Day_14
 
-## Lecture
+## PVT
 
+*	**PVT** stands for Process, Voltage and Temperature.
+*	Integrated circuits are designed in such a way that they can function in a wide variety of temperatures and voltages, rather than a single temperature and *oltage.
+*	To make our chip to work after fabrication in all the possible conditions, we simulate it at different corners of process, voltage, and temperature. 
+*	These conditions are called corners. All these three parameters directly affect the delay of the cell.
+*	**Process** - There are millions of transistors on the single-chip as we are going to lower nodes and all the transistors in a chip cannot have the same properties. Process variation is the deviation in parameters of the transistor during the fabrication.
+*	**Voltage** - As we are going to the lower nodes the supply voltage for a chip is also going to less. Let’s say the chip is operating at 1.2V. So, there are chances that at certain instances of time this voltage may vary.
+* **Temperature** - When a chip is operating, the temperature can vary throughout the chip. This is due to the power dissipation in the MOS-transistors.
+
+### PVT Graphs
+
+![note1](https://user-images.githubusercontent.com/118954022/211723498-a1f3f009-6af4-4e2e-abc7-4ce6bafa6e76.jpg)
+
+In Process graph, the delay is more for slow process MOSFETs and delay is less for fast process MOSFETs. In Voltage, more is the voltage, more is the current, hence delays are less. In Temperature, As temperature increase random motion of carriers in channel increases due to collision effect thus degrading mobility of carriers. When temperature is less randomness decreases and due to a better mobility current increases and delay decreases. 
+
+References
+*	What are PVT corners in VLSI? - ChipEdge VLSI Training CompanySystem on a chip – Wikipedia
+*	PVT (Process, Voltage, Temperature) - VLSI- Physical Design For Freshers (physicaldesign4u.com)
 
 ------------------------------------------------------------------------------------------------
 
-## LABS
+##TASKS
 
-### LAB 1 - 
+### TASK 1 
 
-### LAB 2 - 
+Use the timing libs for different PVT corners by using the following GitHub repo: vsdpcvrd/resources/timing_libs at main · Geetima2021/vsdpcvrd (github.com)
+
+### TASK 2 
+
+Document the different PVT corners WNS, WHS, TNS values in the form of a table as shown below: 170959322-b3c3cedd-1df8-4567-99d3-e905f9bdc393.png (268×418) (user-images.githubusercontent.com)
 
 ------------------------------------------------------------------------------------------------
 
