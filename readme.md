@@ -2397,7 +2397,62 @@ Document the different PVT corners WNS, WHS, TNS values in the form of a table a
 
 ------------------------------------------------------------------------------------------------
 
-# #Day_15
+# #Day_15 Inception of Open-source EDA, OpenLANE and Sky130 PDK
+
+## How to talk to computers ??
+
+### Intro to QFN-48 Package
+
+### Intro to RISC-V
+
+### Software to Hardware Applications
+
+## SoC Design and OpenLANE
+
+### Intro to all components of Open-source Digital ASIC Design 
+
+### Simplified RTL2GDS Flow
+
+### Intro to OpenLANE and Strive Chipsets
+
+### Intro to OpenLANE detailed ASIC Design Flow
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS - Open-source EDA Tools
+
+### LAB 1 - OpenLANE Directory Structure
+
+### LAB 2 - Design Preparation Step
+
+### LAB 3 - Review Files after Run Synthesis
+
+### LAB 4 - OpenLANE Project Git Link Description
+
+### LAB 5 - Steps to Characterize Synthesis Results
+
+------------------------------------------------------------------------------------------------
+
+# #Day_16 Good Floorplan vs Bad Floorplan
+
+## Chip Floor Planing Considerations
+
+## Library Binding and Placement
+
+## Cell Design and Charcterization Flows 
+
+## General Timing Charcterization Parameters
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+------------------------------------------------------------------------------------------------
+
+# #Day_17
 
 ## Lecture
 
@@ -2408,11 +2463,9 @@ Document the different PVT corners WNS, WHS, TNS values in the form of a table a
 
 ### LAB 1 - 
 
-### LAB 2 - 
-
 ------------------------------------------------------------------------------------------------
 
-# #Day_16
+# #Day_18
 
 ## Lecture
 
@@ -2423,6 +2476,17 @@ Document the different PVT corners WNS, WHS, TNS values in the form of a table a
 
 ### LAB 1 - 
 
-### LAB 2 - 
+------------------------------------------------------------------------------------------------
+
+# #Day_19
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
 
 ------------------------------------------------------------------------------------------------
