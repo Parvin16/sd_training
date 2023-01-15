@@ -2403,7 +2403,31 @@ Document the different PVT corners WNS, WHS, TNS values in the form of a table a
 
 ### Intro to QFN-48 Package
 
+Package : QFN-48 Quad Flat No-leads 7x7mm.
+
+![note1](https://user-images.githubusercontent.com/118954022/212529635-9a192340-6b86-4bff-9caf-234660ba505b.jpg)
+
+**QFN** stands for quad flat no-lead package. It is a leadless package that comes in small size and offers moderate heat dissipation in PCBs. Like any other IC package, the function of a QFN package is to connect the silicon die of the IC to the circuit board. The **QFN packages** come with a die that is surrounded by a lead frame. The lead frame is made up of a copper alloy with a matt tin coating. The die and the frame are usually connected to each other using wire bonding. Copper/gold is usually preferred for wire bonding.
+
+The block diagram (ports):
+![note2](https://user-images.githubusercontent.com/118954022/212529687-9d7dc499-e3bc-478c-97cc-0a7239dae378.jpg)
+
+* **IC Package** - the material that contains a semiconductor device. The package is a case that surrounds the circuit material to protect it from corrosion or physical damage and allow mounting of the electrical contacts connecting it to the printed circuit board (PCB).
+* **Pad** - a square of top-level metal of approximately 100µm on a side that is either soldered to bond wire connecting to a package or coated with lead solder ball. Pad refers to metal square only or to the complete I/O cell containing the metal.
+* **Core** - a core comprises a logical execution unit and functional units. It able to independently execute programs or threads. Consists of main logics.
+* **Die** - is the formal term for the square of silicon containing an integrated circuit that has been cut out of the wafer.
+* **Macro** - Hard macro, firm macro and soft macro are all known as IP (Intellectual property). They are optimized for power, area and performance. They can be purchased and used in your ASIC or FPGA design implementation flow. Soft macro is flexible for all type of ASIC implementation. Soft macros are synthesizable register transfer level (RTL) design forms, have more flexibility, and can be configured compared to hard complex macros. Using Soft macros in the design is a risk factor because of its being unpredictable behavior in timing, performance and power
+* **Foundry IP's** - all Intellectual Property, regardless of when or for what purpose it is developed, pertaining to genetic components, pathways, and strains; and methods and tools for design, genetic engineering, testing and/or small-scale fermentation of microbial strains.Has higher value compared to macro.
+
+![note3](https://user-images.githubusercontent.com/118954022/212530541-01e5ac1a-3719-4758-94ea-90eba5d324d4.jpg)
+
 ### Intro to RISC-V
+
+**RISC-V Instruction Set Architecture (ISA)**
+
+![note4](https://user-images.githubusercontent.com/118954022/212535323-092ed139-f3be-4fb9-a231-587636c1b34d.jpg)
+
+RISC-V is an ISA based on reduced instruction set computer (RISC) principles. An Instruction Set Architecture (ISA) is part of the abstract model of a computer that defines how the CPU is controlled by the software.
 
 ### Software to Hardware Applications
 
