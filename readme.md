@@ -2441,9 +2441,31 @@ RISC-V architecture to layout. C codes will be compiled in RIS-V assembly langua
 
 ### Software to Hardware Applications
 
+Application Software or apps runs on specific hardware. Apps enters into a block calls System Software. Major components in system software are OS, Compiler and Assembler. The basic flow of sysnthesis process : Software (HLL) -> System software (Assembly language) -> Hardware (Machine language). OS holds the major job of coverting language that understood by the hardware. The instruction files represents the hardware and known as abstrat interface (architecture of the computer) or ISA.
+  
+**Operating System (OS)**
+* Handle IO opertions.
+* Allocate memory.
+* Low level system functions
+  
+**Compiler**
+*Converting the programming language into the respective intructions. (eg: C++ to instruction file(.exe))
+* The syntax of the instruction is depending upon what kind of the hardware is, as eg: if the hardware belongs to RISc-V format, the syntax would have the syntax of RISc-V file format instructions.
 
+**Assembler**
+*Take particular instructions and convert it into the respective binary language number which is machine language program.
+* Consisting of logic 1 and logic 0 where the computer/hardware understands the language.
 
+![note5](https://user-images.githubusercontent.com/118954022/212858060-85d65ace-ada7-4f85-be0f-bbe886201d33.jpg)
+
+Example of stop watch application flow :
+![note6](https://user-images.githubusercontent.com/118954022/212858586-91235528-e8bd-49e2-97ef-2e9948867a02.jpg)
+
+![note7](https://user-images.githubusercontent.com/118954022/212859755-809af203-3893-4c49-b9df-9761c72ed442.jpg)
+  
 ## SoC Design and OpenLANE
+  
+r
 
 ### Intro to all components of Open-source Digital ASIC Design 
 
