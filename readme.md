@@ -2,38 +2,44 @@
 
 ## Table Of Content
 
-+  [Day_0](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-0) : **System/Tool Setup Check. GitHub ID creation**
++  [Day_0](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-0) : **System/Tool Setup Check. GitHub ID creation**
    * [Lab](https://github.com/Parvin16/sd_training#lab-result)
-+  [Day_1](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-1) - **Introduction to Verilog RTL Design and Synthesis**
++  [Day_1](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-1) - **Introduction to Verilog RTL Design and Synthesis**
    * [Lab](https://github.com/Parvin16/sd_training#labs)
-+  [Day_2](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-2) : **Timing libs(QTMs/ETMs), Hierarchical vs Flat Synthesis and Efficient Flop Coding Styles**
++  [Day_2](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-2) : **Timing libs(QTMs/ETMs), Hierarchical vs Flat Synthesis and Efficient Flop Coding Styles**
    * [Lab](https://github.com/Parvin16/sd_training#labs-1)
-+  [Day_3](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-3) - **Combinational and Sequential Optimizations**
++  [Day_3](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-3) - **Combinational and Sequential Optimizations**
    * [Lab](https://github.com/Parvin16/sd_training#labs-2)
-+ [Day_4](https://github.com/Parvin16/sd_training/blob/main/readme.md#day-4) : **GLS, Blocking vs Non-blocking and Synthesis-Simulation mismatch**
++ [Day_4](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-4) : **GLS, Blocking vs Non-blocking and Synthesis-Simulation mismatch**
    * [Lab](https://github.com/Parvin16/sd_training#labs-3)
-+  [Day_5](https://github.com/Parvin16/sd_training#day_5) - **DFT**
-+  [Day_6](https://github.com/Parvin16/sd_training#day_6) : **Introduction to Logic Synthesis**
++  [Day_5](https://github.com/Parvin16/sd_training#Day_5) - **DFT**
++  [Day_6](https://github.com/Parvin16/sd_training#Day_6) : **Introduction to Logic Synthesis**
    * [Lab](https://github.com/Parvin16/sd_training#labs-4)
-+  [Day_7](https://github.com/Parvin16/sd_training#day_7) : **Basic SDC Constraints**
++  [Day_7](https://github.com/Parvin16/sd_training#Day_7) : **Basic SDC Constraints**
    * [Lab](https://github.com/Parvin16/sd_training#labs-5)
-+  [Day_8](https://github.com/Parvin16/sd_training#day_8) : **Advanced SDC Constraints**
++  [Day_8](https://github.com/Parvin16/sd_training#Day_8) : **Advanced SDC Constraints**
    * [Lab](https://github.com/Parvin16/sd_training#labs-6)
-+  [Day_9](https://github.com/Parvin16/sd_training#day_9) : **Optimization in Synthesis**
++  [Day_9](https://github.com/Parvin16/sd_training#Day_9) : **Optimization in Synthesis**
    * [Lab](https://github.com/Parvin16/sd_training#labs-7)
-+  [Day_10](https://github.com/Parvin16/sd_training#day_10) : **QOR**
++  [Day_10](https://github.com/Parvin16/sd_training#Day_10) : **QOR**
    * [Lab](https://github.com/Parvin16/sd_training#labs-8)
-+  [Day_11](https://github.com/Parvin16/sd_training#day_11) : **Introduction to the BabySoC**
-+  [Day_12](https://github.com/Parvin16/sd_training#day_12) : **VSD BabySoC Modelling**
++  [Day_11](https://github.com/Parvin16/sd_training#Day_11) : **Introduction to the BabySoC**
++  [Day_12](https://github.com/Parvin16/sd_training#Day_12) : **VSD BabySoC Modelling**
    * [Lab](https://github.com/Parvin16/sd_training#labs-9)
-+  [Day_13](https://github.com/Parvin16/sd_training#day_13) : **Post-synthesis Simulation**
++  [Day_13](https://github.com/Parvin16/sd_training#Day_13) : **Post-synthesis Simulation**
    * [Lab](https://github.com/Parvin16/sd_training#labs-10) 
-+  [Day_14](https://github.com/Parvin16/sd_training#day_14) : **Synopsys DC and Timing Analysis**
++  [Day_14](https://github.com/Parvin16/sd_training#Day_14) : **Synopsys DC and Timing Analysis**
    * [Lab](https://github.com/Parvin16/sd_training#labs-11) 
-+  [Day_15](https://github.com/Parvin16/sd_training#day_15) : **Inception of EDA and PDK**
++  [Day_15](https://github.com/Parvin16/sd_training#Day_15) : **Inception of EDA and PDK**
    * [Lab](https://github.com/Parvin16/sd_training#labs-12) 
-+  [Day_16](https://github.com/Parvin16/sd_training#day_16) : **Understand Importance of Good Floorplan vs Bad Floorplan & Intro to Library Cells**
++  [Day_16](https://github.com/Parvin16/sd_training#Day_16) : **Understand Importance of Good Floorplan vs Bad Floorplan & Intro to Library Cells**
    * [Lab](https://github.com/Parvin16/sd_training#labs-13) 
++  [Day_17](https://github.com/Parvin16/sd_training#Day_17) : **Design and Characterise One Library Cell using Layout Tool and Spice Simulator**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-14)
++  [Day_18](https://github.com/Parvin16/sd_training#Day_18) : **Pre-layout Timing Analysis and Importance of Good Clock Tree**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-15)
++  [Day_19](https://github.com/Parvin16/sd_training#Day_19) : **Final Steps for RTL2GDS**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-16)
 
 # #Day_0
 ### BASICS
