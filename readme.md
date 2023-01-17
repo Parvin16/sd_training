@@ -2435,9 +2435,13 @@ The block diagram (ports):
 
 ![note4](https://user-images.githubusercontent.com/118954022/212535323-092ed139-f3be-4fb9-a231-587636c1b34d.jpg)
 
-RISC-V is an ISA based on reduced instruction set computer (RISC) principles. An Instruction Set Architecture (ISA) is part of the abstract model of a computer that defines how the CPU is controlled by the software.
+**RISC-V** is an ISA based on reduced instruction set computer (RISC) principles. An **Instruction Set Architecture (ISA)** is part of the abstract model of a computer that defines how the CPU is controlled by the software.
+
+RISC-V architecture to layout. C codes will be compiled in RIS-V assembly language program. The assembly language will be converted to machine language, which is binary language that is understood by the computer or hardwares. The converted binary language will be sketched in a layout by the computer program and we will get the required output. However, there is another interface that should be presented between architecture and layout of RISC-V which is **Hardware Description Language (HDL)** where it used in RTL implementing the specifications of RISC-V.
 
 ### Software to Hardware Applications
+
+
 
 ## SoC Design and OpenLANE
 
