@@ -2,7 +2,7 @@
 
 ## Table Of Content
 
-+  [Day_0](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-0) : **System/Tool Setup Check. GitHub ID creation**
++  [Day_0](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day_0) : **System/Tool Setup Check. GitHub ID creation**
    * [Lab](https://github.com/Parvin16/sd_training#lab-result)
 +  [Day_1](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-1) - **Introduction to Verilog RTL Design and Synthesis**
    * [Lab](https://github.com/Parvin16/sd_training#labs)
