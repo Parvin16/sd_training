@@ -4,13 +4,13 @@
 
 +  [Day_0](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day_0) : **System/Tool Setup Check. GitHub ID creation**
    * [Lab](https://github.com/Parvin16/sd_training#lab-result)
-+  [Day_1](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-1) - **Introduction to Verilog RTL Design and Synthesis**
++  [Day_1](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day_1) - **Introduction to Verilog RTL Design and Synthesis**
    * [Lab](https://github.com/Parvin16/sd_training#labs)
-+  [Day_2](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-2) : **Timing libs(QTMs/ETMs), Hierarchical vs Flat Synthesis and Efficient Flop Coding Styles**
++  [Day_2](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day_2) : **Timing libs(QTMs/ETMs), Hierarchical vs Flat Synthesis and Efficient Flop Coding Styles**
    * [Lab](https://github.com/Parvin16/sd_training#labs-1)
-+  [Day_3](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-3) - **Combinational and Sequential Optimizations**
++  [Day_3](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day_3) - **Combinational and Sequential Optimizations**
    * [Lab](https://github.com/Parvin16/sd_training#labs-2)
-+ [Day_4](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day-4) : **GLS, Blocking vs Non-blocking and Synthesis-Simulation mismatch**
++ [Day_4](https://github.com/Parvin16/sd_training/blob/main/readme.md#Day_4) : **GLS, Blocking vs Non-blocking and Synthesis-Simulation mismatch**
    * [Lab](https://github.com/Parvin16/sd_training#labs-3)
 +  [Day_5](https://github.com/Parvin16/sd_training#Day_5) - **DFT**
 +  [Day_6](https://github.com/Parvin16/sd_training#Day_6) : **Introduction to Logic Synthesis**
