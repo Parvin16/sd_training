@@ -2537,15 +2537,26 @@ r
 
 ## LABS - Open-source EDA Tools
 
-### LAB 1 - OpenLANE Directory Structure
+### OpenLANE Directory Structure
 
-### LAB 2 - Design Preparation Step
+r
 
-### LAB 3 - Review Files after Run Synthesis
+### Design Preparation Step
 
-### LAB 4 - OpenLANE Project Git Link Description
+r
 
-### LAB 5 - Steps to Characterize Synthesis Results
+### Review Files after Run Synthesis
+
+r
+
+### OpenLANE Project Git Link Description
+
+r
+
+### Steps to Characterize Synthesis Results
+
+r
+
 
 ------------------------------------------------------------------------------------------------
 
