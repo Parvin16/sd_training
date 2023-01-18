@@ -2490,11 +2490,48 @@ Simplified RTL to GDSII Flow.
 
 [RTL] ( Synthesis -> Floor/Power Planing -> Placement -> Clock Tree Synthesis -> Routing -> Sign OFF ) [GDSII]
 
+SYNTHESIS :
+* Converts RTL to a circuit out of components from the standard cell library (SCL)
+* Standards cells have regular layout
+* Each cells comes with different views/models. Eg: Electrical, HDL, SPICE, etc.
+
+FLOOR/POWER PLANNING:
+* Chip Floor-planning - Partition the chip die between different system building blocks and place the I/O pads.
+* Macro Floor-planning - Defines the dimensions, pin locations, rows definition, and routing tracks.
+* Power Planning - Typically shift the power by power pads.
+
+PLACEMENT :
+* Place the cells on the floorplan rows, alligned with the sites
+  * Theoretically, should be place close to each other to reduce interconnect delays, and enable successful routing.
+  * Usually done in 2 steps, Global and Detailed.
+
+CTS (Clock Tree Synthesis) : 
+* Create a clock distribution network
+  * To deliver the clock to all sequential elements.
+  * Along with minimum skew (zero is hard to achieve) and in a good shape.
+
+ROUTING :
+* Implement the interconnect using the available metal layers.
+* Metal tracks form a routing grid.
+* Routing grid is huge.
+* Divide and Conquer
+  * Global Routing - Generates routing guides.
+  * Detailed Routing - Uses the routing guides to implement the actual wiring.
+
+SIGN OFF :
+* Physical Verifications
+  * Design Rules Checking (DRC)
+  * Layout vs Schematic (LVS)
+* Timing Verification
+  * Static Timing Analysis (STA)
 
 ### Intro to OpenLANE and Strive Chipsets
 
+r
+
 ### Intro to OpenLANE detailed ASIC Design Flow
 
+r
   
 ------------------------------------------------------------------------------------------------
 
