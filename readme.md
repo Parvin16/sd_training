@@ -2466,19 +2466,35 @@ Example of stop watch application flow :
 ## SoC Design and OpenLANE
 
 ### Intro to all components of Open-source Digital ASIC Design 
-  
-r
 
+Open source digital ASIC design
+
+Elements for Designing ASIC Flow :
+* Hardware Description Language (HDL) which Register Transfer Level (**RTL**) model of the function we want to implement including **RTL's IP**. (github.com, opencores.org)
+* **EDA** Tools (OpenLane, Qflow, OpenRoad.)
+* **PDK** (Process Design Kit) data - Collection of files used to model a fabrication process for the EDA tools used to design an IC. The interface between the fabrications and the designers. (OpenPDK SkyWater)
+  * Process Design Rules :DRC,LVS and PEX
+  * Device Models
+  * Digital Standard Cell Libraries
+  * I/O Libraries
+  
 ### Simplified RTL2GDS Flow
+
+ASIC Flow objective : 
+* RTL to GDSII
+* Also, called Automated PnR and/or Physical Implementation
+
+Simplified RTL to GDSII Flow.
+
+![note8](https://user-images.githubusercontent.com/118954022/213150523-5afbb491-378f-4094-8a94-464ad528b8fe.jpg)
+
+[RTL] ( Synthesis -> Floor/Power Planing -> Placement -> Clock Tree Synthesis -> Routing -> Sign OFF ) [GDSII]
+
 
 ### Intro to OpenLANE and Strive Chipsets
 
 ### Intro to OpenLANE detailed ASIC Design Flow
 
-Elements for Designing ASIC Flow :
-*
-*
-*
   
 ------------------------------------------------------------------------------------------------
 
