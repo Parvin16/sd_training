@@ -2464,10 +2464,10 @@ Example of stop watch application flow :
 ![note7](https://user-images.githubusercontent.com/118954022/212859755-809af203-3893-4c49-b9df-9761c72ed442.jpg)
   
 ## SoC Design and OpenLANE
-  
-r
 
 ### Intro to all components of Open-source Digital ASIC Design 
+  
+r
 
 ### Simplified RTL2GDS Flow
 
@@ -2475,7 +2475,11 @@ r
 
 ### Intro to OpenLANE detailed ASIC Design Flow
 
-
+Elements for Designing ASIC Flow :
+*
+*
+*
+  
 ------------------------------------------------------------------------------------------------
 
 ## LABS - Open-source EDA Tools
