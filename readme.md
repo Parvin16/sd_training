@@ -2589,10 +2589,10 @@ OpenLANE ASIC Flow (Detailed Design Flow). The flow started from RTL design and 
   
 ![note15](https://user-images.githubusercontent.com/118954022/213417580-77297663-e7ca-45e9-8884-09b3b0de0f05.jpg)
 
- With openLane, we took preventive approach by :
-  * Adding a fake antenna diode next to every cell input after placement.
-  * Run the antenna checker (Magic) on the routed layout.
-  * If the checker reports violations on the cell input pin, replace the Fake Diode Cell by a real one.
+* With openLane, we took preventive approach by :
+   * Adding a fake antenna diode next to every cell input after placement.
+   * Run the antenna checker (Magic) on the routed layout.
+   * If the checker reports violations on the cell input pin, replace the Fake Diode Cell by a real one.
 
 * **Static Timing Analysis (STA)** - RC Extraction: DEF2SPEF. STA: OpenSTA (using OpenROAD). Involving timing reports to check violations in timing paths.
 * **Physical Verification DRC & LVS** - Magic is used for Design Rule Checking and SPICE Extraction from Layout. Magic and Netgen are used for LVS where extracted SPICE by Magic vs verilog netlist are used.
