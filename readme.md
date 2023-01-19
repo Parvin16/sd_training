@@ -2660,8 +2660,14 @@ In opnelane (after preparation complete), >> run_synthesis ;
   
 ### OpenLANE Project Git Link Description
 
-More about OpenLANE : https://github.com/efabless/OpenLane
-  
+More about OpenLANE (Setting up and running openlane,openlane architecture,regression,hardening macro, etc.) : https://github.com/efabless/OpenLane
+
+The OpenLane Documentation : https://openlane.readthedocs.io/en/latest/
+
+OpenLANE Workshop : https://gitlab.com/gab13c/openlane-workshop
+
+Youtube : https://www.youtube.com/watch?v=EczW2IWdnOM and https://www.youtube.com/watch?v=Vhyv0eq_mLU
+
 ### Steps to Characterize Synthesis Results
 
 r
