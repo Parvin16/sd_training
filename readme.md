@@ -2670,7 +2670,21 @@ Youtube : https://www.youtube.com/watch?v=EczW2IWdnOM and https://www.youtube.co
 
 ### Steps to Characterize Synthesis Results
 
-r
+The synthesis is successfull. From the statistic report, we can observe that **Flop Ratio** = Num of Flop/Num of cells = 1613/14876 = 10.84% .
+
+![lab5 0](https://user-images.githubusercontent.com/118954022/213555473-f5749da5-7aaa-4c17-a38e-4052f2891049.jpg)
+
+View the results, in terminal, >> cd ../picorv32a/runs/13-01_14-09/results/synthesis ; vim picorv32a.synthesis.v ; (mapping all done, netlist is synthesized)
+  
+![lab5 1](https://user-images.githubusercontent.com/118954022/213557696-92de397a-827c-4cdf-9345-401722da1c3f.jpg)
+  
+Then, >> cd ../picorv32a/runs/13-01_14-09/reports/synthesis ; vim 1-yosys_4.stat.rpt ; vim 2-opensta.rpt ;
+
+Statistic report :
+![lab5 2](https://user-images.githubusercontent.com/118954022/213558673-a2a39733-28e9-45a9-b230-9dcb685d1bb1.jpg)
+
+STA report :
+![lab5 3](https://user-images.githubusercontent.com/118954022/213558639-21cb606c-8517-4858-8e23-e5876e16fb78.jpg)
 
 
 ------------------------------------------------------------------------------------------------
