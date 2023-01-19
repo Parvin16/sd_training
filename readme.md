@@ -2613,12 +2613,34 @@ OpenRoad Project : https://www.youtube.com/watch?v=p2HVoj6OhaI&t=9s
 ### OpenLANE Directory Structure
 
 OpenLANE is not a tool but a flow that is comprises to many EDA tools i.e. Yosys, etc. We will see on onvoking OpenLane.
-  
 
+Home work dirctory listing.
+
+![1 0](https://user-images.githubusercontent.com/118954022/213520082-67b09e60-ebb6-4749-aaa6-d053130c4204.jpg)
+
+Note : To know more info about the command in linux, >> <command> -- help ,eg: >> ls --help
+
+Then , cd openlane and explore. 'pdks' - process design kits. skywater-pdk : contains pdk dedicated files like timing_lib. 'open_pdks' : needed to convert commercial foundry to be compatible with its tools. 'sky130A' : to make compatible to open source environment (pdk variant). 
+
+![lab1 1](https://user-images.githubusercontent.com/118954022/213520134-5507c664-6398-494b-9df3-d56d0d982e0b.jpg)
+
+'libs.ref' contains all technology and process specific files. 'libs.tech' are specific to the tools.
+
+![lab1 2](https://user-images.githubusercontent.com/118954022/213524696-f92ce07a-5cfe-474d-a999-9ec35694b984.jpg)
+
+In sky130_fd_sc_hd/lib , contains all libs that are to know all PVT corners. 
+
+![lab1 3](https://user-images.githubusercontent.com/118954022/213526098-772a233e-8500-47be-a488-494b35eb7e3b.jpg)
 
 ### Design Preparation Step
 
-r
+Invoke the tool (steps need to be done everytime), >> cd openlane ; make mount ; bash. >> pwd ; ls -ltr ; ./flow.tcl -interactive ; package require openlane 0.9 (import the packages we need); prep -design picorv32a (design choosed and taken);
+
+![lab2 0](https://user-images.githubusercontent.com/118954022/213531475-30cef3e8-612c-429e-8c16-fe0ec47b7dc8.jpg)
+
+The designs all are at cd .../openlane/designs . Design name 'picorv32a' was taken from here. In cd picorv32a, vim config.tcl (bypass default value, contains clock values) and vim sky130A_sky130_fd_sc_hd_config.tcl . 'tlef' - technology LEF.
+
+![lab2 1](https://user-images.githubusercontent.com/118954022/213538385-7d05cb91-d20b-425b-b127-d69f2953dcfb.jpg)
 
 ### Review Files after Run Synthesis
 
