@@ -2279,7 +2279,7 @@ https://www.mpi-inf.mpg.de/fileadmin/inf/d1/teaching/winter20/how_to_clock/ lect
 
 ------------------------------------------------------------------------------------------------
 
-## TASKS
+## LABS
 
 ### BabySoC Modeling
   
@@ -2363,7 +2363,7 @@ References
 
 ------------------------------------------------------------------------------------------------
 
-## TASKS
+## LABS
 
 ------------------------------------------------------------------------------------------------
 
@@ -2391,7 +2391,7 @@ References
 
 ------------------------------------------------------------------------------------------------
 
-##TASKS
+##LABS
 
 ### TASK 1 
 
@@ -2405,7 +2405,7 @@ Document the different PVT corners WNS, WHS, TNS values in the form of a table a
 
 # #Day_15 
 
-Inception of Open-source EDA, OpenLANE and Sky130 PDK
+**Inception of Open-source EDA, OpenLANE and Sky130 PDK**
 
 ## How to talk to computers ??
 
@@ -2539,7 +2539,9 @@ r
   
 ------------------------------------------------------------------------------------------------
 
-## LABS - Open-source EDA Tools
+## LABS 
+
+**Open-source EDA Tools**
 
 ### OpenLANE Directory Structure
 
@@ -2564,7 +2566,9 @@ r
 
 ------------------------------------------------------------------------------------------------
 
-# #Day_16 Good Floorplan vs Bad Floorplan
+# #Day_16 
+
+**Good Floorplan vs Bad Floorplan**
 
 ## Chip Floor Planing Considerations
 
@@ -2584,6 +2588,8 @@ r
 
 # #Day_17
 
+**Design and Characterise One Library Cell using Layout Tool and Spice Simulator**
+
 ## Lecture
 
 
@@ -2597,6 +2603,8 @@ r
 
 # #Day_18
 
+**Pre-layout Timing Analysis and Importance of Good Clock Tree**
+
 ## Lecture
 
 
@@ -2609,6 +2617,34 @@ r
 ------------------------------------------------------------------------------------------------
 
 # #Day_19
+
+**Final Steps for RTL2GDS**
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+------------------------------------------------------------------------------------------------
+
+# #Day_20
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+------------------------------------------------------------------------------------------------
+
+# #Day_21
 
 ## Lecture
 
