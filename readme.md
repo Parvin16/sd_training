@@ -2575,7 +2575,33 @@ Main Goal of OpenLane
 
 ### Intro to OpenLANE detailed ASIC Design Flow
 
-r
+![note14](https://user-images.githubusercontent.com/118954022/213405501-1ae210c6-5f82-4ca9-9c38-2203a7839fe1.jpg)
+
+OpenLANE ASIC Flow (Detailed Design Flow). The flow started from RTL design and ended with final layout in GDSII format by using the function of PDK. OpenLANE is based on several open source project i.e. OpenROAD, KLayout, Yosys, QFlow, ABC, and etc. The steps start with RTL synthesis where RTL is fed into Yosys with the design constraints. Yosys will translate the RTL into logic circuits and be optimized. The optimized circuit will be mapped into cells from the cell library using abc where abc has to be guided during the optimization. OpenLANE comes with several abc scripts.
+  
+* **RTL Synthesis** (Yosys+ABC)- The design is synthesized into a gate-level netlist using yosys and static timing analysis is performed on the resulting netlist using **OpenSTA**.
+* **Synthesis Exploration** - Used to generate reports that shows how the design delay and area (can pick the best strategy base on this). It is also can be used to sweep the design configurations (**Design Exploration**) and generate reports design. The best configurations can be picked from the design.
+* **Regression Testing** - The design exploration uitlity is also used of rregression testing (CI). We run OpenLane on ~70 desgn and compare the results to the best known ones.
+* **Insertion of DFT Structures** - An open-source Design For Testability (DFT) toolchain, Fault, can **optionally** be used to modify the netlist, inserting scan chains and the necessary IO ports to scan and test the design after fabrication. It performs several steps such as Scan Insertion, Automatic Test Pattern Generation (ATPG), Test Patterns Compaction, Fault Coverage and Fault Simulation.
+* **Physical Implementation** - Known as automated PnR (Place and Route). Advancing with the physical implementation, we note that most of the tools in this stage are used from within the **OpenROAD** application in combination with other tools, some of them are custom and based on the OpenDB infrastructure, while others are indpendent.
+* **Logic Equivalent Check (LEC)** - Everytime the netlist is modified, verifications must be performed. CTS and Post Placement Optimization modifies the netlist. LEC is used to formally confirm that the function did not change after modifying the netlist. Uses Yosys. 
+* **Antenna Diodes Insertion** - Special step during physical implementation. When a metal wire segment is fabricated and it is long enough, it can act as antenna. Reactive ion etching causes charge to accumulate on the wire. Transistor gates can be damaged during fabrication. 2 Solutions : Bridging attaches a higher layer intermediary (requires router awareness) ; Add antenna diode cell to leak away charges (antenna diodes are provided by SCL).
+  
+![note15](https://user-images.githubusercontent.com/118954022/213417580-77297663-e7ca-45e9-8884-09b3b0de0f05.jpg)
+
+With openLane, we took preventive approach by :
+* Adding a fake antenna diode next to every cell input after placement.
+* Run the antenna checker (Magic) on the routed layout.
+* If the checker reports violations on the cell input pin, replace the Fake Diode Cell by a real one.
+
+* **Static Timing Analysis (STA)** - RC Extraction: DEF2SPEF. STA: OpenSTA (using OpenROAD). Involving timing reports to check violations in timing paths.
+* **Physical Verification DRC & LVS** - Magic is used for Design Rule Checking and SPICE Extraction from Layout. Magic and Netgen are used for LVS where extracted SPICE by Magic vs verilog netlist are used.
+* **Post Routing Evaluation** of results - DRC and LVS are then performed using magic and netgen. Antenna checking is performed by either OpenROAD’s ARC (Antenna Rule Checker) or using magic. Extraction of parasitics from the routed layout is then done using SPEF EXTRACTOR, followed by another round of static timing analysis to have more accurate timing reports that correspond to the actual physical layout.
+
+The final outputs of the flow, among various physical views and reports, are mainly GDSII and LEF views, which can be used in bigger designs.
+ 
+Source : https://woset-workshop.github.io/PDFs/2020/a21.pdf
+OpenRoad Project : https://www.youtube.com/watch?v=p2HVoj6OhaI&t=9s 
   
 ------------------------------------------------------------------------------------------------
 
