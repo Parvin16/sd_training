@@ -2713,7 +2713,11 @@ STA report :
 
 **Design and Characterise One Library Cell using Layout Tool and Spice Simulator**
 
-## Lecture
+## Labs for CMOS inverter ngspice Simulations
+
+## Inception of Layout A[] CMOS Fabrication Process
+
+## Sky130 Tech File Labs 
 
 
 ------------------------------------------------------------------------------------------------
@@ -2728,7 +2732,13 @@ STA report :
 
 **Pre-layout Timing Analysis and Importance of Good Clock Tree**
 
-## Lecture
+## Timing Modelling using Delay Tables
+
+## Timing Analysis with Ideal Clocks using OpenSTA
+
+## TritonCTS and Signal Integrity
+
+## Timing Analysis with Real Clocks using OpenSTA
 
 
 ------------------------------------------------------------------------------------------------
@@ -2743,7 +2753,11 @@ STA report :
 
 **Final Steps for RTL2GDS**
 
-## Lecture
+## Routing and Design Rule Check (DRC)
+
+## Power Distribution Network and Routing
+
+## TritonRoute Features
 
 
 ------------------------------------------------------------------------------------------------
