@@ -2513,33 +2513,65 @@ FLOOR/POWER PLANNING:
   <img width="317" alt="image" src="https://user-images.githubusercontent.com/118954022/213358030-73a97702-25d8-4071-8207-cb1b91307c03.png">
   
 PLACEMENT :
-* Place the cells on the floorplan rows, alligned with the sites
-  * Theoretically, should be place close to each other to reduce interconnect delays, and enable successful routing.
-  * Usually done in 2 steps, Global and Detailed.
+* Place the cells on the floorplan rows, alligned with the sites (finding a suitable physical location for each cell in the block).
+* Theoretically, should be place close to each other to reduce/prevent interconnect delays, and enable successful routing.
+* Usually done in 2 steps :
+  * Global - First stage of the placement where cells are placed inside the core area for the first time looking at the timing and congestion, it aims at generating     a rough placement solution (draft) that may violate some placement constraints like overlapping while maintaining a global view of the whole netlist.
+  * Detailed - The position obtained from global placements are minimally altered. 
+
+![note11](https://user-images.githubusercontent.com/118954022/213379397-089326c1-3012-41aa-995b-cfde2e3cd2f2.jpg)
 
 CTS (Clock Tree Synthesis) : 
 * Create a clock distribution network
-  * To deliver the clock to all sequential elements.
+  * To deliver the clock to all sequential elements. (eg: FF)
   * Along with minimum skew (zero is hard to achieve) and in a good shape.
+  * Usually a Tree. ( H or X like shaped, etc.)
+  
+<img width="117" alt="image" src="https://user-images.githubusercontent.com/118954022/213382217-d023467d-274c-4754-b90c-579851826456.png">
 
 ROUTING :
-* Implement the interconnect using the available metal layers.
+* Implementing the interconnect using the available metal layers.
 * Metal tracks form a routing grid.
-* Routing grid is huge.
-* Divide and Conquer
+* Routing grid is huge, so it uses 2 approaches.
+* Divide and Conquer approach
   * Global Routing - Generates routing guides.
   * Detailed Routing - Uses the routing guides to implement the actual wiring.
 
+![note12](https://user-images.githubusercontent.com/118954022/213384646-e97ca505-1015-49d3-aa8c-cd502d09eb86.jpg)
+
 SIGN OFF :
+* Final layout which undergoes verifications and matches the gate level netlist.
 * Physical Verifications
-  * Design Rules Checking (DRC)
-  * Layout vs Schematic (LVS)
+  * Design Rules Checking (DRC) - ensuring the final layout obeys all the design rules.
+  * Layout vs Schematic (LVS) - ensuring the final layout matches the gate level netlist of the design.
 * Timing Verification
-  * Static Timing Analysis (STA)
+  * Static Timing Analysis (STA) - ensuring all the timing constraints are met and the circuit will run at designated clock frequencies.
 
 ### Intro to OpenLANE and Strive Chipsets
 
-r
+Open Source ASIC Flow
+
+The problem is tougher when using open source EDA
+* Tools qualification ?
+* Tools calibration ?
+* Missing tools ?
+
+**OpenLANE** - Started as an Open-Surce Flow for a True Open Source Tape-Out Experiment. **striVe** is a family of open everything SoCs i.e. Open PDK, Open EDA, Open RTL.
+
+![note13](https://user-images.githubusercontent.com/118954022/213392621-edd73777-2676-465a-8074-afafecb58ae6.jpg)
+
+striVe2 is identical with striVe1 but it uses 1 kbytes Open Ram instead of SRAM. striVe5 same as striVe2 but it uses 8x1 open ram banks. striVe6 same as striVe2, it used for design testing with DFT.
+
+Main Goal of OpenLane 
+* Produce a clean GDSII with no human intervention (no human in the loop). Clean means:
+  * No LVS violations.
+  * No DRC violations.
+  * Timing Violations.
+* Tuned for skywater 130nm Open PDK. Also, supports XFAB180 and GF130G Containerized. **Containerized** - Functional out of the box. Instructions to build and run natively will follow.
+* Can be used to harden Macros and Chips. 
+* Two modes of operations : Autonomous (push button flow) or Interactive (run command step by step).
+* Design Space Exploration : Find the best set of flow configurations.
+* Comes up with large number of design examples.
 
 ### Intro to OpenLANE detailed ASIC Design Flow
 
