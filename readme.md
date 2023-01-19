@@ -2644,12 +2644,24 @@ The designs all are at cd .../openlane/designs . Design name 'picorv32a' was tak
 
 ### Review Files after Run Synthesis
 
-r
+In terminal, opnelane >> cd ../openlane/designs/picorv32a/runs/19-01_18-36/tmp ; ls -ltr ; vim merged.lef (the file created merging lef in openlane); cd .. ; vim cmds.log ;
 
+merged.lef (contains layer, wire, cell, macro level related info)
+![lab3 0](https://user-images.githubusercontent.com/118954022/213547668-6f2b370a-b0a6-4911-81e3-40bc4b1b113e.jpg)
+
+cmds.log
+![lab3 1](https://user-images.githubusercontent.com/118954022/213548982-569be465-2ed3-48e9-ab73-cf4bbb66eaee.jpg)  
+
+Synthesis results will be in ../picorv32a/runs/19-01_18-36/results once it done. There will be reports also in 'cd reports' . 'config.tcl' is important where any modifications or updates made, we can refer wether it has made the changes or not. It shows the default parameter taking by run basically.
+  
+In opnelane (after preparation complete), >> run_synthesis ; 
+  
+<img width="185" alt="image" src="https://user-images.githubusercontent.com/118954022/213551111-62d7c3c4-66ca-4519-ade9-215456a49a12.png">
+  
 ### OpenLANE Project Git Link Description
 
-r
-
+More about OpenLANE : https://github.com/efabless/OpenLane
+  
 ### Steps to Characterize Synthesis Results
 
 r
