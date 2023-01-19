@@ -2501,12 +2501,15 @@ SYNTHESIS :
 
 FLOOR/POWER PLANNING:
 * Chip Floor-planning - Partition the chip die between different system building blocks and place the I/O pads.
+
   ![note10](https://user-images.githubusercontent.com/118954022/213357779-58d5ff59-b30d-4986-8d09-8dbc863bdebb.jpg)
 
 * Macro Floor-planning - Defines the dimensions, pin locations, rows definition, and routing tracks.
+
   <img width="118" alt="image" src="https://user-images.githubusercontent.com/118954022/213357900-20ff9887-50f0-455d-9027-ebc973cf4267.png">
 
-* Power Planning - Typically shift the power by power pads.
+* Power Planning - The power is provided to the every macros, standard cells, and all other cells are present in the design. Typically, shift the power by power pads and the power distribution network uses upper metal layers since they are thicker than lower metal layers.
+
   <img width="317" alt="image" src="https://user-images.githubusercontent.com/118954022/213358030-73a97702-25d8-4071-8207-cb1b91307c03.png">
   
 PLACEMENT :
