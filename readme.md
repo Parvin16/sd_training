@@ -2490,10 +2490,14 @@ Simplified RTL to GDSII Flow.
 
 [RTL] ( Synthesis -> Floor/Power Planing -> Placement -> Clock Tree Synthesis -> Routing -> Sign OFF ) [GDSII]
 
+Source: http://vlsitechnology.org/
+  
 SYNTHESIS :
-* Converts RTL to a circuit out of components from the standard cell library (SCL)
-* Standards cells have regular layout
-* Each cells comes with different views/models. Eg: Electrical, HDL, SPICE, etc.
+* Converts RTL to a circuit out of components from the standard cell library (SCL).
+* Standards cells have regular layout. Each cells comes with different views/models. Eg: Electrical, HDL, SPICE, Layout (abstract and detailed).
+* The result of the circuit is described in HDL and usually refered as gate level netlist, also it is functional equivalent to RTL.
+
+![note9](https://user-images.githubusercontent.com/118954022/213353623-1a161dc5-03a5-42f2-b433-d0db80432218.jpg)
 
 FLOOR/POWER PLANNING:
 * Chip Floor-planning - Partition the chip die between different system building blocks and place the I/O pads.
