@@ -2611,7 +2611,9 @@ OpenRoad Project : https://www.youtube.com/watch?v=p2HVoj6OhaI&t=9s
 
 ### OpenLANE Directory Structure
 
-r
+OpenLANE is not a tool but a flow that is comprises to many EDA tools i.e. Yosys, etc. We will see on onvoking OpenLane.
+  
+
 
 ### Design Preparation Step
 
