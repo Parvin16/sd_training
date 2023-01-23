@@ -1,4 +1,4 @@
-# #MY_REPO
+# #MY_VSD_REPO
 
 ## Table Of Content
 
@@ -2691,15 +2691,60 @@ STA report :
 
 # #Day_16 
 
-**Good Floorplan vs Bad Floorplan**
+**Good Floorplan vs Bad Floorplan and Intro to Library Cells**
 
-## Chip Floor Planing Considerations
+### Chip Floor Planing Considerations
+  
+**Floorplan** is the process of deriving the die size, allocating space for soft blocks, planning power, and macro placement etc. We specify the floorplan by Size or Die/IO/Core Coordinates. We derive core and module sizes based on the standard cell utilization.
+  
+**Utilization Factor and Aspect Ratio**
+  
+rrrrrrrr
 
-## Library Binding and Placement
+**Concept of Pre-placed Cells**
+  
+**De-coupling Capacitors**
+  
+**Power Planning**
+  
+**Pin Placement and Logical Cell Placement Blockage**
+  
+**Steps to Run Floorplan using OpenLANE**
+  
+**Review Floorplan Files and Steps to View Floorplan**
+  
+**Review Floorplan Layout in Magic**
 
-## Cell Design and Charcterization Flows 
 
-## General Timing Charcterization Parameters
+### Library Binding and Placement
+  
+**Netlist Binding and Initial Place Design**
+  
+**Optimize Placement using Estimated Wire-length and Capacitance**
+  
+**Final Placement Optimization**
+  
+**Need for Libraries and Characterization**
+  
+**Congestion Aware Placement using RePlAce**
+  
+
+### Cell Design and Charcterization Flows 
+  
+**Inputs for Cell Design Flow**
+  
+**Circuit Design Step**
+  
+**Layout Design Step**
+  
+**Typical Characterization Flow**
+  
+
+### General Timing Charcterization Parameters
+  
+**Timing Threshold Definitions**
+  
+**Propagation Delay and Transition Time**
 
 ------------------------------------------------------------------------------------------------
 
@@ -2711,7 +2756,7 @@ STA report :
 
 # #Day_17
 
-**Design and Characterise One Library Cell using Layout Tool and Spice Simulator**
+**Design and Characterise Library Cell using Magic Layout and Spice Simulator**
 
 ## Labs for CMOS inverter ngspice Simulations
 
@@ -2751,7 +2796,7 @@ STA report :
 
 # #Day_19
 
-**Final Steps for RTL2GDS**
+**Final Steps for RTL2GDS using TritonRoute and OpenSTA**
 
 ## Routing and Design Rule Check (DRC)
 
