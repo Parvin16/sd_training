@@ -2696,12 +2696,50 @@ STA report :
 ### Chip Floor Planing Considerations
   
 **Floorplan** is the process of deriving the die size, allocating space for soft blocks, planning power, and macro placement etc. We specify the floorplan by Size or Die/IO/Core Coordinates. We derive core and module sizes based on the standard cell utilization.
+
+Floorplan Stages :
+1. Find Height and Width of Core and Die.
+2. Define Location of Preplaced Cell.
   
 **Utilization Factor and Aspect Ratio**
-  
-rrrrrrrr
+
+Defining Width and Height of the Core and Die :
+
+![note1 0](https://user-images.githubusercontent.com/118954022/214104347-908ac5f9-dbcb-4017-8684-a2cbefc0c001.jpg)
+
+Lets take a netlist as example, with 2 flops and 2 gates(comb logic). Netlist basically decribes the connectivity of an electronic design.
+
+![note1 1](https://user-images.githubusercontent.com/118954022/214105712-484e4d05-82db-4f91-a493-f1b2f563a67c.jpg)
+
+We are dependent on the dimensions of logic gates. Convert the components/symbols into physical dimension.
+
+![note1 2](https://user-images.githubusercontent.com/118954022/214106452-9d301301-69c4-4f66-a904-e265bdb31280.jpg)
+
+Focus on the dimensions of the standard cells, not the wires. So, lets give a rough dimensions (assume).
+
+![note1 3](https://user-images.githubusercontent.com/118954022/214107459-342ea8e3-e42b-4afd-bab0-4b7570691394.jpg)
+
+Lets calculate the area occupied by the above netlist on a Silicon Wafer. Brakes the wire and place it in sigle grid. Min area assumed is 2x2 = 4 unit^2.
+
+![note1 4](https://user-images.githubusercontent.com/118954022/214108125-a94fe89f-132c-4139-80ec-b9fcc7111fa1.jpg)
+
+**Core** - The section of the chip where the fundamental logic of the design is placed. **Die** - Consists of core (encapsulate the core), it is a small semiconductor material specimen on which the fundamental circuit is fabricated. Utilize it by placing above netlist in the core. Note: in some cases, if there is some areas left out, it will not be 100% utilization.
+
+![note1 5](https://user-images.githubusercontent.com/118954022/214110104-3a8ffe66-aa29-41ef-9511-22e0e23ff802.jpg)
+
+![note1 6](https://user-images.githubusercontent.com/118954022/214110587-f17ad5b8-aac5-4efa-9fe3-6c4f089ea553.jpg)
+
+**Utilization factor** - area occupied by netlist / total area of core. Since utilization factor = 1, equivalent to 100% utilization, and if there is some extra logic needs to be added, that is not allowed because there is no space left. This 100% (1) utilization is usually as an ideal scenario, but in practical scenario, we only utilized up until 50% (0.5) to 60% (0.6) utilization. Whenever the aspect ratio = 1, it signifies that the chip is in square-shaped. Else if aspect ratio is other than 1, it signifies that the chip is in rectangular-shaped.
+
+![note1 7](https://user-images.githubusercontent.com/118954022/214112975-4ace871e-e986-43ad-81cf-3f5df051cf27.jpg)
+
+Another example with rectangle core. With 50% utilization, can futher place extra logics in the core. 
+
+![note1 8](https://user-images.githubusercontent.com/118954022/214114437-d8203539-9b7f-49dc-96d7-cb3fced7f504.jpg)
 
 **Concept of Pre-placed Cells**
+
+rrrrrrr
   
 **De-coupling Capacitors**
   
@@ -2758,8 +2796,6 @@ rrrrrrrr
 
 **Design and Characterise Library Cell using Magic Layout and Spice Simulator**
 
-## Labs for CMOS inverter ngspice Simulations
-
 ## Inception of Layout A[] CMOS Fabrication Process
 
 ## Sky130 Tech File Labs 
@@ -2769,7 +2805,7 @@ rrrrrrrr
 
 ## LABS
 
-### LAB 1 - 
+## Labs for CMOS inverter ngspice Simulations
 
 ------------------------------------------------------------------------------------------------
 
