@@ -2739,19 +2739,39 @@ Another example with rectangle core. With 50% utilization, can futher place extr
 
 **Concept of Pre-placed Cells**
 
-rrrrrrr
+Continue on defining width and height of the core and die. Anothe example, let say the core and die is bigger. The core has been utilized with 25% of the combinational logic and it has another 75% space which can be used for any additional cells. The free space can be used for more additional layers of routing.
+
+![note2 0](https://user-images.githubusercontent.com/118954022/214367290-9da95745-52cf-4a76-b029-0d5123275036.jpg)
+
+Define Location of Preplaced Cell : 
+
+![note2 1](https://user-images.githubusercontent.com/118954022/214367539-84922700-4db3-4b35-a06c-72193fc7e7b0.jpg)
+
+Lets look on **Pre-placed Cell** means. Combinational logic basically does some amount of functions, eg: memory, multiplier, mux, complex clock divider or etc. It does big task and the output is some huge circuits. Therefore, we need to extract it out and divide that huge output circuits into multiple blocks and then separate the netlist out into different blocks and implement seperately.
+
+![note2 2](https://user-images.githubusercontent.com/118954022/214369099-f3c99140-23b2-4f6e-a83a-90d07b3c384f.jpg)
+
+Next, with the 2 seperate block, extend the i/o pins. Block 1 with input pins and Block 2 with output pins. Then, detached those blocks with the black boxes (invisible at top level netlist). We will now separate the black boxes as two different IP's or modules. Basicaly is reused model concept. The advantages : More convenient to use them for multiple times when needed with different users where they will be implemented separately based upon their functionalities. Also, those blocks can be reused separately for each block for multiple times when needed. 
+
+![note2 3](https://user-images.githubusercontent.com/118954022/214371017-0393e404-191a-49c4-b3d2-1030328cc00b.jpg)
+
+Once being placed, it will fixed at the same location, will not affect by routing or any changes). All of the IPs can be implemented once and can be instantiated multiple times onto a netlist. However, this is no need to be implemented for multiple times because this is a part of top-level netlist where they perform some functions, where they receive some inputs signals, they deliver some output signals, but the functionality of the particular cells will be implemented only once. Since they are being placed before the routing, they are called pre-placed cells. All above are Macro/IP cells which are complex logic and reused multiple times in the circuit but only implemented once.
+
+![note2 4](https://user-images.githubusercontent.com/118954022/214373225-b5b84304-a012-4ce0-878b-a69f72242cb7.jpg)
   
 **De-coupling Capacitors**
+
+rrrrrrr
   
 **Power Planning**
   
 **Pin Placement and Logical Cell Placement Blockage**
   
-**Steps to Run Floorplan using OpenLANE**
+**Steps to Run Floorplan using OpenLANE** - at lab
   
-**Review Floorplan Files and Steps to View Floorplan**
+**Review Floorplan Files and Steps to View Floorplan** - at lab
   
-**Review Floorplan Layout in Magic**
+**Review Floorplan Layout in Magic** - at lab
 
 
 ### Library Binding and Placement
@@ -2764,7 +2784,7 @@ rrrrrrr
   
 **Need for Libraries and Characterization**
   
-**Congestion Aware Placement using RePlAce**
+**Congestion Aware Placement using RePlAce** - at lab
   
 
 ### Cell Design and Charcterization Flows 
@@ -2788,7 +2808,15 @@ rrrrrrr
 
 ## LABS
 
-### LAB 1 - 
+### Steps to Run Floorplan using OpenLANE
+
+### Review Floorplan Files and Steps to View Floorplan
+
+### Review Floorplan Layout in Magic
+
+### Congestion Aware Placement using RePlAce
+
+###
 
 ------------------------------------------------------------------------------------------------
 
