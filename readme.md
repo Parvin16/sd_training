@@ -2761,7 +2761,11 @@ Once being placed, it will fixed at the same location, will not affect by routin
   
 **De-coupling Capacitors**
 
-rrrrrrr
+Continue on defining on pre-placed cells. A **Decoupling Capacitor** is a capacitor used to decouple (Eg: prevent electrical energy from transferring to) one part of a circuit from another. For higher frequencies, an alternative name is bypass capacitor as it is used to bypass the power supply or other high-impedance component of a circuit. 
+  
+Now as example, consider there are three pre-placed cell blocks, block A, block B, and block C where we implemented memories for once and they will be reused for multiple times in the circuit. Most of the blocks are communicating with input pins. Hence, the blocks will be usually being placed near the input side depending on the design scenario/background. Once the location has been set to place the blocks, the location can't be changed. Therefore, the location needs to be very well defined.
+
+
   
 **Power Planning**
   
