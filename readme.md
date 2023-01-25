@@ -2765,6 +2765,8 @@ Continue on defining on pre-placed cells. A **Decoupling Capacitor** is a capaci
   
 Now as example, consider there are three pre-placed cell blocks, block A, block B, and block C where we implemented memories for once and they will be reused for multiple times in the circuit. Most of the blocks are communicating with input pins. Hence, the blocks will be usually being placed near the input side depending on the design scenario/background. Once the location has been set to place the blocks, the location can't be changed. Therefore, the location needs to be very well defined.
 
+![note3 0](https://user-images.githubusercontent.com/118954022/214513462-6dcfeb90-db62-4961-8d29-2284f1da36b5.jpg)
+
 
   
 **Power Planning**
