@@ -2693,7 +2693,7 @@ STA report :
 
 **Good Floorplan vs Bad Floorplan and Intro to Library Cells**
 
-### Chip Floor Planing Considerations
+## Chip Floor Planing Considerations
   
 **Floorplan** is the process of deriving the die size, allocating space for soft blocks, planning power, and macro placement etc. We specify the floorplan by Size or Die/IO/Core Coordinates. We derive core and module sizes based on the standard cell utilization.
 
@@ -2701,7 +2701,7 @@ Floorplan Stages :
 1. Find Height and Width of Core and Die.
 2. Define Location of Preplaced Cell.
   
-**Utilization Factor and Aspect Ratio**
+### **Utilization Factor and Aspect Ratio**
 
 Defining Width and Height of the Core and Die :
 
@@ -2737,7 +2737,7 @@ Another example with rectangle core. With 50% utilization, can futher place extr
 
 ![note1 8](https://user-images.githubusercontent.com/118954022/214114437-d8203539-9b7f-49dc-96d7-cb3fced7f504.jpg)
 
-**Concept of Pre-placed Cells**
+### **Concept of Pre-placed Cells**
 
 Continue on defining width and height of the core and die. Anothe example, let say the core and die is bigger. The core has been utilized with 25% of the combinational logic and it has another 75% space which can be used for any additional cells. The free space can be used for more additional layers of routing.
 
@@ -2759,7 +2759,7 @@ Once being placed, it will fixed at the same location, will not affect by routin
 
 ![note2 4](https://user-images.githubusercontent.com/118954022/214373225-b5b84304-a012-4ce0-878b-a69f72242cb7.jpg)
   
-**De-coupling Capacitors**
+### **De-coupling Capacitors**
 
 Continue on defining on pre-placed cells. A **Decoupling Capacitor** is a capacitor used to decouple (Eg: prevent electrical energy from transferring to) one part of a circuit from another. For higher frequencies, an alternative name is bypass capacitor as it is used to bypass the power supply or other high-impedance component of a circuit. 
   
@@ -2787,56 +2787,83 @@ So, now no switching activity will miss out and no cross talk. We have taken car
   
 ![note3 4](https://user-images.githubusercontent.com/118954022/214530123-8da846c2-bd8a-4b58-94a2-e15bb85cd859.jpg)
   
-**Power Planning**
+### **Power Planning**
   
-rrr
-  
-**Pin Placement and Logical Cell Placement Blockage**
-  
-rrr
-  
-**Steps to Run Floorplan using OpenLANE** - at lab
-  
-**Review Floorplan Files and Steps to View Floorplan** - at lab
-  
-**Review Floorplan Layout in Magic** - at lab
+Let's take the previous circuit and treat it as a black box and denoted it as a macro/block. 
 
+![note4 0](https://user-images.githubusercontent.com/118954022/214611490-2cf9aa4b-c1da-4bb9-8773-c609089e6e78.jpg)
 
-### Library Binding and Placement
+Let say there are 4 different macros/blocks (so 4 Cd) containing driver, load, and etc that are usually available in a complete chip with different functionalities. The voltage source was supplied for 4 blocks. Hence, the supply from the source will not be stable where it is impossible to put all the decoupling capacitors. Let's assume the orange and blue line was 16-bit bus. Logic '1' indicates that the capacitor is being charged to Vdd while logic '0' will be discharged to the ground. This 16 bit bus is connected with the inverter, so the output will be inverted from the input. Logic '1' will be discharged and while logic '0' will be charged. All the capacitors that were charged to Volts will be discharged to 0V through single Ground tap point and this will cause a bounce/bump at Ground tap point. If this bounce exceeds the noise margin level, it will reaches undefined state, where the voltage might be changed from logic 1 to 0 and it is unpredictable. All capacitors which were '0' volt will have to charge to 'V' volts through single Vdd tap point. This will cause lowering of voltage at Vdd tap point. The level of Ground Bounce and Voltage Droop will be increased due to the multiple process of tap points happened at the same time. If this voltage droop is within the noise margin level, it is ok but if it exceeds undefined region in the noise margin level, it will be a danger zone. 
+
+![note4 1](https://user-images.githubusercontent.com/118954022/214627248-1ffcb0e8-cb09-46c7-a39a-21c3a1774759.jpg)
+
+With example circuit and with 16-bit bus. The output will be inverted once it is being fed into inverter. '1' refers to the capacitor is charged by Vdd and 0 is discharged to ground.
+
+![note4 2](https://user-images.githubusercontent.com/118954022/214629428-1b2801a5-a769-4511-886f-daf3744445cd.jpg)
+
+Ground bounce phenomena. If ground bounce exceed noice margin level, it is entering undefined state.
+
+![note4 3](https://user-images.githubusercontent.com/118954022/214630885-2d128464-acad-494f-b9e2-8e7636488e79.jpg)
+
+Voltage Droop phenomena. During charge, each of them demanding supply  at the same time. If this voltage droop is within the noise margin level, it is ok but if it exceeds undefined region in the noise margin level, it will be a danger zone.
+
+![note4 4](https://user-images.githubusercontent.com/118954022/214632086-a04022d3-0e4c-4f03-958a-d79741c51b1e.jpg)
+
+To solve this single power supply problem, we need to use multiple power supply (eg: multiple Vdd and Vss) instead of using 1 power supply only. Multiple power supply will be sourced to the nearest block and it will prevent the block from being missed to get the power supply. Therefore, all the logics will take the nearest power supply. The driver and the load also can be brought closed to each other in 'L' sense. Even the new logic, it can take the nearest supply and discharge to nearest ground.
+
+![note4 5](https://user-images.githubusercontent.com/118954022/214638777-6193de46-977b-47f2-8cd3-c1bebf06cb1e.jpg)
+
+### **Pin Placement and Logical Cell Placement Blockage**
   
-**Netlist Binding and Initial Place Design**
+Let's take some designs as examples that need to be implemented. Along with the circuit, there are some pre-placed blocks as well that is being connected to the input circuit and being clocked out. There are 4 designs in total with different connections to be looking through in this section. Each flops having different clock, so focus on the clock port and simplyfying it when merging complete design. By merging all of the four designs, it will be a complete design. The connectivity information between the gates are coded using VHDL/Verilog language and is called as **Netlist**.
+
+![note5 0](https://user-images.githubusercontent.com/118954022/214643891-b7717a38-e1af-4e0f-b05f-2bd7b8308137.jpg)
+
+The connectivity information between the gates are coded using VHDL/Verilog language and is called as **Netlist**.
+
+Pin Placement : Pin Placement of complete design. In this design, the left side are all input ports and the right side are all output ports. Input ports and output ports are placed randomly since it is depending on our the design planning. The pins are placed randomly depending on the blocks. No cells/flip flops can be placed on the block a, block b and block c area. Clock ports which are CLK1, CLK2 and Clkout are bigger in size as compared to Data ports, since the clock is the ports that are driving all the cells and sending the signals to all flip flops. Bigger the size, least the resistance. Therefore, clock ports need to be bigger in size to avoid resistance during signal transmission since clock plays an important role in sending the signals. This is a work together where front end team defines netlist connectivity while the back end team decides pin placements. 
+
+Logical Cell Placement Blockage : We block the particular area between core and die (the orange stripes) from placement and routing. This is to prevent automated routing tool place cell inside it. This area is reserved for the pin locations.
+
+![note5 1](https://user-images.githubusercontent.com/118954022/214648326-47119e9e-2c59-402c-bb18-55c8a851b33e.jpg)
+
+The Floor Plan is ready for Placement and Routing step.
+
+## Library Binding and Placement
   
-**Optimize Placement using Estimated Wire-length and Capacitance**
+### **Netlist Binding and Initial Place Design**
   
-**Final Placement Optimization**
+### **Final Placement Optimization**
   
-**Need for Libraries and Characterization**
+### **Need for Libraries and Characterization**
   
 **Congestion Aware Placement using RePlAce** - at lab
   
 
-### Cell Design and Charcterization Flows 
+## Cell Design and Charcterization Flows 
   
-**Inputs for Cell Design Flow**
+### **Inputs for Cell Design Flow**
   
-**Circuit Design Step**
+### **Circuit Design Step**
   
-**Layout Design Step**
+### **Layout Design Step**
   
-**Typical Characterization Flow**
+### **Typical Characterization Flow**
   
 
-### General Timing Charcterization Parameters
+## General Timing Charcterization Parameters
   
-**Timing Threshold Definitions**
+### **Timing Threshold Definitions**
   
-**Propagation Delay and Transition Time**
+### **Propagation Delay and Transition Time**
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
 ### Steps to Run Floorplan using OpenLANE
+
+After completion of synthesis, now work on floorplan, >> cd ../Desktop/work/tools/openlane_working_dir/openlane/configuration ; vim README.md ;
 
 ### Review Floorplan Files and Steps to View Floorplan
 
