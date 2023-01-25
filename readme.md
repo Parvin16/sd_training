@@ -2863,13 +2863,61 @@ The Floor Plan is ready for Placement and Routing step.
 
 ### Steps to Run Floorplan using OpenLANE
 
-After completion of synthesis, now work on floorplan, >> cd ../Desktop/work/tools/openlane_working_dir/openlane/configuration ; vim README.md ;
+After completion of synthesis, now work on floorplan, >> cd ../Desktop/work/tools/openlane_working_dir/openlane/configuration ; vim README.md (file consists of all variables for each stage such as synthesis flow, floorplan decription, pins and ports placement, etc.). Variable in placement need to check congestion and make sure timing is met. PL - placement , FL - floorplan. 
 
+![lab1 0](https://user-images.githubusercontent.com/118954022/214676295-a006fd71-d506-41b4-a3db-c25c0080b26b.jpg)
+
+Then next, >> vim floorplan.tcl; (view floorplan parameters and switches). The metal hmetal and vmetal number is always add 1 in openLANE (in pic). 
+
+![lab1 1](https://user-images.githubusercontent.com/118954022/214680519-26899186-0fb7-46ff-b6b2-18fe4b04ddea.jpg)
+
+Previously in openlane/designs/picorv32a, >> vim config.tcl ; if we see there is no vertical and horinzontal metal showed. Usually it is shown.
+
+![lab1 2](https://user-images.githubusercontent.com/118954022/214681011-0a6c632f-4924-460b-bb91-2cc03bf2eb36.jpg)
+
+In Openlane terminal, >> run_floorplan 
+  
+<img width="263" alt="image" src="https://user-images.githubusercontent.com/118954022/214682175-0800ac4f-3a37-4658-8ae4-52a390079caf.png">
+  
 ### Review Floorplan Files and Steps to View Floorplan
+  
+Define metal layer for I/O, then review this log file, >> cd .../openlane/designs/picorv32a/runs/13-01_14-09/logs/floorplan ; vim 4-ioPlacer.log ; There is no metal layers shown. Usualy got and the number is added with 1 compare to the metal layers number in config.tcl file.  
+ 
+Next, >> cd .../openlane/designs/picorv32a/runs/19-01_18-36 ; vim config.tcl ; This is in run directory, tells us the configuration details taken by the flow. We can the parameters that is included in the current flow. We can see the core util value is same as the in sky..config.tcl in picorv32a directory. So the taken parameter are correct for the current run.
+  
+![lab2 0](https://user-images.githubusercontent.com/118954022/214687905-4a03a7a7-9aaa-4ec5-b558-753da95fc2a1.jpg)
+
+List out location, >> cd .../openlane/designs/picorv32a/runs/13-01_14-09/results/floorplan ; vim picorv32a.floorplan.def ; The (0 0) is origin and ( x-axis y-axis ). So basically with this info, we calculate the area of die.
+  
+![lab2 1](https://user-images.githubusercontent.com/118954022/214689743-593c29a5-b089-4957-944c-eb2553b5f73e.jpg)
 
 ### Review Floorplan Layout in Magic
+  
+Invoke magic, >> magic -T ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def & ;
+  
+![lab3 0](https://user-images.githubusercontent.com/118954022/214691550-32b09f60-3b5f-4757-9b2e-be809d7411be.jpg)
+  
+Press 'S' for select and press 'V' for centre. Left click then right click to select an area(a box formed). Press 'Z' to zoom in. Then place cursor above a component and press S, then above open tkcon tab and >> what ; to display info of the component. It is attached to metal layer 3.
+  
+![lab3 1](https://user-images.githubusercontent.com/118954022/214693847-3627aa0d-7149-40a2-a0c7-7625599769fe.jpg)
+
+We can press on sub cells and other. Like this one is decap cell at side row named 'PHY_166'.
+  
+![lab3 2](https://user-images.githubusercontent.com/118954022/214694842-89054adc-8a97-4e52-b78f-6db6f2742457.jpg)
+
+These are tap cells, to avoid the latches condition on CMOS devices. Their arrangement are diagonal to each other. 
+  
+![lab3 3](https://user-images.githubusercontent.com/118954022/214695127-7f7d1f1a-9c94-4c08-bff5-2b30a5d5db0c.jpg)
+
+During floorplan, all standard cells are not placed in the design, all will be located at bottom left area. 
+  
+![lab3 4](https://user-images.githubusercontent.com/118954022/214696429-16b7cdc4-151a-460f-900e-5c0447e59b9c.jpg)
 
 ### Congestion Aware Placement using RePlAce
+  
+rrrr
+  
+In openLane, >> run_placement ;
 
 ------------------------------------------------------------------------------------------------
 
