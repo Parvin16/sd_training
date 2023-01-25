@@ -2767,11 +2767,33 @@ Now as example, consider there are three pre-placed cell blocks, block A, block 
 
 ![note3 0](https://user-images.githubusercontent.com/118954022/214513462-6dcfeb90-db62-4961-8d29-2284f1da36b5.jpg)
 
+Surround Pre-placed Cells with Decoupling Capacitors :
 
+The circuit represents any of one block. Example at F (green block) at the capacitor, when there is transition 0 - >1, this capacitor need to charge to represent logic 1 (current demand). When Vdd flows and drops happens due to resistance and inductance, Vdd' refers as the voltage drop. 
+  
+![note3 1](https://user-images.githubusercontent.com/118954022/214519018-68f132d6-f8e9-465a-ab26-48edccd52027.jpg)
+
+If Vdd' goes below the noise margin, due to Rdd and Ldd, the logic '1' at the output of circuit won't be detected as logic '1' at the input of the circuit following this circuit. Huge physical distance among power supply and circuit.
+  
+**Noise Margin summary**. Anything that lies between Vol and Vil it is called as logic 0. Any voltage that lies between Vil and Vih is called as undefined region. **Undefined Region** - The logic can either moved from logic 1 to logic 0 or from the interception point of (b) to logic 0. Undefined region is a danger case. Anything that lies between Vih and Voh it is called as logic 1 or 1V. Therefore, we have to ensure that the voltage didn't enter in undefined region since it cannot be identified whether the voltage might be in logic 1 or not. That is the problem when we are having a large physical distance from the main power supply to the circuit.
+  
+![note3 2](https://user-images.githubusercontent.com/118954022/214522258-f4e7f57c-a7d8-4a99-9242-e62339a55361.jpg)
+
+So, the solution is to add decopuling capacitors in parallel with the circuit. It decouple the circuit from the supply. The decoupling capacitor is a huge capacitor which is completely be filled with the charge and the equivalent voltage across the decoupling capacitor is similar to what we have in the power supply. When there is switching activity in the circuit, the decoupling capacitor will supply current. Now there is low possibility of having voltage drop since it is nearer to the circuit. 
+  
+![note3 3](https://user-images.githubusercontent.com/118954022/214528363-4a7dadbd-1461-4489-88b6-468b8937817c.jpg)
+
+So, now no switching activity will miss out and no cross talk. We have taken care the local communication. The overall view of pre-placed cells on a top-level netlist across the decoupling capacitors and the blocks.
+  
+![note3 4](https://user-images.githubusercontent.com/118954022/214530123-8da846c2-bd8a-4b58-94a2-e15bb85cd859.jpg)
   
 **Power Planning**
   
+rrr
+  
 **Pin Placement and Logical Cell Placement Blockage**
+  
+rrr
   
 **Steps to Run Floorplan using OpenLANE** - at lab
   
@@ -2821,8 +2843,6 @@ Now as example, consider there are three pre-placed cell blocks, block A, block 
 ### Review Floorplan Layout in Magic
 
 ### Congestion Aware Placement using RePlAce
-
-###
 
 ------------------------------------------------------------------------------------------------
 
