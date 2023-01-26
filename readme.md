@@ -3097,9 +3097,28 @@ More details on DRC - https://www.design-reuse.com/articles/41504/design-rule-ch
 
 ### **Introduction to Sky130 pdk's and Steps to Download Labs**
 
-rrr
+In ~~/Desktop/work/tools >> wget http://opencircuitdesign.com/open_pdks/archive/drc_tests.tgz (To import magic layout into the tool); ls ; tar xfz drc_tests.tgz (to extract the file); cd drc_tests ; ls ; cat .magicrc  (info on whr to find tech file); 
+
+![lab7 0](https://user-images.githubusercontent.com/118954022/214918940-97282f52-127c-4f48-8d3c-81f95a383313.jpg)
+
+Start-up script for Magic. In terminal ../drc_tests, >> magic -d XR (for better graphics); .Then, select file --> open --> met3.mag. Note: select any object, press ";" to auto switch to another terminal.
+
+![lab7 1](https://user-images.githubusercontent.com/118954022/214923346-812a55e1-095f-4818-abbb-5561c32ec73a.jpg)
+
+In tkcon, >> drc why  (To check the violations on selected object);
+
+![lab7 2](https://user-images.githubusercontent.com/118954022/214923215-dd9c79c6-5e11-45b4-a062-ac2fb2368f27.jpg)
 
 ### **Introduction to Magic and Steps to Load Sky130 Tech-rules**
+
+* SkyWater Open Source PDK documentation - https://skywater-pdk.readthedocs.io/en/main/ and https://github.com/google/skywater-pdk 
+* Periphery rules details - https://skywater-pdk.readthedocs.io/en/main/rules/periphery.html#denmos 
+
+Select any area, click scroller of the mouse, and select m3contact using scroller. In tkcon, >> cif see VIA2  (to create VIA within m3contact); what ; feed clear  (to clear and undo); snap int ;
+
+![lab8 0](https://user-images.githubusercontent.com/118954022/214927836-8f541237-a4a4-4f4c-b2e9-eb9d4784f6b5.jpg)
+
+The distance between the cut and the edge is always larger and will never be smaller than 0.065. Via must enclosed with metal 3 atleast0.065 micron, else will cause DRC violation.
 
 ### **Exercise to Fix Poly.9 Error in Sky130 Tech-file**
 
@@ -3117,18 +3136,70 @@ rrr
 
 ## Timing Modelling using Delay Tables
 
+### Introduction to Delay Tables
+
+### Delay Table Usage Part 1 and 2
+
+
 ## Timing Analysis with Ideal Clocks using OpenSTA
+
+### Setup Timing Analysis and Introduction to Flip-flop Setup Time
+
+###  Introduction to Clock Jitter and Uncertainty
+
 
 ## TritonCTS and Signal Integrity
 
+### Clock Tree Routing and Buffering using H-Tree Algorithm
+
+### Crosstalk and Clock Net Shielding
+
+
 ## Timing Analysis with Real Clocks using OpenSTA
+
+### Setup Timing Analysis using Real Clocks
+
+### Hold Timing Analysis using Real Clocks
 
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
-### LAB 1 - 
+## Timing Modelling using Delay Tables
+
+### Lab Steps to Convert Grid Info to Track Info
+
+### Steps to Convert Magic Layout to std Cell LEF
+
+### Introduction to Timing Libs and Steps to Include New Cell in Synthesis
+
+### Steps to Configure Synthesis Settings to Fix Slack and Include vsdinv
+
+
+## Timing Analysis with Ideal Clocks using OpenSTA
+
+### Steps to Configure OpenSTA for Post-synth Timing Analysis
+
+### Steps to Optimize Synthesis to Reduce Setup Violations
+
+### Steps to do Basic Timing ECO
+
+
+## TritonCTS and Signal Integrity
+
+### Steps to Run CTS using TritonCTS
+
+### Steps to Verify CTS Runs
+
+
+## Timing Analysis with Real Clocks using OpenSTA
+
+### Steps to Analyze Timing with Real Clocks using OpenSTA
+
+### Steps to Execute OpenSTA with Right Timing Libraries and CTS Assignment
+
+### Steps to Observe Impact of Bigger CTS Buffers on Setup and Hold Timing
 
 ------------------------------------------------------------------------------------------------
 
@@ -3138,16 +3209,36 @@ rrr
 
 ## Routing and Design Rule Check (DRC)
 
+### Introduction to Maze Routing Lee’s Algorithm
+
+### Lee’s Algorithm Conclusion
+
+### Design Rule Check
+
+
 ## Power Distribution Network and Routing
 
+###
+
+
 ## TritonRoute Features
+
+###
 
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
-### LAB 1 - 
+
+## Power Distribution Network and Routing
+
+### 
+
+
+## TritonRoute Features
+
+###
 
 ------------------------------------------------------------------------------------------------
 
