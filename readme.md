@@ -2837,8 +2837,6 @@ The Floor Plan is ready for Placement and Routing step.
   
 ### **Need for Libraries and Characterization**
   
-**Congestion Aware Placement using RePlAce** - at lab
-  
 
 ## Cell Design and Charcterization Flows 
   
@@ -2861,7 +2859,7 @@ The Floor Plan is ready for Placement and Routing step.
 
 ## LABS
 
-### Steps to Run Floorplan using OpenLANE
+### **Steps to Run Floorplan using OpenLANE**
 
 After completion of synthesis, now work on floorplan, >> cd ../Desktop/work/tools/openlane_working_dir/openlane/configuration ; vim README.md (file consists of all variables for each stage such as synthesis flow, floorplan decription, pins and ports placement, etc.). Variable in placement need to check congestion and make sure timing is met. PL - placement , FL - floorplan. 
 
@@ -2879,7 +2877,7 @@ In Openlane terminal, >> run_floorplan
   
 <img width="263" alt="image" src="https://user-images.githubusercontent.com/118954022/214682175-0800ac4f-3a37-4658-8ae4-52a390079caf.png">
   
-### Review Floorplan Files and Steps to View Floorplan
+### **Review Floorplan Files and Steps to View Floorplan**
   
 Define metal layer for I/O, then review this log file, >> cd .../openlane/designs/picorv32a/runs/13-01_14-09/logs/floorplan ; vim 4-ioPlacer.log ; There is no metal layers shown. Usualy got and the number is added with 1 compare to the metal layers number in config.tcl file.  
  
@@ -2891,7 +2889,7 @@ List out location, >> cd .../openlane/designs/picorv32a/runs/19-01_18-36/results
   
 ![lab2 1](https://user-images.githubusercontent.com/118954022/214689743-593c29a5-b089-4957-944c-eb2553b5f73e.jpg)
 
-### Review Floorplan Layout in Magic
+### **Review Floorplan Layout in Magic**
   
 Invoke magic, >> magic -T ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def & ;
   
@@ -2913,7 +2911,7 @@ During floorplan, all standard cells are not placed in the design, all will be l
   
 ![lab3 4](https://user-images.githubusercontent.com/118954022/214696429-16b7cdc4-151a-460f-900e-5c0447e59b9c.jpg)
 
-### Congestion Aware Placement using RePlAce
+### **Congestion Aware Placement using RePlAce**
  
 We are constraining the timing and make sure the congestion is less. There are 2 type of placements :
 * **Global placement**: assigns general locations to movable objects. It used to reduce wire length.
@@ -2944,37 +2942,37 @@ References :
 
 ## Labs for CMOS Inverter ngspice Simulation
 
-### SPICE Deck Creation for CMOS Inverter
+### **SPICE Deck Creation for CMOS Inverter**
 
-### SPICE Simulation Lab for CMOS Inverter
+### **SPICE Simulation Lab for CMOS Inverter**
 
-### Switching Threshold Vm
+### **Switching Threshold Vm**
 
-### Static and Dynamic Simulation of CMOS Inverter
+### **Static and Dynamic Simulation of CMOS Inverter**
 
 
 ## Inception of Layout and CMOS Fabrication Process
 
-###  Create Active Regions
+### **Create Active Regions**
 
-### Formation of N-well and P-well
+### **Formation of N-well and P-well**
 
-###  Formation of Gate Terminal
+### **Formation of Gate Terminal**
 
-### Lightly Doped Drain (LDD) Formation
+### **Lightly Doped Drain (LDD) Formation**
 
-### Source and Drain Formation
+### **Source and Drain Formation**
 
-### Local Interconnect Formation
+### **Local Interconnect Formation**
 
-### Higher Level Metal Formation
+### **Higher Level Metal Formation**
 
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
-### IO Placer Revision 
+### **IO Placer Revision**
 
 Cntinue of Day 16 lab. We going to use Inverter cell as example. We can change configuration, like input output strategy. In terminal, >> cd ../openlane/configuration ; vim floorplan.tcl ; The default is 1. Now we set it to 2 in openLane, >> set ::env(FP_IO_MODE) 2 ; run_floorplan ; 
 
@@ -2984,7 +2982,7 @@ Then invoke magic, >> cd ../openlane/designs/picorv32a/runs/19-01_18-36/results/
 
 ![lab1 1](https://user-images.githubusercontent.com/118954022/214789751-210b9946-7478-4b6d-98d7-398f48c6dae9.jpg)
 
-### Steps to Git Clone vsdstdcelldesign 
+### **Steps to Git Clone vsdstdcelldesign**
 
 In terminal, >> cd ../openlane_working_dir/openlane ; git clone https://github.com/nickson-jose/vsdstdcelldesign.git ; cd vsdstdcelldesign/ ;
 
@@ -2994,7 +2992,7 @@ Tech file, >> cd ../openlane_working_dir/pdks/sky130A/libs.tech/magic ; cp sky13
 
 ![lab2 1](https://user-images.githubusercontent.com/118954022/214795260-8235f49c-a45e-4621-9428-e3bbf6ee27ca.jpg)
 
-### Introduction to Sky130 Basic Layers Layout and LEF using Inverter
+### **Introduction to Sky130 Basic Layers Layout and LEF using Inverter**
 
 CMOS Inverter 
 
@@ -3008,29 +3006,39 @@ LEF only have metal layer, no information on logic path, only provide informatio
 
 More infromation on LEF - https://github.com/nickson-jose/vsdstdcelldesign#introduction-to-lef
  
-### Steps to Create std Cell Layout and Extract Spice Netlist
+### **Steps to Create std Cell Layout and Extract Spice Netlist**
 
-rrrr
+The first step in magic layout tool is to create a bounding box (rectangle) with a width of 1.38 (3 x width(unithd)) and height of 2.72. This can be done by using command >> property FIXED_BBOX {0 0 138 272} ; in magic tkcon window. llx - lower left of x, lly - lower left of y, urx - upper right of x and ury - upper right of y value. 
+  
+![lab4 0](https://user-images.githubusercontent.com/118954022/214815723-59977bb6-79c2-454c-984d-000392cb836f.jpg)
+  
+This is followed by defining the ground and power segments (in metal 1), the respective contacts and finally the layout of the logic part. Same procedure can be followed for any standard cell layout. 
+  
+![lab4 1](https://user-images.githubusercontent.com/118954022/214816191-95b56c38-3030-457c-8382-1b6d5e22692e.jpg)
+
+Checking DRC Violation. 
+  
+
 
 ## Sky130 Tech File Labs 
 
-### Steps to Create Final SPICE Deck using Sky130 Tech
+### **Steps to Create Final SPICE Deck using Sky130 Tech**
 
-### Steps to Characterize Inverter using Sky130 Model Files
+### **Steps to Characterize Inverter using Sky130 Model Files**
 
-### Introduction to Magic Tool Options and DRC Rules
+### **Introduction to Magic Tool Options and DRC Rules**
 
-### Introduction to Sky130 pdk's and Steps to Download Labs
+### **Introduction to Sky130 pdk's and Steps to Download Labs**
 
-### Introduction to Magic and Steps to Load Sky130 Tech-rules
+### **Introduction to Magic and Steps to Load Sky130 Tech-rules**
 
-### Exercise to Fix Poly.9 Error in Sky130 Tech-file
+### **Exercise to Fix Poly.9 Error in Sky130 Tech-file**
 
-### Exercise to Implement Poly Resistor Spacing to Diff and Tap
+### **Exercise to Implement Poly Resistor Spacing to Diff and Tap**
 
-### Challenge Exercise to Describe DRC Error as Geometrical Construct
+### **Challenge Exercise to Describe DRC Error as Geometrical Construct**
 
-### Challenge to Find Missing or Incorrect Rules and Fix them
+### **Challenge to Find Missing or Incorrect Rules and Fix them**
 
 ------------------------------------------------------------------------------------------------
 
