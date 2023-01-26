@@ -3016,13 +3016,19 @@ This is followed by defining the ground and power segments (in metal 1), the res
   
 ![lab4 1](https://user-images.githubusercontent.com/118954022/214816191-95b56c38-3030-457c-8382-1b6d5e22692e.jpg)
 
-Checking DRC Violation. 
-  
+Checking DRC Violation. Click DRC tab -> DRC find next error. It will auto zoom to the area that need to fix error. Open and read the information regarding the violations through tkcon. To fix the violations, select the area (left click right click) and click the layer on the right. Then ensure the final design needs to be DRC clean (green light on at DRC).
+    
+![lab4 2](https://user-images.githubusercontent.com/118954022/214845447-fac57250-a401-4271-8352-7b227897dbb2.jpg)
 
+In order to know logical fuctional, need to extract to SPICE and simulation in it. In tkcon, >> extract all  (To extract inverter); ext2spice cthresh 0 rthresh 0  (To extract all parasitic capacitance); ext2spice ;
+  
+![lab4 3](https://user-images.githubusercontent.com/118954022/214846135-fef50b5a-98ec-4b23-8ffd-6792445a37fb.jpg)
 
 ## Sky130 Tech File Labs 
 
 ### **Steps to Create Final SPICE Deck using Sky130 Tech**
+  
+rrrr
 
 ### **Steps to Characterize Inverter using Sky130 Model Files**
 
