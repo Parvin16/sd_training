@@ -2887,7 +2887,7 @@ Next, >> cd .../openlane/designs/picorv32a/runs/19-01_18-36 ; vim config.tcl ; T
   
 ![lab2 0](https://user-images.githubusercontent.com/118954022/214687905-4a03a7a7-9aaa-4ec5-b558-753da95fc2a1.jpg)
 
-List out location, >> cd .../openlane/designs/picorv32a/runs/13-01_14-09/results/floorplan ; vim picorv32a.floorplan.def ; The (0 0) is origin and ( x-axis y-axis ). So basically with this info, we calculate the area of die.
+List out location, >> cd .../openlane/designs/picorv32a/runs/19-01_18-36/results/floorplan ; vim picorv32a.floorplan.def ; The (0 0) is origin and ( x-axis y-axis ). So basically with this info, we calculate the area of die.
   
 ![lab2 1](https://user-images.githubusercontent.com/118954022/214689743-593c29a5-b089-4957-944c-eb2553b5f73e.jpg)
 
@@ -2914,11 +2914,22 @@ During floorplan, all standard cells are not placed in the design, all will be l
 ![lab3 4](https://user-images.githubusercontent.com/118954022/214696429-16b7cdc4-151a-460f-900e-5c0447e59b9c.jpg)
 
 ### Congestion Aware Placement using RePlAce
+ 
+We are constraining the timing and make sure the congestion is less. There are 2 type of placements :
+* Global placement: assigns general locations to movable objects. It used to reduce wire length.
+* Detailed placement: refines object locations to legal cell sites and enforces non-overlapping constraints.
   
-rrrr
+The detailed locations enable more accurate estimations of the circuit delay for the purpose of timing optimization. **Legalization** is an essential step where the overlaps between gates/macros must be removed in timing point of view. 
   
-In openLane, >> run_placement ;
+In openLane, >> run_placement ; Half Parameter Wire Length (HPWL) is applied to reduce wire length in OpenLANE. Our objective is to converge the overflow. If the overflow value is decreases, it means the design will converge (placement is going on).
+  
+![lab4 0](https://user-images.githubusercontent.com/118954022/214759143-f00ba8ab-c7e4-4e4c-a857-94d94e7d566b.jpg)
 
+Lets se how design is palced. In terminal, >> cd ../openlane/designs/picorv32a/runs/19-01_18-36/results/placement ; magic -T ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def & ; Now it is centralised floorplan and standard cells placement are get fixed(not movable). 
+
+![lab4 1](https://user-images.githubusercontent.com/118954022/214761493-fea80ff0-a8a2-462b-90e7-6843a2a3a968.jpg)
+  
+  
 ------------------------------------------------------------------------------------------------
 
 # #Day_17
