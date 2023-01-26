@@ -3020,7 +3020,7 @@ Checking DRC Violation. Click DRC tab -> DRC find next error. It will auto zoom 
     
 ![lab4 2](https://user-images.githubusercontent.com/118954022/214845447-fac57250-a401-4271-8352-7b227897dbb2.jpg)
 
-In order to know logical fuctional, need to extract to SPICE and simulation in it. In tkcon, >> extract all  (To extract inverter); ext2spice cthresh 0 rthresh 0  (To extract all parasitic capacitance); ext2spice ;
+In order to know logical fuctional, need to extract to SPICE and simulation in it. In tkcon, >> extract all  (To extract inverter); ext2spice cthresh 0 rthresh 0  (To extract all parasitic capacitance); ext2spice ; In the terminal in ../openlane/vsdstdcelldesign, a .spice file has created.
   
 ![lab4 3](https://user-images.githubusercontent.com/118954022/214846135-fef50b5a-98ec-4b23-8ffd-6792445a37fb.jpg)
 
@@ -3028,13 +3028,76 @@ In order to know logical fuctional, need to extract to SPICE and simulation in i
 
 ### **Steps to Create Final SPICE Deck using Sky130 Tech**
   
-rrrr
+View sky130_inv.spice, in terminal >> vim sky130_inv.spice ;The C0 until C4 is drain gate source substrate. 'A' refers to Drain, 'Y' refers to Gate and 'VPWR' refers to Source. pshort and nshort refers to pmos and nmos respectively.
+
+![lab5 0](https://user-images.githubusercontent.com/118954022/214880498-4bb0fbf4-5aa5-4d78-b421-327a008dd9ff.jpg)
+
+Size of grid :
+
+![lab5 1](https://user-images.githubusercontent.com/118954022/214881801-89546cd1-cb14-490a-bf49-3f90070c8db3.jpg)
+
+Then check for must include nmos and pmos .lib files.
+
+![lab5 2](https://user-images.githubusercontent.com/118954022/214882503-94a2f0fb-c69b-4863-aa54-3220b0bf5acc.jpg)
+
+Then modify sky130_inv.spice file. Rename pmos -> pshort_model which in libs, same goes to nmos. Define supply voltages, comment out the //.subckt and //.ends .Then specify the input pulse and the specification for transient analysis.
+
+![lab5 3](https://user-images.githubusercontent.com/118954022/214893966-5acdc225-ca0f-4a64-a1b1-ab07b0f0572a.jpg)
 
 ### **Steps to Characterize Inverter using Sky130 Model Files**
 
+Plot graph. In terminal ../openlane/vsdstdcelldesign >> ngspice sky130_inv.spice ; plot y vs time a ;
+
+![lab6 0](https://user-images.githubusercontent.com/118954022/214894744-49e569c7-38c1-42b6-9272-eb81ecef22cf.jpg)
+
+To characterize cell, Find value of 4 parameters
+* **Rise transition** - time taken for the output waveform to rise from 20% of max value to 80% of max value Vdd.
+* **Fall transition** - time taken for output to fall from 80% to 20%.
+* Cell rise/fall delay/propagation delay: the propagation delay where the output is rising/falling (50%).
+
+Right click will create a box in the graph. Then it will open a new window. The axis value of the graph displayed at spice terminal.
+
+**Rise transition output** (take the red line)
+
+From 20% to 80%
+
+**Fall transition input** (take the blue line)
+
+From 80% to 20%
+
+Cell delay (propagation delay)
+
+**Rise delay**
+
+**Fall delay**
+
 ### **Introduction to Magic Tool Options and DRC Rules**
 
+Explore more about open circuit design at http://opencircuitdesign.com/ and browse through http://opencircuitdesign.com/magic/index.html and http://opencircuitdesign.com/magic/tutorials/tut9.html for some tutorial on Magic/Tech files/DRC.
+
+**Magic**
+
+Magic is an interactive system for creating and modifying VLSI circuit layouts. Magic has built-in knowledge of layout rules; as you are editing, it continuously checks for rule violations. Magic also knows about connectivity and transistors, and contains a built-in hierarchical circuit extractor.
+
+**Caltech Intermediate Form (CIF)**
+
+CIF and GDSII Stream Format are standard layout description languages used to transfer mask-level layouts between organizations and design tools. Magic can be used to read and write files in CIF and GDS formats. CIF is a file format for describing integrated circuits. CIF provides a limited set of graphics primitives that are useful for describing the two-dimensional shapes on the different layers of a chip. The format allows hierarchical description, which makes the representation concise. In addition, it is a terse but human-readable text format.
+
+**Design Rule Checking (DRC)**
+
+DRC verifies whether a specific design meets the constraints imposed by the process technology to be used for its manufacturing or not. 
+* Examples of DRCs :
+  * Minimum width and spacing for metal
+  * Minimum area
+  * Different net spacing
+  * Short violation
+  * Less than min edge length
+  
+More details on DRC - https://www.design-reuse.com/articles/41504/design-rule-checks-drc-a-practical-view-for-28nm-technology.html#:~:text=Description%3A%20This%20type%20violation%20pops,are%20seeing%20the%20VIA%20misalignment
+
 ### **Introduction to Sky130 pdk's and Steps to Download Labs**
+
+rrr
 
 ### **Introduction to Magic and Steps to Load Sky130 Tech-rules**
 
