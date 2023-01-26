@@ -2916,8 +2916,8 @@ During floorplan, all standard cells are not placed in the design, all will be l
 ### Congestion Aware Placement using RePlAce
  
 We are constraining the timing and make sure the congestion is less. There are 2 type of placements :
-* Global placement: assigns general locations to movable objects. It used to reduce wire length.
-* Detailed placement: refines object locations to legal cell sites and enforces non-overlapping constraints.
+* **Global placement**: assigns general locations to movable objects. It used to reduce wire length.
+* **Detailed placement**: refines object locations to legal cell sites and enforces non-overlapping constraints.
   
 The detailed locations enable more accurate estimations of the circuit delay for the purpose of timing optimization. **Legalization** is an essential step where the overlaps between gates/macros must be removed in timing point of view. 
   
@@ -2936,16 +2936,101 @@ Lets se how design is palced. In terminal, >> cd ../openlane/designs/picorv32a/r
 
 **Design and Characterise Library Cell using Magic Layout and Spice Simulator**
 
-## Inception of Layout A[] CMOS Fabrication Process
+References :
+1. Github - https://github.com/nickson-jose/vsdstdcelldesign 
+2. Overview of Physical Design flow - https://github.com/nickson-jose/vsdstdcelldesign#overview-of-physical-design-flow
+3. Magic file - https://github.com/nickson-jose/vsdstdcelldesign/blob/master/sky130_inv.mag
+4. .lib file - https://github.com/nickson-jose/vsdstdcelldesign/tree/master/libs
 
-## Sky130 Tech File Labs 
+## Labs for CMOS Inverter ngspice Simulation
+
+### SPICE Deck Creation for CMOS Inverter
+
+### SPICE Simulation Lab for CMOS Inverter
+
+### Switching Threshold Vm
+
+### Static and Dynamic Simulation of CMOS Inverter
+
+
+## Inception of Layout and CMOS Fabrication Process
+
+###  Create Active Regions
+
+### Formation of N-well and P-well
+
+###  Formation of Gate Terminal
+
+### Lightly Doped Drain (LDD) Formation
+
+### Source and Drain Formation
+
+### Local Interconnect Formation
+
+### Higher Level Metal Formation
 
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
-## Labs for CMOS inverter ngspice Simulations
+### IO Placer Revision 
+
+Cntinue of Day 16 lab. We going to use Inverter cell as example. We can change configuration, like input output strategy. In terminal, >> cd ../openlane/configuration ; vim floorplan.tcl ; The default is 1. Now we set it to 2 in openLane, >> set ::env(FP_IO_MODE) 2 ; run_floorplan ; 
+
+![lab1 0](https://user-images.githubusercontent.com/118954022/214787227-cb9994ef-c500-4937-b9ca-e2f94dbb29a5.jpg)
+
+Then invoke magic, >> cd ../openlane/designs/picorv32a/runs/19-01_18-36/results/floorplan ; magic -T ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def & ; When default is 1 , it arraged in equal manner all over the side. After modified (=2), all stack at the left bottom.
+
+![lab1 1](https://user-images.githubusercontent.com/118954022/214789751-210b9946-7478-4b6d-98d7-398f48c6dae9.jpg)
+
+### Steps to Git Clone vsdstdcelldesign 
+
+In terminal, >> cd ../openlane_working_dir/openlane ; git clone https://github.com/nickson-jose/vsdstdcelldesign.git ; cd vsdstdcelldesign/ ;
+
+![lab2 0](https://user-images.githubusercontent.com/118954022/214791640-75209d37-3e79-4a46-a1db-800681d550f8.jpg)
+
+Tech file, >> cd ../openlane_working_dir/pdks/sky130A/libs.tech/magic ; cp sky130A.tech /home/parvin.rao.puspa.rao/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign ;  .Then invoke magic to view CMOS Inverter, >> cd ../vsdstdcelldesign/ ; magic -T sky130A.tech sky130_inv.mag & ;
+
+![lab2 1](https://user-images.githubusercontent.com/118954022/214795260-8235f49c-a45e-4621-9428-e3bbf6ee27ca.jpg)
+
+### Introduction to Sky130 Basic Layers Layout and LEF using Inverter
+
+CMOS Inverter 
+
+![lab3 0](https://user-images.githubusercontent.com/118954022/214809828-129985f0-f3fc-4bc8-86bc-0fb6dbb1d8ea.jpg)
+
+Press'S' 3 times to check connection : 
+
+![lab3 1](https://user-images.githubusercontent.com/118954022/214812075-621881cd-a149-42c6-be66-2822c174daa3.jpg)
+
+LEF only have metal layer, no information on logic path, only provide information on boundary/cell/length to place a cell. **Cell LEF** - an abstract view of the cell and only gives information about PR boundary, pin position and metal layer information of the cell.
+
+More infromation on LEF - https://github.com/nickson-jose/vsdstdcelldesign#introduction-to-lef
+ 
+### Steps to Create std Cell Layout and Extract Spice Netlist
+
+rrrr
+
+## Sky130 Tech File Labs 
+
+### Steps to Create Final SPICE Deck using Sky130 Tech
+
+### Steps to Characterize Inverter using Sky130 Model Files
+
+### Introduction to Magic Tool Options and DRC Rules
+
+### Introduction to Sky130 pdk's and Steps to Download Labs
+
+### Introduction to Magic and Steps to Load Sky130 Tech-rules
+
+### Exercise to Fix Poly.9 Error in Sky130 Tech-file
+
+### Exercise to Implement Poly Resistor Spacing to Diff and Tap
+
+### Challenge Exercise to Describe DRC Error as Geometrical Construct
+
+### Challenge to Find Missing or Incorrect Rules and Fix them
 
 ------------------------------------------------------------------------------------------------
 
