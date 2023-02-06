@@ -3201,6 +3201,7 @@ rrr
 ------------------------------------------------------------------------------------------------
 
 ## LABS
+  
 
 ## Timing Modelling using Delay Tables
 
@@ -3252,15 +3253,13 @@ rrr
 ### Design Rule Check
 
 
-## Power Distribution Network and Routing
-
-###
-
-
 ## TritonRoute Features
 
-###
+### TritonRoute Feature 1 - Honors Pre-processed Route Guides
 
+### TritonRoute Feature 2 & 3 - Inter-guide Connectivity and Intra- & Inter-layer Routing
+  
+### TritonRoute Method to Handle Connectivity
 
 ------------------------------------------------------------------------------------------------
 
@@ -3269,16 +3268,114 @@ rrr
 
 ## Power Distribution Network and Routing
 
-### 
+### Lab Steps to Build Power Distribution Network
+  
+### Lab Steps from Power Straps to std Cell Power
+  
+### Basics of Global and Detail Routing and Configure TritonRoute
 
 
 ## TritonRoute Features
 
-###
+### Routing Topology Algorithm and Final Files List Post-route
 
 ------------------------------------------------------------------------------------------------
 
 # #Day_20
+
+**Floorplanning and Power Planning Labs**
+  
+## Lecture
+  
+<img width="643" alt="onenote1" src="https://user-images.githubusercontent.com/118954022/217070555-6e28efad-23f1-4250-8700-c6320c5fcd75.png">
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+Your Tasks 
+  
+* Step 1: 
+Refer the repo for the skywater 130nm PDK files: bharath19- 
+gs/synopsys ICC2flow 130nm: This repo is for synopsvs icc2 flow for skywater 
+130nm PDK (github.com) 
+  
+* Step 2: 
+Using the 130nm PDK reproduce the same as you have done using OpenSource 
+tools in Synopsys tools, Refer the repo for ICC2 Flow/commands: 
+Devipriya1921/VSDBabySoC ICC2 (github.com) ![image](https://user-images.githubusercontent.com/118954022/217070474-eaf3d257-bbaa-4305-978f-ebe3ebc0bf17.png)
+
+
+------------------------------------------------------------------------------------------------
+
+# #Day_21
+  
+**Placement and CTS Labs**
+
+## Lecture
+
+### Placement 
+  
+* Placement Objectives/Quality Checks 
+  * Congestion 
+  * Performance 
+  * Timing 
+  * Routability 
+  * Runtime
+
+### Clock Tree Analysis (CTS)
+  
+* Inputs of CTS 
+  * Placement DB 
+  * CTS Spec File
+  
+* CTS steps 
+  * Clustering 
+  * DRV Fixing 
+  * Insertion Delay Reduction 
+  * Power Reduction 
+  * Balancing 
+  * Post-Conditioning 
+  
+* CTS Quality Checks 
+1) Skew 
+2) Pulse Width 
+3) Duty cycle 
+4) Latency 
+5) Clock tree power 
+6) Signal Integrity and Crosstalk (wait till Day27, until we do post-routing step) 
+
+* Timing Analysis and Fixing 
+
+CTS Free Course :
+* https://www.udemy.com/course/vlsi-academy-clock-tree-synthesis/
+* https://www.udemy.com/course/vlsi-academy-clock-tree-synthesis-part2/![image](https://user-images.githubusercontent.com/118954022/217073271-bfc88457-7ae3-49d3-8a9d-0f4e25c98fcb.png)
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### Task 1 (Implement the same as previous sessions lab for Placement 
+and CTS stages) 
+  
+* Step 1: 
+Refer the repo for the skywater 130nm PDK files: bharath19-gs/svnopsvs ICC2flow 130nm: This repo is for synopsvs icc2 flow for skywater 130nm PDK (github.com) 
+  
+* Step 2: 
+Using the 130nm PDK reproduce the same as you have done using OpenSource tools in Synopsys tools, Refer the repo for ICC2 Flow/commands: Devipriya1921/VSDBabySoC ICC2 (github.com) 
+  
+### Task 2 
+  
+Complete the CTS part 1 and part 2 courses that is been provided to you and try to implement the same for SKY 130 labs using ICC2.
+
+
+------------------------------------------------------------------------------------------------
+
+
+# #Day_22
+
+**CTS Analysis Labs**
 
 ## Lecture
 
@@ -3291,7 +3388,41 @@ rrr
 
 ------------------------------------------------------------------------------------------------
 
-# #Day_21
+
+# #Day_23
+  
+**Clock Gating Technique**
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+------------------------------------------------------------------------------------------------
+
+# #Day_24
+  
+**Timing Violations and ECO**
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+------------------------------------------------------------------------------------------------
+
+
+# #Day_25
+  
+**RISC-V Core RTL2GDS Flow**
 
 ## Lecture
 
