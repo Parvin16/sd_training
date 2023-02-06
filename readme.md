@@ -3121,13 +3121,21 @@ Select any area, click scroller of the mouse, and select m3contact using scrolle
 The distance between the cut and the edge is always larger and will never be smaller than 0.065. Via must enclosed with metal 3 atleast0.065 micron, else will cause DRC violation.
 
 ### **Exercise to Fix Poly.9 Error in Sky130 Tech-file**
+  
+rrr
 
 ### **Exercise to Implement Poly Resistor Spacing to Diff and Tap**
+  
+rrr
 
 ### **Challenge Exercise to Describe DRC Error as Geometrical Construct**
+  
+rrr
 
 ### **Challenge to Find Missing or Incorrect Rules and Fix them**
 
+rrr
+  
 ------------------------------------------------------------------------------------------------
 
 # #Day_18
