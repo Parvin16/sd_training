@@ -3118,15 +3118,43 @@ Select any area, click scroller of the mouse, and select m3contact using scrolle
 
 ![lab8 0](https://user-images.githubusercontent.com/118954022/214927836-8f541237-a4a4-4f4c-b2e9-eb9d4784f6b5.jpg)
 
-The distance between the cut and the edge is always larger and will never be smaller than 0.065. Via must enclosed with metal 3 atleast0.065 micron, else will cause DRC violation.
+The distance between the cut and the edge is always larger and will never be smaller than 0.065. Via must enclosed with metal 3 atleast 0.065 micron, else will cause DRC violation.
 
 ### **Exercise to Fix Poly.9 Error in Sky130 Tech-file**
   
-rrr
+COntinue, In tkcon, >> load poly ; 
+
+![lab9 0](https://user-images.githubusercontent.com/118954022/217039800-f09403f4-718b-4765-843d-35012bc0b99e.jpg)
+
+There is one incorrect, which is Poly.9 .then, >> what; box; .It is a poly and npolyres. The distance ~ 0.22 microns. Based on the rules the poly spacing should be more than 0.48 microns. 
+
+![lab9 1](https://user-images.githubusercontent.com/118954022/217043466-c7a175e7-f307-47c7-9ecf-624af15cafc2.jpg)
+
+Let's correct it. In lab terminal, >> cd ../Desktop/work/tools/drc_tests ; vim sky130A.tech ; 
+
+![lab9 2](https://user-images.githubusercontent.com/118954022/217045468-56a95bdf-41a4-4c13-954a-3b57c0cc625b.jpg)
+
+Modifying sky130A.tech. Adding in allpolynonfet in a new line.
+
+![lab9 3](https://user-images.githubusercontent.com/118954022/217045630-d7c10b55-3461-4520-acc5-b55ad638ecf0.jpg)
+
+Then in tkcon >> tech load sky130A.tech (Reload tech file in Magic, easier); drc check  (Do drc checking); drc why ; .The spacing for the poly has been resolved. But, further action for diffusion and tap need to take.
+
+![lab9 4](https://user-images.githubusercontent.com/118954022/217049494-53ccb4d7-96f5-42ba-a325-c4f52f3376da.jpg)
 
 ### **Exercise to Implement Poly Resistor Spacing to Diff and Tap**
   
-rrr
+Copy the resistor into 2 since there are several types of diffusion and tap. Add several things. Note: Green - ndiffusion and Brown - pdiffusion. The spacing length is > 0.33 microns. 
+
+![lab10 0](https://user-images.githubusercontent.com/118954022/217052526-e94f25ec-21d3-4621-98f2-e2daca8b03af.jpg)
+
+Then modify the tech file, in terminal >> vim sky130A.tech ; change '*nsd' --> 'alldiff'.
+
+![lab10 1](https://user-images.githubusercontent.com/118954022/217053453-40d30742-14e9-4f39-ab6c-965229428d2b.jpg)
+
+Then check in magic. All the rules are identified. 
+
+![lab10 2](https://user-images.githubusercontent.com/118954022/217054166-182d894a-01b6-4cea-b035-f02857e0aff8.jpg)
 
 ### **Challenge Exercise to Describe DRC Error as Geometrical Construct**
   
