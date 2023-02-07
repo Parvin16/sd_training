@@ -3287,8 +3287,9 @@ rrr
   
 ## Lecture
   
+Physical Design Flow :
+  
 <img width="643" alt="onenote1" src="https://user-images.githubusercontent.com/118954022/217070555-6e28efad-23f1-4250-8700-c6320c5fcd75.png">
-
 
 ------------------------------------------------------------------------------------------------
 
@@ -3317,6 +3318,11 @@ Devipriya1921/VSDBabySoC ICC2 (github.com) ![image](https://user-images.githubus
 
 ### Placement 
   
+* Pre-Placement Sanity Checks Floating Pins in Netlist, Unconstrained Pins, Timing, Pin direction mismatch, etc. 
+* What is Placement? 
+  * Standard Cell 
+  * Placement Stages ( Global Placement, Legalization, Detailed Placement )
+
 * Placement Objectives/Quality Checks 
   * Congestion 
   * Performance 
@@ -3351,6 +3357,10 @@ Devipriya1921/VSDBabySoC ICC2 (github.com) ![image](https://user-images.githubus
 CTS Free Course :
 * https://www.udemy.com/course/vlsi-academy-clock-tree-synthesis/
 * https://www.udemy.com/course/vlsi-academy-clock-tree-synthesis-part2/![image](https://user-images.githubusercontent.com/118954022/217073271-bfc88457-7ae3-49d3-8a9d-0f4e25c98fcb.png)
+  
+Reference :
+* https://ivlsi.com/placement-vlsi-physical-design/
+* https://ivlsi.com/clock-tree-synthesis-cts-vlsi-physical-design/#Clock_Tree_Synthesis
 
 ------------------------------------------------------------------------------------------------
 
@@ -3379,7 +3389,76 @@ Complete the CTS part 1 and part 2 courses that is been provided to you and try 
 
 ## Lecture
 
+<img width="655" alt="onenote1" src="https://user-images.githubusercontent.com/118954022/217330214-1cdae9de-bfa7-4c47-9462-6e788cf3d217.png">
 
+![note2](https://user-images.githubusercontent.com/118954022/217330715-a120b107-3789-4277-9b02-f32a122a5b46.jpg)
+
+![note3](https://user-images.githubusercontent.com/118954022/217330780-e7ec990d-628c-4498-b9aa-9b314f90aabb.jpg)
+
+Various CTS checks  
+1. Skew check 
+2. Pulse width check 
+3. Duty cycle check 
+4. Latency check 
+5. Power check 
+6. Crosstalk Quality check 
+7. Delta Delay Quality check 
+8. Glitch Quality check 
+  
+What does 'check clock tree' (our first go to command after placement) do ??
+  
+This command checks and reports issues that can lead to bad QoR such as on clock tree structure, constraints and clock tree exceptions.
+
+How do we know if the placement done input is perfect ?? 
+  
+We use this command - 'check _ legality'. If it is legal — well and good, else use legalize_placement. Now, there are some default constraints. 
+  
+![note4](https://user-images.githubusercontent.com/118954022/217332784-06bb38bb-5710-40c5-adfd-615fddd4cb62.jpg)
+
+We can edit those default constraints using - 'set_clock_tree_options'. '-max_capacitance', '-max_transition' are some examples (becareful keeping 
+min and max values in sight).
+  
+![note5](https://user-images.githubusercontent.com/118954022/217333879-7986961d-c3b1-46c8-9725-ea890008347e.jpg)
+
+IC Compiler uses the clock tree synthesis design rule constraints for all optimization phases, as well as for clock tree synthesis. For information about setting 
+the clock tree synthesis design rule constraint, we can use ICC2 with debug mode. By using '-set cts_use_debug_mode true'. The main command we need to do is '-compile_clock_tree'.
+  
+![note6](https://user-images.githubusercontent.com/118954022/217334782-e65d8466-807f-4d92-a792-94ac97270cb0.jpg)
+
+### CTS Results Analysis
+  
+![note7](https://user-images.githubusercontent.com/118954022/217336448-d0ecf536-0a66-47da-a408-8c65212d5bc9.jpg)
+
+Now, after observing the reports, if we see the clock tree could be better, 'clock_opt' command, which performs clock tree synthesis and incremental physical 
+optimization. This process results in a timing optimized design with fully implemented clock trees. The clock_opt command does the following: 
+1. Performs clock tree power optimization 
+2. Synthesizes(Re-Synthesizes) the clock trees
+3. Optimizes the clock trees
+4. Adjusts the I/O timing
+5. Performs RC extraction of the clock nets and computes accurate clock arrival times
+6. Performs placement and timing optimization
+
+Sometimes there will be some unrouted clock trees, so to remove them, we use the command 'remove_clock_tree'.
+  
+### After CTS we do Synthesis 
+  
+Before we synthesize the clock trees, use the check_clock_tree command to verify that the clock trees are properly defined. 
+  
+' icc2_shell> check_clock_tree -clocks my_clk '
+
+To understand CTS more, we can try do : 
+1. Minimize skew only
+2. Minimize skew and insertion delay 
+3. Minimize skew and maximize insertion delay
+4. Minimize skew and meet minimum insertion delay target
+
+![note8](https://user-images.githubusercontent.com/118954022/217338385-65ce5cca-29b9-4804-b1ec-15b1838cfa23.jpg)
+  
+References :
+* Udemy course - CTS1
+* https://ivlsi.com/clock-tree-synthesis-cts-vlsi-physical-design/
+* Full ICC2 Flow - https://prezi.com/-jmhi72feify/ic-compiler/ 
+  
 ------------------------------------------------------------------------------------------------
 
 ## LABS
