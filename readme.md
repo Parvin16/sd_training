@@ -3305,7 +3305,7 @@ gs/synopsys ICC2flow 130nm: This repo is for synopsvs icc2 flow for skywater
 * Step 2: 
 Using the 130nm PDK reproduce the same as you have done using OpenSource 
 tools in Synopsys tools, Refer the repo for ICC2 Flow/commands: 
-Devipriya1921/VSDBabySoC ICC2 (github.com) ![image](https://user-images.githubusercontent.com/118954022/217070474-eaf3d257-bbaa-4305-978f-ebe3ebc0bf17.png)
+Devipriya1921/VSDBabySoC ICC2 (github.com) 
 
 
 ------------------------------------------------------------------------------------------------
