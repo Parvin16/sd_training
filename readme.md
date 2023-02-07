@@ -40,6 +40,12 @@
    * [Lab](https://github.com/Parvin16/sd_training#labs-15)
 +  [Day_19](https://github.com/Parvin16/sd_training#Day_19) : **Final Steps for RTL2GDS**
    * [Lab](https://github.com/Parvin16/sd_training#labs-16)
++  [Day_20](https://github.com/Parvin16/sd_training#Day_20) : **Floorplanning and Power Planning Labs**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-17)
++  [Day_21](https://github.com/Parvin16/sd_training#Day_21) : **Placement and CTS Labs**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-18)
++  [Day_22](https://github.com/Parvin16/sd_training#Day_22) : **CTS Analysis Labs**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-19)   
 
 # #Day_0
 ### BASICS
