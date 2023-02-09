@@ -3164,7 +3164,17 @@ Then check in magic. All the rules are identified.
 
 ### **Challenge Exercise to Describe DRC Error as Geometrical Construct**
   
-rrr
+in >> vim sky130A.tech, there is 'cifmaxwidth' - to check the layer as that appears in gds eventhough the layer can be drawn directly in the layout. 'nwell_missing' - defining special tech file, layer that defines a special cif output section in the tech file. Can refer to the rules in nwell part. 
+  
+![lab11 0](https://user-images.githubusercontent.com/118954022/217899971-a0660d4e-08f4-431a-b6b3-38bf9ec38da6.jpg)
+
+In tkcon, >> load nwell.mag; .Look through nwell.6, deep nwell(dnwell) - yellow stripes and nwell - green stripes pattern. The point of the rule is the edge of the dnwell needs to be covered with overlap all the way around by a ring of regular n-well. The outside distance rule could be implemented by a simple surround of drc rule, but the inside distance cannot be captured with a simple edge type rule. 
+  
+
+
+Then in tkcon, >> cif ostyle drc  (Can only see layers for the cif layer style that is selected for the output); cif see dnwell_shrink  (To see the selected area); cif see nwell_missing  (Shows the area which gets flagged with the error).
+  
+
 
 ### **Challenge to Find Missing or Incorrect Rules and Fix them**
 
