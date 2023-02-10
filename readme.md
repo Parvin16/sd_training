@@ -3168,17 +3168,34 @@ in >> vim sky130A.tech, there is 'cifmaxwidth' - to check the layer as that appe
   
 ![lab11 0](https://user-images.githubusercontent.com/118954022/217899971-a0660d4e-08f4-431a-b6b3-38bf9ec38da6.jpg)
 
-In tkcon, >> load nwell.mag; .Look through nwell.6, deep nwell(dnwell) - yellow stripes and nwell - green stripes pattern. The point of the rule is the edge of the dnwell needs to be covered with overlap all the way around by a ring of regular n-well. The outside distance rule could be implemented by a simple surround of drc rule, but the inside distance cannot be captured with a simple edge type rule. 
+In tkcon, >> load nwell.mag; .Look through nwell.6, deep nwell(dnwell) - yellow stripes and nwell - green dots pattern. The point of the rule is the edge of the dnwell needs to be covered with overlap all the way around by a ring of regular n-well. The outside distance rule could be implemented by a simple surround of drc rule, but the inside distance cannot be captured with a simple edge type rule. 
   
-
-
-Then in tkcon, >> cif ostyle drc  (Can only see layers for the cif layer style that is selected for the output); cif see dnwell_shrink  (To see the selected area); cif see nwell_missing  (Shows the area which gets flagged with the error).
+![lab11 1](https://user-images.githubusercontent.com/118954022/218026432-b0e3718c-f65b-4072-b3c9-47a2d7c6dde8.jpg)
   
+We edit the tech file at the style drc section. The way the cifmaxwidth drc rules are implemented with width = 0, implies that the nwell_missing layer is whats leftover, if either the inside or outside dimension of nwell overlap dnwell doesn’t reach the required distance. Evrything in the difoutput drc style is implemented as a temp layer rather than a layer, all temp layers are basically support layers that are needed to get the right results for an output layer, but not appearing in the output themselves. The dnwell_shrink represents the largest open area that you can have inside the drawn dnwell. The nwell_missing layer starts with the dnweel layer, then it grows it by 400, which is the distance required by the surround rule, which gives us the smallest nwell variant that is needed to cover the dnwell.
+  
+![lab11 2](https://user-images.githubusercontent.com/118954022/218044216-458e15e8-e087-4519-b792-3fbd7764fc52.jpg)
 
+Then in tkcon, >> cif ostyle drc  (Can only see layers for the cif layer style that is selected for the output); cif see dnwell_shrink  (To see the selected area); feed clear ;  cif see nwell_missing  (Shows the area which gets flagged with the error).
+  
+![lab11 3](https://user-images.githubusercontent.com/118954022/218045284-90e8d1f4-ee8e-4b0a-a9fc-c68a58be3af3.jpg)
+  
+In the tech file, we can see that there is 2 modes variables of drc can be choose to save compute time, fast (works for backend metal layers and large designs) and full ( for small layout design that can select full where Magic will check everything and suggest to use in interactive).
 
 ### **Challenge to Find Missing or Incorrect Rules and Fix them**
 
-rrr
+Lets see on rule nwell.4. So, since there is no distance associated with the rule, its impossible to write this as a simple edge based drc rule, but it does lend itself to a cifoutput rule very easily.
+  
+![lab12 0](https://user-images.githubusercontent.com/118954022/218054625-c1d94396-82b5-4d9c-91da-7a737d24c6ea.jpg)
+
+We cannot directly placed in nsubstratecontact due to no distance association. 
+  
+Modify in tech file, terminal >> vim sky130A.tech ; 
+  
+![lab12 1](https://user-images.githubusercontent.com/118954022/218056864-4844acef-5525-4191-add0-6396b8f2b041.jpg)
+
+Then in tkcon, >> tech load sky130A.tech  ; drc check ; drc style drc(full) ; drc check ; .If still have error so copy the nwell and add in the nsubstratencontact (blue x box) and recheck(drc style drc(full), the error is no more.
+ 
   
 ------------------------------------------------------------------------------------------------
 
@@ -3222,37 +3239,61 @@ rrr
 ## Timing Modelling using Delay Tables
 
 ### Lab Steps to Convert Grid Info to Track Info
+  
+rrr
 
 ### Steps to Convert Magic Layout to std Cell LEF
+  
+rrr
 
 ### Introduction to Timing Libs and Steps to Include New Cell in Synthesis
+  
+rrr
 
 ### Steps to Configure Synthesis Settings to Fix Slack and Include vsdinv
+  
+rrr
 
 
 ## Timing Analysis with Ideal Clocks using OpenSTA
 
 ### Steps to Configure OpenSTA for Post-synth Timing Analysis
+  
+rrr
 
 ### Steps to Optimize Synthesis to Reduce Setup Violations
+  
+rrr
 
 ### Steps to do Basic Timing ECO
+  
+rrr
 
 
 ## TritonCTS and Signal Integrity
 
 ### Steps to Run CTS using TritonCTS
+  
+rrr
 
 ### Steps to Verify CTS Runs
+  
+rrr
 
 
 ## Timing Analysis with Real Clocks using OpenSTA
 
 ### Steps to Analyze Timing with Real Clocks using OpenSTA
+  
+rrr
 
 ### Steps to Execute OpenSTA with Right Timing Libraries and CTS Assignment
+  
+rrr
 
 ### Steps to Observe Impact of Bigger CTS Buffers on Setup and Hold Timing
+  
+rrr
 
 ------------------------------------------------------------------------------------------------
 
@@ -3283,17 +3324,27 @@ rrr
 
 
 ## Power Distribution Network and Routing
+  
+rrr
 
 ### Lab Steps to Build Power Distribution Network
   
+rrr
+  
 ### Lab Steps from Power Straps to std Cell Power
   
+rrr
+  
 ### Basics of Global and Detail Routing and Configure TritonRoute
+  
+rrr
 
 
 ## TritonRoute Features
 
 ### Routing Topology Algorithm and Final Files List Post-route
+  
+rrr
 
 ------------------------------------------------------------------------------------------------
 
