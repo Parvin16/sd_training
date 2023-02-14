@@ -3203,6 +3203,18 @@ Then in tkcon, >> tech load sky130A.tech  ; drc check ; drc style drc(full) ; dr
 
 **Pre-layout Timing Analysis and Importance of Good Clock Tree**
 
+Good Clock Tree must Skew Balance
+* Timing point of view : Good clock tree converging the design, reduce the work load/timing spend to resolve the setup/hold violation.
+* Power point of view : Good clock tree help in reduce power consumption. Clock signal consuming 70-80% power because signal keep changing throughout the chip.
+* Area point of view : If bad clock tree will cause unclock sequential clock, need more buffer, clock gating issue that will lead to huge area.
+
+More details on Clock Tree & PPA : https://semiwiki.com/ip/movellus/305173-performance-power-and-area-ppa-benefits-through-intelligent-clock-networks/ 
+
+Good clock tree will achieve good result in PPA. Before clock trees is build only have setup. Hold will be in ideal (0 in value).
+
+Engineering Change Order (ECO)
+* Refers to a practice in the VLSI design flow to accommodate specification changes, to rectify functional errors, or to fix non-functional design requirements, such as timing and power, with minimal disturbance to the existing implementation, to save as much as possible the already-spent optimization efforts.
+
 ## Timing Modelling using Delay Tables
 
 ### Introduction to Delay Tables
