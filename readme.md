@@ -3252,7 +3252,29 @@ Engineering Change Order (ECO)
 
 ### Lab Steps to Convert Grid Info to Track Info
   
-rrr
+**Library Exchange Format (LEF)**
+
+A specification in which representing the physical layout of an integrated circuit in an ASCII format. It includes design rules and abstract information about the standard cells. LEF only has basic information required at that level to serve the purpose of the concerned CAD tool. Containing information on input, output, power and group port, does not consists logic path informations. Its objective is to extract LEF file from .mag file and then plug the file into the picorv32a flow (previous is standard cell library). There is a guidelines that need to be follow in creating a std cell set. The main one, is that the input and output ports must lie on the vertical and horizontal tracks. Second, the width of std cell should be based on the track pitch, and the height should be based on the track vertical pitch.
+
+Open, ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/openlane/sky130_fd_sc_hd vim tracks.info ; This file provide information/specification for PnR flow, where does the route to growth for each metal layer. Then, cd ~/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign magic -T sky130A.tech sky130_inv.mag ; Track information (using during routing stage) routes can go over the track/layer (metal traces). 
+
+![lab1 0](https://user-images.githubusercontent.com/118954022/218837100-b64e7bc9-dd23-4d44-81b3-bc8d8e389732.jpg)
+
+Set the grid based on the tracks.info (grid) converted the track into grid. Ports are on the intersection of the horizontal and vertical tracks. It ensures that the routes can reach the ports from x and y direction. Verified that both input and output ports have fulfilled the guideline where input and output ports lies at the intersection of horizontal and vertical tracks. Note: press "g" to activate grid (zoom in to see the grid).
+
+![lab1 1](https://user-images.githubusercontent.com/118954022/218849422-a21eb1f4-86e1-4640-8c2e-9bd2930984dd.jpg)
+
+![lab1 2](https://user-images.githubusercontent.com/118954022/218850475-afbc2383-b4ad-4bd6-b16d-cc98866856cc.jpg)
+
+Confirm that both input and output ports are must lies on the intersection of vertical and horinzontal tracks.
+
+![lab1 3](https://user-images.githubusercontent.com/118954022/218851798-4101f4e0-8ed6-4b82-b35f-8901aa8dc042.jpg)
+
+Now we need to extract LEF to plug into design flow instead of using standard cell library as previous training. Guideline for making standard cell set:
+* The input and output ports must lies on the intersection of vertical and horizontal tracks.
+* The width/height of std cell should be in odd multiples of the x/y pitch of the tracks (the distance between two tracks is called a pitch).
+
+Reference for more on pitch details : https://signoffsemiconductors.com/standard-cell-library/#:~:text=Pitch%20%3A%20The%20distance%20between%20two,layers%20as%20shown%20in%20Fig
 
 ### Steps to Convert Magic Layout to std Cell LEF
   
@@ -3312,6 +3334,13 @@ rrr
 # #Day_19
 
 **Final Steps for RTL2GDS using TritonRoute and OpenSTA**
+
+Done Clock Routing, then proceed to Signal Routing.
+* Implement the interconnect using the available metal layers as defined by PDK (there is 6 routing layers in sky130 PDK).
+* Metal is tracks from a routing grid.
+* Routing grid is huge, so required to divide and conquer. Global Routing - generates routing guides. Detailed Routing - use routing guides to implement the actual wiring.
+
+Then will proceed to resolve DRC Violation and working on Power Distribution Net.
 
 ## Routing and Design Rule Check (DRC)
 
