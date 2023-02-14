@@ -3260,7 +3260,7 @@ Open, ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/openlane/
 
 ![lab1 0](https://user-images.githubusercontent.com/118954022/218837100-b64e7bc9-dd23-4d44-81b3-bc8d8e389732.jpg)
 
-Set the grid based on the tracks.info (grid) converted the track into grid. Ports are on the intersection of the horizontal and vertical tracks. It ensures that the routes can reach the ports from x and y direction. Verified that both input and output ports have fulfilled the guideline where input and output ports lies at the intersection of horizontal and vertical tracks. Note: press "g" to activate grid (zoom in to see the grid).
+Set the grid based on the tracks.info (grid) converted the track into grid. Ports are on the intersection of the horizontal and vertical tracks. It ensures that the routes can reach the ports from x and y direction. Verified that both input and output ports have fulfilled the guideline where input and output ports lies at the intersection of horizontal and vertical tracks. Note: press "g" to activate grid (zoom in to see the grid). We can see after look after set the grid setting based on the track info as shown using the command “grid 0.46um 0.34um 0.23um 0.17um”.
 
 ![lab1 1](https://user-images.githubusercontent.com/118954022/218849422-a21eb1f4-86e1-4640-8c2e-9bd2930984dd.jpg)
 
