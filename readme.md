@@ -3278,16 +3278,78 @@ Reference for more on pitch details : https://signoffsemiconductors.com/standard
 
 ### Steps to Convert Magic Layout to std Cell LEF
   
-rrr
+We follows second guideline where the width of std cell should be in odd multiples of the x and theheight of std cell should be in odd multiples of the y.
+  
+![lab2 0](https://user-images.githubusercontent.com/118954022/219095895-b1e668c8-b5aa-49b4-b06c-d4a47e4e1db5.jpg)
+
+We need to only define layers, not ports in layout. Ports definitions are required when we want to extract LEF file. Ports will be defined as pins of a macro. We can use text helper to create the port in our design. The port number refers to the order in which the port is written in the lef file. This is how we define the ports for all the layers in the design.
+
+**How to define ports?**
+  
+Select port --> Edit --> Text --> Fill those required information. Note: For A,Y in locali while for VPWR,VGND in metal1. 
+  
+![lab2 1](https://user-images.githubusercontent.com/118954022/219097101-901136a3-2a26-4b54-b041-fe7054224d48.jpg)
+
+Then, define classes of ports (eg: let tool know VGND is ground).    
+
+![lab2 2](https://user-images.githubusercontent.com/118954022/219098389-18e21fa9-236d-4367-af43-9b7b79b5f514.jpg)
+
+Then, extract the LEF file. In tkcon, >> save sky130A_vsdinv.mag ; Then check the saved file in terminal lab, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign ; ls
+  
+Then,>> magic -T sky130A.tech sky130_vsdinv.mag ; In tkcon, >> lef write ;
+  
+![lab2 3](https://user-images.githubusercontent.com/118954022/219099837-89fa1cb6-3dbb-4811-b8a4-52f0be53279a.jpg)
+  
+Then, >> vim sky130_vsdinv.lef ; (port stated as pin in LEF)
+  
+![lab2 4](https://user-images.githubusercontent.com/118954022/219101103-0d95f8a5-4462-44ff-a7f7-16f4ce3d73df.jpg)
 
 ### Introduction to Timing Libs and Steps to Include New Cell in Synthesis
   
-rrr
+Modifying config.tcl file.First copy .lef file into src directory, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign ; cp sky130A_vsdinv.lef ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src ;.Then copy .lib file into src directory, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign/libs ; cp sky130_fd_sc_hd__* ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src ;.Then open, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/ ; vim config.tcl ; 
+  
+![lab3 0](https://user-images.githubusercontent.com/118954022/219103762-e4a03c9c-0ac2-4cd9-8974-93066a648b5b.jpg)
+  
+We did copy the newly written lef file into our design folder for picorv32a. This is so we can include the custom cell into the openlane flow, starting with the synthesis step. We need to ensure the abc step maps the cell appropriately, thus we need to have a library which has the cell definition.
+
+Lastly, we need to modify our config.tcl to ensure the extra lef is read in frm the folder, based on the two commands that need to be run. The -tag and -overwrite options during prep -design is used to take in the new values and overwrite the old values in the runs. During synthesis, we can see the custom cell can be shown to be mapped in.
+  
+In terminal, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane ; make mount ; ./flow.tcl -interactive ; package require openlane 0.9 ; prep -design picorv32a -tag 19-01_18-36 -overwrite  (Check run date at ls ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs); set lefs [glob $::env(DESIGN_DIR)/src/*.lef] ; add_lefs -src $lefs ; run_synthesis ; Successfully invoke openlane and doing synthesis. In our synthesis we have a worst negative slack (wns) of -24.89, and total negative slack (tns) of -759.46.
+  
+![lab3 1](https://user-images.githubusercontent.com/118954022/219108808-0e522ef5-e11d-45e2-aa75-dead9542e683.jpg)
+  
+We need to try to find out how we can reduce these values by making the synthesis timing driven, by trying to strike a balance between the delay and the area. Will see in next lab.
 
 ### Steps to Configure Synthesis Settings to Fix Slack and Include vsdinv
   
-rrr
+Reference github: https://github.com/AngeloJacobo/OpenLANE-Sky130-Physical-Design-Workshop#day-5-final-steps-for-rtl2gds-using-tritonroute-and-opensta
+  
+In terminal, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/configuration ; vim README.md ; 
+  
+![lab4 0](https://user-images.githubusercontent.com/118954022/219110581-0e372f22-9400-4cd1-a10a-c52475fbdbd4.jpg)
 
+**SYNTH_STRATEGY** : control the area and timing. **SYNTH_BUFFERING** : control if we want to buffer high fanout net. **SYNTH_SIZING** : control in cell sizing instead of buffering. **SYNTH_DRIVING_CELL** : ensure more drive strength cell to drive input.
+  
+In OpenLane terminal, perform refer to: https://github.com/AngeloJacobo/OpenLANE-Sky130-Physical-Design-Workshop#lab-part-3-day-4---fix-negative-slack 
+
+![lab4 1](https://user-images.githubusercontent.com/118954022/219111850-08d95069-aefc-4e82-84d4-7d77d14cf1db.jpg)
+
+**SYNTH_STRATEGY of Delay 0** -> the tool will focus more on optimizing/minimizing the delay, index can be 0 to 3 where 3 is the most optimized for timing (sacrificing more area). **SYNTH_BUFFERING of 1** -> ensures cell buffer will be used on high fanout cells to reduce delay due to high capacitance load. **SYNTH_SIZING of 1** -> will enable cell sizing where cell will be upsize or downsized as needed to meet timing. SYNTH_DRIVING_CELL is the cell used to drive the input ports and is vital for cells with a lot of fan-outs since it needs higher drive strength (larger driving cell needed).
+  
+Then, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/19-01_18-36/results/synthesis ; rm -rf picorv32a.synthesis.v .In OpenLane, >> run_synthesis ; There is no more timing violation. 
+  
+![lab4 2](https://user-images.githubusercontent.com/118954022/219114167-6b04df42-f83f-4086-ba5d-e3fe9cf5795f.jpg)
+
+In OpenLane, >> run_floorplan ; We will encounter with some errors. There is solution for this error. basic_macro_placement command is failing since EXTRA_LEFS variable inside config.tcl is assumed as a macro which is not. The temporary solution is to comment call on basic_macro_placement inside the OpenLane/scripts/tcl_commands/floorplan.tcl (this is okay since we are not adding any macro to the design). After that run_placement, another error will occur relating to remove_buffers, the solution is to comment the call to remove_buffers_from_nets in OpenLane/scripts/tcl_commands/placement.tcl. After successfully running placement, runs/[date]/results/placement/picorv32.def will be created.
+  
+So, modification goes on. In terminal, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/scripts/openroad ; vim or_basic_mp.tcl ; cd ~/Desktop/work/tools/openlane_working_dir/openlane/scripts/tcl_commands ; vim floorplan.tcl ;
+  
+![lab4 3](https://user-images.githubusercontent.com/118954022/219117412-4aca8f55-c94a-4622-a059-348de22f7dd1.jpg)
+
+Then, in OpenLane >> run_floorplan ; run_placement ; Then in terminal, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/19-01_18-36/results/placement ; magic -T ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def ; 
+  
+![lab4 4](https://user-images.githubusercontent.com/118954022/219124585-f3a8d185-abac-4d23-a243-33cfbe65f497.jpg)
+  
 
 ## Timing Analysis with Ideal Clocks using OpenSTA
 
