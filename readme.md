@@ -3355,7 +3355,13 @@ Then, in OpenLane >> run_floorplan ; run_placement ; Then in terminal, >> cd ~/D
 
 ### Steps to Configure OpenSTA for Post-synth Timing Analysis
   
-rrr
+In terminal, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane ; vim pre_sta.conf (For pre-layout timing analysis). Then, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src ; vim my_base.sdc (crete my_base.sdc file); cd ~/Desktop/work/tools/openlane_working_dir/openlane/vsdstdcelldesign/libs ; vim sky130_fd_sc_hd__typical.lib ;
+
+![lab5 0](https://user-images.githubusercontent.com/118954022/219464253-db281120-c31c-421e-8659-920a9c29c134.jpg)
+
+Then check for negative slack, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane ; sta pre_sta.conf (invoke sta to check timing);
+
+![lab5 1](https://user-images.githubusercontent.com/118954022/219464686-70197dea-5754-4f63-9ac9-c22a83f8d8e2.jpg)
 
 ### Steps to Optimize Synthesis to Reduce Setup Violations
   
