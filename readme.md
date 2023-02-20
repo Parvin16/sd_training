@@ -46,6 +46,20 @@
    * [Lab](https://github.com/Parvin16/sd_training#labs-18)
 +  [Day_22](https://github.com/Parvin16/sd_training#Day_22) : **CTS Analysis Labs**
    * [Lab](https://github.com/Parvin16/sd_training#labs-19)   
++  [Day_23](https://github.com/Parvin16/sd_training#Day_23) : **Clock Gating Technique**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-20) 
++  [Day_24](https://github.com/Parvin16/sd_training#Day_24) : **Timing Violations and ECO**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-21) 
++  [Day_25](https://github.com/Parvin16/sd_training#Day_25) : **RISC-V Core RTL2GDS Flow**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-22) 
++  [Day_26](https://github.com/Parvin16/sd_training#Day_26) : **Introduction to Mixed-signal Flow**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-23)
++  [Day_27](https://github.com/Parvin16/sd_training#Day_27) : **Introduction to Crosstalk - Glitch and Delta Delay**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-24)
++  [Day_28](https://github.com/Parvin16/sd_training#Day_28) : **Introduction to DRC/LVS **
+   * [Lab](https://github.com/Parvin16/sd_training#labs-25)
++  [Day_29](https://github.com/Parvin16/sd_training#Day_29) : **DRC/LVS Labs**
+   * [Lab](https://github.com/Parvin16/sd_training#labs-26)
 
 # #Day_0
 ### BASICS
