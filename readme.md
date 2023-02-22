@@ -3510,11 +3510,23 @@ Then will proceed to resolve DRC Violation and working on Power Distribution Net
 
 ### Lab Steps to Build Power Distribution Network
   
-rrr
+If already from openLane, then do this, >> cd work/tools/openlane_working_dir/openlane ; make mount ; pwd ; ls -ltr ; ./flow.tcl -interactive ; package require openlane 0.9 ; prep -design picorv32a -tag 13-01_14-09 ;. If we want to retain the configurations from the last openlane job, we need to use '**prep -design -tag**'. If we want to create a fresh run with new configurations but without changing the tag name, we need to use '**prep -design -tag -overwrite**'.
+  
+In OpenLane, >> echo $::env(CURRENT_DEF)  (to ensure current_def is on the CTS stage and we will know we have done until which stage); gen_pdn  (to generate power distribution network);. Error encountered during “**gen_pdn**” in which the stage cannot perform routing as current_def has not changed to floorplan.pdn and it is due to incomplete proc in file. 
+  
+![lab1 0](https://user-images.githubusercontent.com/118954022/220697601-c347e49a-06e8-44a2-9b4e-9422364f740d.jpg)
+
+![lab1 1](https://user-images.githubusercontent.com/118954022/220699417-f4a7aee7-f144-4e82-bf40-f8009c2b5e12.jpg)
   
 ### Lab Steps from Power Straps to std Cell Power
   
-rrr
+This is a review on PDN. If the power and ground rails has a pitch of 2.72, thus the customized inverter cell will have a height of 2.72 or else the power and ground rails will not be able to power up the cell. As shown below, power and ground flows from power/ground pads --> power/ground ring --> power/ground straps --> power/ground rails. 
+  
+Refernce : https://github.com/AngeloJacobo/OpenLANE-Sky130-Physical-Design-Workshop#timing-analysis-with-real-clocks
+  
+![lab2 0](https://user-images.githubusercontent.com/118954022/220705648-c741191f-684b-42aa-a91a-ea305bf3da6c.jpg)
+
+BLUE is GND pad, RED is Power VDD pad, having 4 corners pads. Power and ground connect to ring and connect to chip through straps. Then connect to standard cells and macro cells through rails. The power and ground signals first go into the pads, into the power rings, then through the straps, and lastly, through the rails. 
   
 ### Basics of Global and Detail Routing and Configure TritonRoute
   
