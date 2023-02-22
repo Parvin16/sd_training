@@ -56,7 +56,7 @@
    * [Lab](https://github.com/Parvin16/sd_training#labs-23)
 +  [Day_27](https://github.com/Parvin16/sd_training#Day_27) : **Introduction to Crosstalk - Glitch and Delta Delay**
    * [Lab](https://github.com/Parvin16/sd_training#labs-24)
-+  [Day_28](https://github.com/Parvin16/sd_training#Day_28) : **Introduction to DRC/LVS **
++  [Day_28](https://github.com/Parvin16/sd_training#Day_28) : **Introduction to DRC/LVS**
    * [Lab](https://github.com/Parvin16/sd_training#labs-25)
 +  [Day_29](https://github.com/Parvin16/sd_training#Day_29) : **DRC/LVS Labs**
    * [Lab](https://github.com/Parvin16/sd_training#labs-26)
@@ -3766,14 +3766,48 @@ References :
   
 **Clock Gating Technique**
 
-## Lecture
+![note1](https://user-images.githubusercontent.com/118954022/220735135-08445f35-ff4d-4420-9e1f-042f449350b4.jpg)
 
+Advanced H-Tree for Million Flop Clock End-points randomly Placed
+
+Assume there is a digital circuit with a lot of clocks, now just imagine designing 
+clock tree, which will be so huge, with so many buffers etc.  Now, the whole chip is sectioned into smaller versions and then each section will have its own clock tree, and then finally a complete routed tree.
+
+![note2](https://user-images.githubusercontent.com/118954022/220736343-c1665f8b-f918-4776-ada9-802979e1e372.jpg)
+
+Half/quarter Million of Buffers ?? 
+
+Isn't that too much power? We have been worrying about clock tree only with respect to Area, Timing and etc. We forgot about another important factor - "Power". Now, we need to do CTS keeping power in mind - power "aware" CTS.
+
+Clock Gating Technique using AND, OR Universal NAND Gate 
+
+This is where we introduce Clock gating(CG). It has been found that 50% of the **dynamic power** originates from clock-related circuits. - source: low power vlsi design, AJIT PAL (this answers why CC?). So, what is CG? -> **Clock Gating(CG)** is one of the techniques used to save the dynamic power of clock elements in the design. Principle behind clock gating: The principle behind clock gating is to stop the clock of those sequential elements whose data is not toggling. RTL level code talks only about data transfer.
+
+![note3](https://user-images.githubusercontent.com/118954022/220737533-975fd9ff-751e-4895-b960-d133630581c7.jpg)
+
+Where/When is Clock Gating done ?? 
+
+Inserted synthesis stage and optimized in the implementation stage(Physical Design stage). There are mainly three types of CG: 
+* CG = AND gate 
+* CG = OR gate 
+* CG = Universal NAND gate
+
+Following the Physical Design Flow, the last step is Routing. Making physical connections between signal pins using metal layers are called **Routing**. There is mainly 3 types of routing:
+* P/G Routing 
+* Clock Routing 
+* Signal Routing 
+  * Global Routing 
+  * Detailed Routing 
+
+Basic flow of Routing
+
+![note4](https://user-images.githubusercontent.com/118954022/220739738-274d04e6-0e85-4f5a-bdc5-41c9ed669ed2.jpg)
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
-### LAB 1 - 
+Finish the udemy course for CTS-part 1 : https://www.udemy.com/course/vlsi-academy-clock-tree-synthesis/
 
 ------------------------------------------------------------------------------------------------
 
@@ -3781,6 +3815,67 @@ References :
   
 **Timing Violations and ECO**
 
+**Engineering Change Order** or **ECO** is how we incorporate last minute changes in 
+our design. So typically we do ECO on the gate level netlist. Designer need to edit the gate-level netlist, make the same changes in RTL. Then pass all verifications before it is passed on to layout. Make sure the ECO pass formal and functional verification before you start editing your layout. In this stage all the violations are fixed and seal all the sign-off checks that weren't done during the PD flow.
+
+ECO strategies in a nutshell. ECO has has the following steps : 
+* Investigate the problem using the recent database .
+* ECO generation to address the problem .
+* ECO implementation with the recent database .
+* After implementing and fixing the problem, save it in the database for future. 
+
+ECO strategies :
+* Margin based fixing 
+  * Design rule violations(DRV) - max_cap and max_tran 
+  * Setup and hold violations
+* Selective endpoint biased fixing 
+  * With and without margin 
+  * With and without slack range 
+* Slack based fixing 
+  * Setup and hold target slack 
+  * Max slack 
+* Fix 'n' number paths 
+  * Number of paths per group (max_paths) 
+  * Number of paths per endpoint (nworst) 
+* GBA(group based) and PBA(path-based)fixing 
+* Full chip vs reg2reg fixing 
+* Leakage fixing using HVT 
+* Hierarchical ECO 
+  * Top level only 
+  * Individual 
+  * Replicated hierarchies only 
+  * All of the above 
+* Physical aware ECO 
+  * Routing congestion aware 
+  * Cell legalization aware 
+  * Buffer on route
+  
+References:
+1. VSD-Clock Tree Synthesis - Part 2
+2. Low power vlsi design, ajit pal
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### Violations and Methods to fix
+
+1. Finish the udemy course for CTS-part 2, and violations and ECO webinar. ( https://www.udemy.com/course/vlsi-academy-clock-tree-synthesis-part2/ )
+2. There is slack violations in the design, try to fix it. 
+	a. Latency needs to commented 
+	b. Initial density (core utilization - initialize_fioorplan(under pre-floorplanning)) --> 40% 
+	c. Clock needs to be propagated post-CTS , and for timing analysis post-placement clock should be ideal - (should have ideal in brackets) 
+	d. Yishen's post layout timing reports 
+The analysis column in report timing. Expectation - cells shown in the analysis column should be in the main column in post-layout timing reports.
+
+
+------------------------------------------------------------------------------------------------
+
+
+# #Day_25
+  
+**RISC-V Core RTL2GDS Flow**
+
 ## Lecture
 
 
@@ -3792,10 +3887,54 @@ References :
 
 ------------------------------------------------------------------------------------------------
 
-
-# #Day_25
+# #Day_26
   
-**RISC-V Core RTL2GDS Flow**
+**Introduction to Mixed-signal Flow**
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+------------------------------------------------------------------------------------------------
+
+# #Day_27
+  
+**Introduction to Crosstalk - Glitch and Delta Delay**
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+------------------------------------------------------------------------------------------------
+
+# #Day_28
+  
+**Introduction to DRC/LVS**
+
+## Lecture
+
+
+------------------------------------------------------------------------------------------------
+
+## LABS
+
+### LAB 1 - 
+
+------------------------------------------------------------------------------------------------
+
+# #Day_29
+  
+**DRC/LVS Labs**
 
 ## Lecture
 
