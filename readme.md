@@ -3435,20 +3435,41 @@ Each stage has its own .tcl file, except synthesis since it is not in openROAD. 
 In openLane, >> echo $::env(LIB_TYPICAL) ; echo $::env(CURRENT_DEF) ; echo $::env(CTS_MAX_CAP) ; echo $::env(CTS_CLK_BUFFER_LIST) ; echo $::env(CTS_ROOT_BUFFER) ;. We can check variables, value for cap , trans and etc. The max_cap value is the value at output pin of *_clkbuf_16. The value of capacitance is pick from .lib. The .def file will be use for future few stages like for power distribution and routing.
 
 ![lab9 3](https://user-images.githubusercontent.com/118954022/220585511-841ee314-ad3a-4628-8f8a-265834866078.jpg)
+  
 
 ## Timing Analysis with Real Clocks using OpenSTA
 
 ### Steps to Analyze Timing with Real Clocks using OpenSTA
   
-rrr
+Reference : https://github.com/AngeloJacobo/OpenLANE-Sky130-Physical-Design-Workshop#timing-analysis-with-real-clocks 
+  
+In OpenLane invoke openRoad, >> openroad ; read_lef /openLANE_flow/designs/picorv32a/runs/19-01_18-36/tmp/merged.lef ; read_def/openLANE_flow/designs/picorv32a/runs/19-01_18-36/results/cts/picorv32a.cts.def ; write_db pico_cts.db ; read_db pico_cts.db ; 
+read_verilog /openLANE_flow/designs/picorv32a/runs/19-01_18-36/results/synthesis/picorv32a.synthesis_cts.v ; read_liberty -max $::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib ; read_liberty -min $::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib ; set_propagated_clock [all_clocks] ; read_sdc designs/picorv32a/src/my_base.sdc ; report_checks -path_delay min_max -format full_clock_expanded -digits 4 ;.This step is not practical, therefore it violated. 
+  
+![lab10 0](https://user-images.githubusercontent.com/118954022/220589661-644ab86e-1448-4ea8-a084-f569607481d1.jpg)
+  
+This step is basically invoke openroad, read lef & def (from post cts), then write_db, read all, calculate actual cell delay, report timing (ignore hold-still no actual clock). In next routing stage will introduce resistance and capacitance. This will cause the delay to increase further. 
 
 ### Steps to Execute OpenSTA with Right Timing Libraries and CTS Assignment
   
-rrr
+Continue from previous lab, >> exit ; openroad (exit then open new openroad); read_db pico_cts.db ; read_verilog /openLANE_flow/designs/picorv32a/runs/19-01_18-36/results/synthesis/picorv32a.synthesis_cts.v ; read_liberty $::env(LIB_SYNTH_COMPLETE) ; link_design picorv32a ; read_sdc designs/picorv32a/src/my_base.sdc ; set_propagated_clock [all_clocks] ; report_checks -path_delay min_max -fields {slew trans net cap input pin} -format full_clock_expanded ; echo $::env(CTS_CLK_BUFFER_LIST) (view list of buffers);
+  
+![lab11 0](https://user-images.githubusercontent.com/118954022/220591350-522fdadc-08a6-4015-acad-6859de122c42.jpg)
+  
+The timing report generated previously was not proper, because in CTS stage is built based on typical corner, but the libraries that used for this analysis is min and max corner, so we need to set to typical library. Both timing are met after post CTS. The flow is not support analyze multicorner, so need to run seperately for each corner. The tool picked small cell first to meet the skew and area. Skew values are within 10% of the max clock period. 
 
 ### Steps to Observe Impact of Bigger CTS Buffers on Setup and Hold Timing
   
-rrr
+In openLane rerun cts, >> exit ; echo $::env(CTS_CLK_BUFFER_LIST) ; set ::env(CTS_CLK_BUFFER_LIST) [lreplace $::env(CTS_CLK_BUFFER_LIST) 0 0] ; echo $::env(CURRENT_DEF) ; set ::env(CURRENT_DEF) /openLANE_flow/designs/picorv32a/runs/19-01_18-36/results/placement/picorv32a.placement.def (point back to placement def); run_cts ; 
+  
+Then invoke openRoad, >> read_lef /openLANE_flow/designs/picorv32a/runs/1/tmp/merged.lef ; read_def /openLANE_flow/designs/picorv32a/runs/19-01_18-36/results/cts/picorv32a.cts.def ; write_db pico_cts1.db ; read_db pico_cts1.db ; read_verilog /openLANE_flow/designs/picorv32a/runs/19-01_18-36/results/synthesis/picorv32a.synthesis_cts.v ; read_liberty $::env(LIB_SYNTH_COMPLETE) ; link_design picorv32a ; read_sdc designs/picorv32a/src/my_base.sdc ; set_propagated_clock [all_clocks] ; report_checks -path_delay min_max -fields {slew trans net cap input pin} -format full_clock_expanded ;. We can see now that all buffer changed from '1' to '2'and slack has been improved.
+  
+![lab12 0](https://user-images.githubusercontent.com/118954022/220602273-45e9f44a-8af9-4b27-b271-e94c91df8b78.jpg)
+
+Then, >> report_clock_skew -hold ; report_clock_skew -setup ; set ::env(CTS_CLK_BUFFER_LIST) [linsert $::env(CTS_CLK_BUFFER_LIST) 0 sky130_fd_sc_hd__clkbuf_1] (Adding back clkbuf1); 
+  
+![lab12 1](https://user-images.githubusercontent.com/118954022/220603839-226fec20-6fd0-467a-9720-830fdb331a82.jpg)
+
 
 ------------------------------------------------------------------------------------------------
 
