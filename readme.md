@@ -3507,8 +3507,6 @@ Then will proceed to resolve DRC Violation and working on Power Distribution Net
 
 
 ## Power Distribution Network and Routing
-  
-rrr
 
 ### Lab Steps to Build Power Distribution Network
   
