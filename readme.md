@@ -3379,11 +3379,30 @@ Then check for negative slack, >> cd ~/Desktop/work/tools/openlane_working_dir/o
 
 ### Steps to Optimize Synthesis to Reduce Setup Violations
   
-rrr
+Ignore hold report first, will review it after post-CTS. Currently is ideal. 
+
+![lab6 0](https://user-images.githubusercontent.com/118954022/220564180-2919720b-4f02-42d9-9b84-ecb90befc027.jpg)
+
+Then, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/configuration ; vim README.md ;
+
+![lab6 1](https://user-images.githubusercontent.com/118954022/220565870-950e966a-de9b-45fc-a4f4-f7ed2e7de800.jpg)
+
+In OpenLane, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane ; echo $::env(SYNTH_MAX_FANOUT) ; set ::env(SYNTH_MAX_FANOUT) 4 (this to set to 4 and rerun synthesis);Then, cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/19-01_18-36/results/synthesis ; rm -rf picorv32a.synthesis.v ;We can see the value of tns decrease. 
+
+<img width="281" alt="image" src="https://user-images.githubusercontent.com/118954022/220567747-001ee6c8-7ab9-48f1-99f5-a2a7311f9269.png">
+![lab6 2](https://user-images.githubusercontent.com/118954022/220568650-bd6faef9-93c6-49da-9005-f53d84d7c24f.jpg)
+
+Then in openlane, >> run_synthesis ;Then, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane ; sta pre_sta.conf ; report_net -connections _18242_ ; replace_cell _41952_ sky130_fd_sc_hd__dfxtp_4 (This picks the highest fanout, cap, slew and replace the worst violations of the cell by increasing drive strength, upsize cell from 2 to 4); report_checks -fields {net cap dlew input pins} -digits 4 ; report_tns ; report_wns ;. We can after upsized, the timing violation has been improved and decreased. 
+
+![lab6 3](https://user-images.githubusercontent.com/118954022/220570534-4c2cecde-7033-464e-8bec-993196946535.jpg)
+
+There is huge load with cap 0.11 and causing slew 0.87. After upsive we can see timing violations has improved along with tns and wns. 
+
+![lab6 4](https://user-images.githubusercontent.com/118954022/220571769-8765dbe1-8ea0-4021-a720-b0e17ddb2a2e.jpg)
 
 ### Steps to do Basic Timing ECO
   
-rrr
+We can use 'report_checks -from -through'. >> report_checks -from _41952_ -through _41879_ ;. After upsize cell, we can see the delay reduced to 0.99 from 1.20(previous).
 
 
 ## TritonCTS and Signal Integrity
