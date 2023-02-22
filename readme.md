@@ -3410,12 +3410,31 @@ We can use 'report_checks -from -through'. >> report_checks -from _41952_ -throu
 
 ### Steps to Run CTS using TritonCTS
   
-rrr
+In Terminal, >> write_verilog ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/19-01_18-36/results/synthesis/picorv32a.synthesis.v (overwrite the file after ECO netlist file done save); cd ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/19-01_18-36/results/synthesis ; ls -lrt picorv32a.synthesis.v ; date ;
+
+Then in Openlane, >> run_floorplan ; run_placement ; run_cts ; Then, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/configuration ; vim README.md ;. Here is the variables for CTS. 
+
+![lab8 0](https://user-images.githubusercontent.com/118954022/220578093-5a73e862-340a-4f3a-89c8-113f0cbef140.jpg)
+
+After run cts, there will be new file generated " picorv32a.synthesis_cts.v ".
 
 ### Steps to Verify CTS Runs
   
-rrr
+>> cd ~/Desktop/work/tools/openlane_working_dir/openlane/scripts/tcl_commands ; vim cts.tcl ;. In this directory, it consists all commands used in each stage. There is proc run_cts. 
 
+![lab9 0](https://user-images.githubusercontent.com/118954022/220581375-68ea78d8-94c7-4c80-addc-5e0440c12512.jpg)
+
+In cts.tcl, it will further pass control to another file.
+
+![lab9 1](https://user-images.githubusercontent.com/118954022/220581785-0be7edf2-95a2-4c9b-9984-71e3737d4aeb.jpg)
+
+Each stage has its own .tcl file, except synthesis since it is not in openROAD. >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/scripts/openroad ; vim or_cts.tcl ;
+
+![lab9 2 0](https://user-images.githubusercontent.com/118954022/220582750-0e46951f-22f9-4295-bb5f-1f6d1c4b4b08.jpg)
+
+In openLane, >> echo $::env(LIB_TYPICAL) ; echo $::env(CURRENT_DEF) ; echo $::env(CTS_MAX_CAP) ; echo $::env(CTS_CLK_BUFFER_LIST) ; echo $::env(CTS_ROOT_BUFFER) ;. We can check variables, value for cap , trans and etc. The max_cap value is the value at output pin of *_clkbuf_16. The value of capacitance is pick from .lib. The .def file will be use for future few stages like for power distribution and routing.
+
+![lab9 3](https://user-images.githubusercontent.com/118954022/220585511-841ee314-ad3a-4628-8f8a-265834866078.jpg)
 
 ## Timing Analysis with Real Clocks using OpenSTA
 
