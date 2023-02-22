@@ -3404,6 +3404,7 @@ There is huge load with cap 0.11 and causing slew 0.87. After upsive we can see 
   
 We can use 'report_checks -from -through'. >> report_checks -from _41952_ -through _41879_ ;. After upsize cell, we can see the delay reduced to 0.99 from 1.20(previous).
 
+![lab7 0](https://user-images.githubusercontent.com/118954022/220574539-94e4577b-b807-4795-b195-50fed59b9914.jpg)
 
 ## TritonCTS and Signal Integrity
 
