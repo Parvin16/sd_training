@@ -3574,6 +3574,12 @@ Physical Design Flow :
   
 <img width="643" alt="onenote1" src="https://user-images.githubusercontent.com/118954022/217070555-6e28efad-23f1-4250-8700-c6320c5fcd75.png">
 
+References : 
+  1) https://github.com/manili/VSDBabySoC/tree/main/src/lef
+  2) Collaterals : https://github.com/kunalg123/icc2_workshop_collaterals
+  3) https://www.vlsifacts.com/asic-physical-design-flow/
+  4) https://asic-soc.blogspot.com/2007/10/physical-design-flow.html
+  
 ------------------------------------------------------------------------------------------------
 
 ## LABS
@@ -3644,6 +3650,11 @@ CTS Free Course :
 Reference :
 * https://ivlsi.com/placement-vlsi-physical-design/
 * https://ivlsi.com/clock-tree-synthesis-cts-vlsi-physical-design/#Clock_Tree_Synthesis
+  
+CTS Free Course 
+ 1) https://www.udemy.com/course/vlsi-academy-clock-tree-synthesis/
+ 2) https://www.udemy.com/course/vlsi-academy-clock-tree-synthesis-part2/
+
 
 ------------------------------------------------------------------------------------------------
 
