@@ -3530,15 +3530,38 @@ BLUE is GND pad, RED is Power VDD pad, having 4 corners pads. Power and ground c
   
 ### Basics of Global and Detail Routing and Configure TritonRoute
   
-rrr
+There will be a variable, ROUTING_STRATEGY in routing stage. The routing strategy specifies the optimization mode to be use in TritonRoute. There are 5 routing strategies. In this training we will proceed with default valu = 0, routing will not be optimal, but this option time saving and low memory consumption.
+  
+>> echo $::env(CURRENT_DEF)  (to ensure the .def file of pdn has been created) ; echo $::env(ROUTING_STRATEGY) ; run_routing ;. Then, >> cd ~/Desktop/work/tools/openlane_working_dir/openlane/configuration ; vim README.md ;. Assuming power distribution network has been successfully generated without being encountered by any error.
 
+![lab3 0](https://user-images.githubusercontent.com/118954022/220722477-924dff25-88db-456e-89cb-1cedf86f73b0.jpg)
+  
 
 ## TritonRoute Features
 
 ### Routing Topology Algorithm and Final Files List Post-route
   
-rrr
+Optimization algorithm for routing topology. 
+  
+For each APC, the algorithm needs to find the cost associated with the distance between 2 APCs which are the minimum spanning tree, MST, between the APCs and the costs. The objective of the algorithm is to find the minimal and most optimal point between the 2 APCs.
+  
+There are 3 violations. TritonRoute strategy = 0 is chosen right now. If TritonRoute strategy = 14 is chosen, there might be more violations due to high memory consume and it might take some time to finish the running. Therefore, we need to fix the violations manually. 
+  
+![lab4 0](https://user-images.githubusercontent.com/118954022/220725761-c49fba52-82a6-41e6-a5dc-444cba56a092.jpg)
+  
+Open file and review 3 violations which on li1 layer that needs to fix manually. The file is generated from global route. The file contains coordinate of each nets. When perform detail route, it will make sure its follow this routing guide. 
+  
+![lab4 1](https://user-images.githubusercontent.com/118954022/220728043-65bf786d-82db-42eb-85b7-b35562e29b60.jpg)
 
+Creating a new spef file that requires merged.lef and picorv32a.def. Need to extract parasitic, need specific def and lef.Then generate out .spef file.
+
+![lab4 2](https://user-images.githubusercontent.com/118954022/220729001-59393338-95de-40e3-ac8d-ccb359cdaabe.jpg)
+
+Floorplan and placement has no change to netlist, so no .v files. CTS stage has insert buffer. Before routing has add in diode, the 3rd one also before routing. Post-STA will consume in the last one and will introduce another command read_spef.
+  
+![lab4 3](https://user-images.githubusercontent.com/118954022/220730023-453bcf19-7ab4-41fd-807a-e6648187d926.jpg)
+  
+  
 ------------------------------------------------------------------------------------------------
 
 # #Day_20
