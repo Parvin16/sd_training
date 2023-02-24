@@ -3893,13 +3893,13 @@ The analysis column in report timing. Expectation - cells shown in the analysis 
 
 Reference : VLSI Physical Design Flow(http://www.vlsisystemdesign.com)
 
-What is Mixed Signal Design??
+What is **Mixed Signal Design**??
 
 Electronic signal is  a message encoded by changing the voltage of an electric current. There are 2 types of electronic signals, Analog and Digital signals. Analog signals most available in the nature. Digital signals - basically I 's and 0's does microcontroller/ microprocessors understands or speak. Since the microprocessor/controllers speak in digital form, we use ADC's and DAC's  to get or take in analog signals.
 
 Mixed-signal chips are those that at least partially deal with input signals whose precise values matter.This broad class includes RF, Analog, Analog-to-Digital and Digital-to-Analog conversion. More recently, a large number of Mixed-Signal chips where at least part of the chip design needs to measure signals with high precision. These chips have very different Design and Process Technology demands than normal Digital circuits.
 
-AMS - analog and mixed signal(digital and analog). AMS Design Flow :
+**AMS** - analog and mixed signal(digital and analog). AMS Design Flow :
 
 ![note1](https://user-images.githubusercontent.com/118954022/221268599-e5933e2d-ec63-4800-94f0-efa2705c3a0e.jpg)
 
@@ -3978,7 +3978,7 @@ Aggressor and Victim Nets
 
 **Crosstalk-Glitch**
 * When one net is switching, and another net is constant then switching signal may cause spikes on other net because of which coupling capacitance (Cc) occurs between two nets, this is called as crosstalk noise.
-* Types of Glitches  Rise, Fall, Overshoot, Undershoot.
+* Types of Glitches -> Rise, Fall, Overshoot, Undershoot.
 
 ![note1](https://user-images.githubusercontent.com/118954022/221271721-8fb5ebb0-7803-4f99-83a7-7e0445bd1b7c.jpg)
 
@@ -3987,7 +3987,7 @@ Performing Crosstalk Delay Analysis
 2. Back-annotate the design with cross-coupling capacitance information in a SPEF or GPD file -> **read_parasitics - keep_capacitive_coupling file_name.spf**
 
 Using check_timing
-• Types to checking specific to crosstalk analysis:
+* Types to checking specific to crosstalk analysis:
   * no_driving_cell
   * ideal_clocks
   * partial_input_delay
