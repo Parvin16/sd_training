@@ -3883,8 +3883,6 @@ The analysis column in report timing. Expectation - cells shown in the analysis 
 
 ## LABS
 
-### LAB 1 - 
-
 ------------------------------------------------------------------------------------------------
 
 # #Day_26
@@ -3895,13 +3893,65 @@ The analysis column in report timing. Expectation - cells shown in the analysis 
 
 Reference : VLSI Physical Design Flow(http://www.vlsisystemdesign.com)
 
+What is Mixed Signal Design??
 
+Electronic signal is  a message encoded by changing the voltage of an electric current. There are 2 types of electronic signals, Analog and Digital signals. Analog signals most available in the nature. Digital signals - basically I 's and 0's does microcontroller/ microprocessors understands or speak. Since the microprocessor/controllers speak in digital form, we use ADC's and DAC's  to get or take in analog signals.
+
+Mixed-signal chips are those that at least partially deal with input signals whose precise values matter.This broad class includes RF, Analog, Analog-to-Digital and Digital-to-Analog conversion. More recently, a large number of Mixed-Signal chips where at least part of the chip design needs to measure signals with high precision. These chips have very different Design and Process Technology demands than normal Digital circuits.
+
+AMS - analog and mixed signal(digital and analog). AMS Design Flow :
+
+![note1](https://user-images.githubusercontent.com/118954022/221268599-e5933e2d-ec63-4800-94f0-efa2705c3a0e.jpg)
+
+Block diagram representation for Mixed Signal Design :
+
+![note2](https://user-images.githubusercontent.com/118954022/221268897-ed044486-dc2b-40e1-9c89-5e7fd1db770b.jpg)
+
+Let us explore with the example of VSDBabySoC
+* RVMYTH processor - digital block.
+* PLL - analog block.
+* DAC - analog block(for digital to analog conversion).
+
+Introduction to Various Files
+
+1) LEF file - Library Exchange Format file : Physical properties such as width, height etc regarding the standard cells.
+   * Tf(technology file) or Tlef(technology lef) -contain same information.
+   * Cell tf.
+
+2) LIBerty file - contains the timing information of the cells.
+
+3) gdsII and OASIS file. - GDSII is a file format similar to JPEG, DOCX, XLSX etc to enable a layout design to be transferred from one place to another(IP owner handoff to PD team, PD team to foundry for fabrication), to be viewed/used for verifications like Physical verification checks by EDA tools.
+
+![note3](https://user-images.githubusercontent.com/118954022/221269609-b9da26d5-7235-45b5-8027-879118e16400.jpg)
+
+Where to get the information in WHAT and WHY TO DO? This is where we need the following files:
+* LEF file.
+* LIB file.
+* Tf files(tlu+ file).
+
+![note4](https://user-images.githubusercontent.com/118954022/221270068-18a0dae7-d541-4d81-86f8-70960cdd3ff8.jpg)
+
+Sources of various files
+
+![note5](https://user-images.githubusercontent.com/118954022/221270299-04fe4c91-5abc-4886-b028-aa6fe4402408.jpg)
+
+What are IP cores?
+
+An **IP core** consists of a block of logic or data that is used in a semiconductor chip. It is usually the intellectual property of a particular person or company. IP cores are used when making a field programmable gate array (FPGA) or application-specific integrated circuit (ASIC).
+IP cores are created throughout the design process and can be turned into components for reuse. There are different categories for IP cores including hard IP cores and soft IP cores. The soft IP core , can be customized during the physical design phase and mapped to any process technology. A hard IP core is one that has the logic implementation and the physical implementation. In other words, the physical layout of a hard macro-IP is finished and fixed in a particular process technology.
+
+Just a diagram how it actually works in the semiconductor industry:
+
+![note6](https://user-images.githubusercontent.com/118954022/221270660-973c1d42-e02c-46e4-bdab-9274c59765df.jpg)
+
+References : 
+1. https://www.ques10.com/p/27715/draw-and-explain-ams-design-flow-1/
+2. https://www.cdeep.iitb.ac.in/slides/S15/EE719/EE719-L1.pdf
+3. https://www.slideshare.net/vlsisyst/vlsi-physical-design-flow
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
-
-### LAB 1 - 
 
 ------------------------------------------------------------------------------------------------
 
@@ -3915,11 +3965,76 @@ Synopys trainings : https://solvnetplus.synopsys.com/s/
 
 VSD - Signal Integrity udemy freee course : https://www.udemy.com/course/vlsi-academy-crosstalk/?couponCode=9C9DA98C9CDC80B3F70D
 
+What is **Signal Integrity** and **Crosstalk**?
+* Signal Integrity & Crosstalk are the Quality checks of the clock routes.
+* Signal integrity is the ability of an electrical signal to carry information reliably and resist the effects of high-frequency electromagnetic interference from nearby signals.
+* Crosstalk is the undesirable electrical interaction between two or more physically adjacent nets due to capacitive cross-coupling.
+* Crosstalk is a type of noise signal that corrupts the actual signal while transmission through the communication medium.
+* Reasons for Crosstalk and Fixes for Crosstalk.
+
+Aggressor and Victim Nets
+* A net that receives undesirable cross-coupling effects from a nearby net is called a victim net.
+* A net that causes these effects in a victim net is called an aggressor net.
+
+**Crosstalk-Glitch**
+* When one net is switching, and another net is constant then switching signal may cause spikes on other net because of which coupling capacitance (Cc) occurs between two nets, this is called as crosstalk noise.
+* Types of Glitches  Rise, Fall, Overshoot, Undershoot.
+
+![note1](https://user-images.githubusercontent.com/118954022/221271721-8fb5ebb0-7803-4f99-83a7-7e0445bd1b7c.jpg)
+
+Performing Crosstalk Delay Analysis
+1. Enable PrimeTime SI -> **set_app_var si_enable_analysis true**
+2. Back-annotate the design with cross-coupling capacitance information in a SPEF or GPD file -> **read_parasitics - keep_capacitive_coupling file_name.spf**
+
+Using check_timing
+• Types to checking specific to crosstalk analysis:
+  * no_driving_cell
+  * ideal_clocks
+  * partial_input_delay
+  * unexpandable_clocks
+
+Timing Reports
+* report_timing
+* -crosstalk_delta
+* report_si_bottleneck
+* report_delay_calculation –crosstalk
+* report_si_double_switching
+* report_noise
+* **Viewing the Crosstalk Analysis Report** -> report_timing - transition_time -crosstalk_delta \ -input_pins -significant_digits 4
+
+Bottleneck Reports
+* report_si_bottleneck
+* report_bottleneck
+* delta_delay
+* delta_delay_ratio
+* total_victim_delay_bump
+* delay_bump_per_aggressor
+* To get a list of all the victim nets with a delay violation or within 2.0 time units of a violation, listed in order of delta delay -> report_si_bottleneck -cost_type delta_delay \ -slack_lesser_than 2.0
+
+Bottleneck Reports
+* report_delay_calculation –crosstalk
+* size_cell
+* set_coupling_separation
+* -include_clock_nets
+* minimum_active_aggressor
+* In the following example command, the bottleneck command reports nets where three or more active aggressors are affecting the net -> report_si_bottleneck -cost_type delta_delay \ - minimum_active_aggressors 3
+
+Crosstalk Net Delay Calculation
+* report_delay_calculation -crosstalk \ -from [get_pins g1/Z] -to [get_pins g2/A]
+
+Reporting Crosstalk Settings
+* To check your crosstalk settings:
+  * report_si_delay_analysis
+  * report_si_noise_analysis
+  * report_si_aggressor_exclusion
+  
+References : 
+1) Overview of Signal Integrity and Crosstalk (synopsys.com)
+2) CTS (PART-II) (crosstalk and useful skew) - VLSI- Physical Design For Freshers (physicaldesign4u.com)
+
 ------------------------------------------------------------------------------------------------
 
 ## LABS
-
-### LAB 1 - 
 
 ------------------------------------------------------------------------------------------------
 
@@ -3929,12 +4044,23 @@ VSD - Signal Integrity udemy freee course : https://www.udemy.com/course/vlsi-ac
 
 ## Lecture
 
+![note1](https://user-images.githubusercontent.com/118954022/221273496-4fe6518a-e499-4690-bc78-eb059badb072.jpg)
+
+Physical Verification
+* **DRC** (Design Rule Check): DRC checks determine if the layout satisfies a set of rules required for manufacturing.
+* **LVS** (Layout vs Schematic): It is another major check in the physical verification stage. Here you are verifying that the layout you have created is functionally the same as the schematic/netlist of the design.
+* **ARC** (Antenna Rule Checking): Process antenna effect or “plasma induced gate oxide damage” is a manufacturing effect.
+* **ERC** (Electrical rule check): Involves checking a design for all electrical connections that are considered dangerous.
 
 ------------------------------------------------------------------------------------------------
 
 ## LABS
 
-### LAB 1 - 
+### TASK
+
+Step 1: Physical-Verification-using-SKY130/README.md at main · Emad-H/Physical-Verification-using-SKY130 (github.com) -> Go through the Repo, as a reference to do Step 2.
+
+Step 2: https://www.vsdiat.com/dashboard -> Go to Physical Verification using Skywater 130nm technology Workshop.
 
 ------------------------------------------------------------------------------------------------
 
