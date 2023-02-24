@@ -3945,6 +3945,7 @@ VSD - Signal Integrity udemy freee course : https://www.udemy.com/course/vlsi-ac
 ## Lecture
 
 Refer : https://github.com/Devipriya1921/Physical-Verification-using-synopsys-40nm
+
 ------------------------------------------------------------------------------------------------
 
 ## LABS
