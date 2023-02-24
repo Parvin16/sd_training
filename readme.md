@@ -3893,6 +3893,9 @@ The analysis column in report timing. Expectation - cells shown in the analysis 
 
 ## Lecture
 
+Reference : VLSI Physical Design Flow(http://www.vlsisystemdesign.com)
+
+
 
 ------------------------------------------------------------------------------------------------
 
@@ -3908,6 +3911,9 @@ The analysis column in report timing. Expectation - cells shown in the analysis 
 
 ## Lecture
 
+Synopys trainings : https://solvnetplus.synopsys.com/s/
+
+VSD - Signal Integrity udemy freee course : https://www.udemy.com/course/vlsi-academy-crosstalk/?couponCode=9C9DA98C9CDC80B3F70D
 
 ------------------------------------------------------------------------------------------------
 
@@ -3938,7 +3944,7 @@ The analysis column in report timing. Expectation - cells shown in the analysis 
 
 ## Lecture
 
-
+Refer : https://github.com/Devipriya1921/Physical-Verification-using-synopsys-40nm
 ------------------------------------------------------------------------------------------------
 
 ## LABS
@@ -3946,3 +3952,6 @@ The analysis column in report timing. Expectation - cells shown in the analysis 
 ### LAB 1 - 
 
 ------------------------------------------------------------------------------------------------
+
+
+-----**THE END**-----
