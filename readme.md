@@ -3535,14 +3535,48 @@ Performing parasitic extraction, where the resistances and capacitances of the w
 
 ### TritonRoute Feature 1 - Honors Pre-processed Route Guides
 
+OpenLane routing stage consists of two stages:
+  * **Global Routing** - Form routing guides that can route all the nets. The tool used is FastRoute.
+  * **Detailed Routing** - Uses the global routing's guide to connect the pins with the least amount of wire and bends. The tool used is TritonRoute.
+  
+**Triton Route**
 
+In fast routing, a rough routing draft is created. Fast routing is the engine which is used for global routing. During global routing, the region is divided into grid cells, which acts as a route guide for the TritonRoute to be used for the detail routing, where an algorithm is used to find the best connectivity between the points. It honours the preprocessed route guides (obtained after fast routes), wherein the tool attempts as much as possible to route within route guides. The tool assumes route guides for each net satisfies inter-guide connectivity. Triton route works on proposed MILP (Mixed integer liner programming) based panel routing scheme with intra-layer parallel and inter-layer sequential routing framework, to finds the best way to perform the routing. Intra-layer refers to the routing within a layer, while inter-layer routing refers to routing between layers, through the uses of vias.
+
+![note8](https://user-images.githubusercontent.com/118954022/221608927-955fb102-73d7-4d93-8e2f-788f41197552.jpg)
 
 ### TritonRoute Feature 2 & 3 - Inter-guide Connectivity and Intra- & Inter-layer Routing
 	
+Preprocessed guides should have unit width and must be in the preferred direction of the layer. Global route is done by fast route, and the output would be the routing guide. The initial route guides are transformed into the preprocessed guides through splitting, merging, and bridging. Whenever the tool detected the route guide with non-preferred direction, it divides the route guide into unit widths, and then the route with preferred direction is merged, while the non-preferred direction route is bridged to be a route on another layer, which is the preferred direction for routing. This way, parallel routing with higher layers are avoided, as well as avoiding parallel plate capacitance.
 
+Each layer or panel will have its own preferred routing direction assigned to it, in which the routes should be formed. Routing in higher layers will begin only once the routing the bottom layers have been completed. Two guides are connected if they are on the same metal layer with touching edges, or if they are on neighbouring metal layers with a non-zero vertically overlapped area.
+
+![note9](https://user-images.githubusercontent.com/118954022/221609784-632b3dfd-61ca-40bb-a396-00deebfb6b3e.jpg)
+
+Each unconnected terminal i.e. pin of a standard cell instance, should have its pin shape overlapped by a route guide. The purple box in the RHS figure below would be the routing guide on the metal 1 layer that would overlap with the unconnected terminal. 
   
 ### TritonRoute Method to Handle Connectivity
-	
+
+**Inputs** file needed for TritonRoute are the LEF file, DEF file, and the Preprocessed route guides. **Outputs** from the TritonRoute would be a detailed routing solution with optimized wire-length and via count. **Constraints** needed in TritonRoute are the route guide honouring, connectivity constraints and design rules.
+
+TritonRoute handles connectivity through 2 ways:
+* **Access Point (AP)** - On-grid point on the metal layer of the route guide, and is used to connect to lower-layer segments, upper-layer segments, pins or IO ports.
+* **Access Point Cluster (APC)** - A union of all Access Points derived from the same lower-layer segment, upper-layer guide, a pin or an IO port.
+
+Access point refers to the point where the via can be placed to allow connectivity between layers. The objective of the Mixed Integer Liner Programming (MILP) is to connect one access point to another optimally. Choose one of the access points where the via should be dropped. Then, determine how the first access point will be connected to the next access point.
+
+Handling connectivity:
+* Connect one access oint to another access point optimally.
+* There is multiple access point, so need to pick the right one.
+* Need to connect layer by layer.
+
+![note10](https://user-images.githubusercontent.com/118954022/221612552-35868f5d-638d-445f-9e09-474a9fd3cbab.jpg)
+
+Algorithm use for optimizing routing :
+* Need to find the cost among two APC.
+* Then need to find minial and optimal for APC.
+
+![note11](https://user-images.githubusercontent.com/118954022/221612635-066ba5c9-90bb-458b-9110-9d7690f387f2.jpg)
 
 
 ------------------------------------------------------------------------------------------------
