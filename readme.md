@@ -3535,9 +3535,15 @@ Performing parasitic extraction, where the resistances and capacitances of the w
 
 ### TritonRoute Feature 1 - Honors Pre-processed Route Guides
 
+
+
 ### TritonRoute Feature 2 & 3 - Inter-guide Connectivity and Intra- & Inter-layer Routing
+	
+
   
 ### TritonRoute Method to Handle Connectivity
+	
+
 
 ------------------------------------------------------------------------------------------------
 
