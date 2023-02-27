@@ -4121,6 +4121,10 @@ Physical Verification
 * **LVS** (Layout vs Schematic): It is another major check in the physical verification stage. Here you are verifying that the layout you have created is functionally the same as the schematic/netlist of the design.
 * **ARC** (Antenna Rule Checking): Process antenna effect or “plasma induced gate oxide damage” is a manufacturing effect.
 * **ERC** (Electrical rule check): Involves checking a design for all electrical connections that are considered dangerous.
+	
+## Introduction to SkyWater SKY130
+## DRC/LVS Theory
+## Introduction to DRC Rules
 
 ------------------------------------------------------------------------------------------------
 
@@ -4131,6 +4135,30 @@ Physical Verification
 Step 1: Physical-Verification-using-SKY130/README.md at main · Emad-H/Physical-Verification-using-SKY130 (github.com) -> Go through the Repo, as a reference to do Step 2.
 
 Step 2: https://www.vsdiat.com/dashboard -> Go to Physical Verification using Skywater 130nm technology Workshop.
+	
+## Check Tool Installations
+## Creating Sky130 Device Layout In Magic
+## Creating Simple Schematic In Xschem
+## Creating Symbol And Exporting Schematic In Xschem
+## Importing Schematic To Layout And Inverter Layout Steps
+## Final DRC/LVS Checks And Post Layout Simulations
+## GDS Reads
+## Port
+## Abstract Views
+## Basic Extraction
+## Setup for DRC
+## Setup for LVS
+## Setup for XOR
+## Width Rule And Spacing Rule
+## Via Size, Multiple Vias, Via Overlap and Autogenerate Vias
+## Minumum Area Rule And Minimum Hole Rule
+## Wells And Deep N-Well
+## Derived Layers
+## Paramterized And PDK Devices
+## Angle Error And Overlap Rule
+## Unimplemented Rules
+## Latch-up And Antenna Rules
+## Lab For Density Rules
 
 ------------------------------------------------------------------------------------------------
 
