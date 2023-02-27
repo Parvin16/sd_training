@@ -3488,9 +3488,47 @@ Then will proceed to resolve DRC Violation and working on Power Distribution Net
 
 ### Introduction to Maze Routing Lee’s Algorithm
 
+Routing Stage process
+
+**Maze Routing-Lee’s Algorithm [Lee 1961]** - Algorithm to find the shortest path between two nodes in a grid. **Routing** - The process of creating the physical wire connections within the design in which it helps in determining the best way of routing that can be done between two endpoints, the source, and the target, with the shortest distance as well as the least number of zig-zag turns. However, the algorithm needs to be aware of any blockages set that hinders any routing to be done in the particular area.
+
+![note1](https://user-images.githubusercontent.com/118954022/221599783-d6300fc5-eb61-4edc-ae5a-5d3bbdb9b33a.jpg)
+
+Steps in Lee's Algorithm
+
+1) Create the routing grid behind the floorplan.
+2) The two points were created which are the source and target. Algorithm will look for the best route to connect the two points with the help of the routing grid.
+3) The tool will label the grid ground (adjacent of horizontal and vertical grid). However, it will not label the grid under the blockage and at the boundary.
+
+![note2](https://user-images.githubusercontent.com/118954022/221600598-5d2de574-fa67-41c8-85e2-df7dbed5f115.jpg)
+
 ### Lee’s Algorithm Conclusion
 
-### Design Rule Check
+It is preferable to choose the LHS instead of RHS of the figure below. It is because the chosen route in the LHS figure got the best route which is less bending (L-shaped) rather than the RHS figure. Therefore, LHS figure will proceed to do the global routing. Performing the routing for 1 route will be fairly simple, but when we have millions of start and endpoints to route between, this method will consume a lot of time and memory. Maze routing consumes more time and memory if the design is huge. There are some algorithms that can help to reduce the time and memory consumption such as line-search algorithm, stanner-tree algorithm.
+
+![note3](https://user-images.githubusercontent.com/118954022/221601484-03a2cf7b-3c88-4206-8203-e842e7bf80eb.jpg)
+
+### Design Rule Check (DRC)
+
+Design Rule Check (DRC): the rules that should be followed whenever the routing of the design is performed. One of the rules may be the minimal **Wire Width**, where the width of the wire should be no less than a specified amount based on the limitations of the fabrication process. Another rule that is based on the fabrication process of lithography is the **Wire Pitch**, where the centre-to-centre distance between 2 wires should be no smaller than a certain distance. Another rule includes **Wire Spacing** rule, where distance between 2 wires should be no smaller than a certain distance. These are many rules that the tool needs to take into account when performing the routing of the design.
+
+Can refer this website for more example and solution on DRC: https://www.design-reuse.com/articles/41504/design-rule-checks-drc-a-practical-view-for-28nm-technology.html
+
+![note4](https://user-images.githubusercontent.com/118954022/221603495-9c35a166-ba37-4e1a-ab69-f9ee7b83e96e.jpg)
+
+One type of DRC violation is a **Signal Short**, where two wires that are not intended to be connected becomes in contact on the same layer. This could lead to **functional failure**, so this needs to be taken care of. To fix this, we need to simply moving one of the wires onto a different metal layer. However, please keep in mind that there are new drc rules that need to be taken into account.
+
+![note5](https://user-images.githubusercontent.com/118954022/221604716-7b67f225-ff51-409c-98e9-5d1727cfb39a.jpg)
+
+New drc rules after fixing
+
+**Via width** where the width of the via should be no less than a certain value. **Via spacing** where the distance between 2 vias cannot be less than a specific distance. Most of these DRC rules come from the lithographic process and the limitations that come with the technology.
+
+![note6](https://user-images.githubusercontent.com/118954022/221605412-f9b539e0-fe86-4d1b-b349-aa8b2aa3dd6a.jpg)
+
+Performing parasitic extraction, where the resistances and capacitances of the wires are extracted and will be used for further processes.
+
+![note7](https://user-images.githubusercontent.com/118954022/221605519-0cfe915d-b6bc-4a68-a860-5c5eb2ce8e44.jpg)
 
 
 ## TritonRoute Features
