@@ -3951,15 +3951,12 @@ The analysis column in report timing. Expectation - cells shown in the analysis 
 
 
 # #Day_25
-  
+  and 
 **RISC-V Core RTL2GDS Flow**
 
-## Lecture
+## RTL2GDS Flow
 
-
-------------------------------------------------------------------------------------------------
-
-## LABS
+Covered in Previous training on Day15 : https://github.com/Parvin16/sd_training#day_15 and lab notes on Day20 : https://github.com/Parvin16/sd_training#Day_20
 
 ------------------------------------------------------------------------------------------------
 
