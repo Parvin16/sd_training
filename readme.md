@@ -52,13 +52,11 @@
    * [Lab](https://github.com/Parvin16/sd_training#labs-21) 
 +  [Day_25](https://github.com/Parvin16/sd_training#Day_25) : **RISC-V Core RTL2GDS Flow**
 +  [Day_26](https://github.com/Parvin16/sd_training#Day_26) : **Introduction to Mixed-signal Flow**
-   * [Lab](https://github.com/Parvin16/sd_training#labs-22)
 +  [Day_27](https://github.com/Parvin16/sd_training#Day_27) : **Introduction to Crosstalk - Glitch and Delta Delay**
-   * [Lab](https://github.com/Parvin16/sd_training#labs-23)
+   * [Lab](https://github.com/Parvin16/sd_training#labs-22)
 +  [Day_28](https://github.com/Parvin16/sd_training#Day_28) : **Introduction to DRC/LVS**
-   * [Lab](https://github.com/Parvin16/sd_training#labs-24)
+   * [Lab](https://github.com/Parvin16/sd_training#labs-23)
 +  [Day_29](https://github.com/Parvin16/sd_training#Day_29) : **DRC/LVS Labs**
-   * [Lab](https://github.com/Parvin16/sd_training#labs-25)
 
 # #Day_0
 ### BASICS
@@ -4025,10 +4023,6 @@ References :
 
 ------------------------------------------------------------------------------------------------
 
-## LABS
-
-------------------------------------------------------------------------------------------------
-
 # #Day_27
   
 **Introduction to Crosstalk - Glitch and Delta Delay**
@@ -4144,13 +4138,11 @@ Step 2: https://www.vsdiat.com/dashboard -> Go to Physical Verification using Sk
 
 ## Lecture
 
-Refer : https://github.com/Devipriya1921/Physical-Verification-using-synopsys-40nm
+Reference Github : https://github.com/Devipriya1921/Physical-Verification-using-synopsys-40nm
+	
+**IC Validator**
 
-------------------------------------------------------------------------------------------------
-
-## LABS
-
-### LAB 1 - 
+Is a comprehensive and high-performance signoff solution that improves productivity for customers at all process nodes, from mature to advanced. It is a physical verification tool architected for massive and efficient distributed processing. ICV can run Design Rule Checks (DRC) which ensure the design meets manufacturing requirements and will not result in a chip failure. ICV can also run Layout Versus Schematic (LVS) which checking compares the extracted netlist from the layout to the original schematic netlist to determine if they match.
 
 ------------------------------------------------------------------------------------------------
 
